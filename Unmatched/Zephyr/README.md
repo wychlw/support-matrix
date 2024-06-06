@@ -1,33 +1,33 @@
-# Zephyr HiFive Unmatched 测试报告
+# Zephyr HiFive Unmatched Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - Host: Arch Linux
 - Board: Zephyr RTOS
-- 参考安装文档：https://docs.zephyrproject.org/latest/boards/riscv/index.html
+- Reference Installation Document: [https://docs.zephyrproject.org/latest/boards/riscv/index.html](https://docs.zephyrproject.org/latest/boards/riscv/index.html)
 
-### 硬件信息
+### Hardware Information
 
 - HiFive Unmatched Rev A
-- microUSB 线缆一条（随 HiFive Unmatched 附赠）
-- ATX 电源一个
+- One microUSB cable (included with HiFive Unmatched)
+- One ATX power supply
 
-> 若使用的不是 Arch 而是其他发行版，请参照 Zephyr [官方文档](https://docs.zephyrproject.org/latest/develop/getting_started/index.html) 进行环境搭建。
+> If you are not using Arch but another distribution, please refer to the Zephyr [official documentation](https://docs.zephyrproject.org/latest/develop/getting_started/index.html) for environment setup.
 
-## 安装步骤
+## Installation Steps
 
-### 依赖包安装
+### Dependency Package Installation
 
-需要已安装 `paru` 或 `yay` 等 AUR Helper。
+Requires `paru` or `yay`, AUR Helper, to be already installed.
 
 ```bash
 # yay -S python-west zephyr-sdk openocd
 paru -S python-west zephyr-sdk openocd pyocd
 ```
 
-### 编译示例程序
+### Compilation of Sample Program
 
 ```bash
 cp /usr/share/zephyr-sdk/zephyrrc ~/.zephyrrc
@@ -45,26 +45,26 @@ pip install -r ~/zephyrproject/zephyr/scripts/requirements.txt
 west build -p always -b hifive_unmatched samples/hello_world
 ```
 
-### 运行示例程序
+### Running the Sample Program
 
-将 micro USB 线缆连接至 Host PC，并给 HiFive Unmatched 上电开机。
+Connect the micro USB cable to the Host PC and power on the HiFive Unmatched.
 
-新启动一个终端，minicom/screen 等工具打开串口：
+Start a new terminal, open the serial port using tools like minicom/screen:
 
 ```bash
 sudo minicom -D /dev/ttyUSB1 -b 115200
 ```
 
-> 不需要插入 microSD 卡。如果插入了 microSD 卡，请在进入 U-Boot 之后按任意键手动打断启动流程。
+> No need to insert a microSD card. If a microSD card is inserted, manually interrupt the boot process by pressing any key after entering U-Boot.
 
-新启动一个终端，启动 `openocd`：
+Start a new terminal, launch `openocd`:
 
 ```bash
 openocd -c 'bindto 0.0.0.0' \
         -f ~/zephyrproject/zephyr/boards/riscv/hifive_unmatched/support/openocd_hifive_unmatched.cfg
 ```
 
-新启动一个终端，执行 `gdb` 远程调试：
+Start a new terminal, perform remote debugging with `gdb`:
 
 ```bash
 # 若不是从 AUR 安装，注意 SDK 下的 gdb 路径
@@ -73,15 +73,15 @@ openocd -c 'bindto 0.0.0.0' \
 -ex 'load' -ex 'monitor resume' -ex 'monitor shutdown' -ex 'quit'
 ```
 
-## 预期结果
+## Expected Results
 
-系统正常启动，输出 Hello World 信息。
+The system boots up normally and displays the Hello World message.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，输出 Hello World 信息。
+The system boots up normally and displays the Hello World message.
 
-运行输出：
+Output:
 
 ```
 *** Booting Zephyr OS build v3.6.0-rc3-8-ga48c958c8fb8 ***
@@ -90,19 +90,21 @@ Hello World! hifive_unmatched
 
 ![alt text](image.png)
 
-## 参考文档 / Credits
+## Reference Documentation / Credits
 
 - [Zephyr on HiFive Unmatched](https://github.com/KevinMX/PLCT-Tarsier-Works/blob/main/misc/month10/Zephyr_Unmatched.md)
 - [SiFive HiFive Unmatched - Zephyr Project](https://docs.zephyrproject.org/latest/boards/riscv/hifive_unmatched/doc/index.html)
 - [Getting Started Guide - Zephyr Project Documentation](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)
 - [Getting Started with Zephyr RTOS v1.13.0 On RISC-V - SiFive Blog](https://www.sifive.cn/blog/getting-started-with-zephyr-rtos-v1.13.0-on-risc-v)
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -1,25 +1,25 @@
-# FreeRTOS Demo M0P Dock 测试报告
+# FreeRTOS Demo M0P Dock Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 构建系统：Ubuntu 22.04.4 LTS
-- 源码链接：https://github.com/sipeed/M0P_BL618_examples
-- 参考安装文档：https://github.com/sipeed/M0P_BL618_examples
-    - 环境配置：
+- Build System: Ubuntu 22.04.4 LTS
+- Source Code Link: https://github.com/sipeed/M0P_BL618_examples
+- Reference Installation Document: https://github.com/sipeed/M0P_BL618_examples
+    - Environment Setup:
         - https://github.com/bouffalolab/bouffalo_sdk#environment-setup
         - https://bl-mcu-sdk.readthedocs.io/zh_CN/latest/get_started/get_started.html
-- 工具链：https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux
+- Toolchain: https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux
 
-### 硬件信息
+### Hardware Information
 
 - Sipeed M0P Dock (BL618)
-- USB A to C 或 C to C 线缆一根
+- One USB A to C or C to C cable
 
-## 安装步骤
+## Installation Steps
 
-### 准备构建环境
+### Prepare Build Environment
 
 ```shell
 git clone https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux --depth=1
@@ -37,7 +37,7 @@ cd sipeed_support/examples/m0pdock
 make flash COMX=/dev/ttyACM0
 ```
 
-### 构建 FreeRTOS Demo
+### Build FreeRTOS Demo
 
 ```shell
 cd M0P_BL618_examples
@@ -50,15 +50,15 @@ cd sipeed_support/examples/m0pdock/wifi_screen
 make # Or: make ninja
 ```
 
-### 烧录镜像
+### Flash Image
 
 ```shell
 make flash COMX=/dev/ttyACM0 # Replace ttyACMx with your actual device name
 ```
 
-### 在开发板上启动 UDP Server
+### Start UDP Server on Development Board
 
-此处参考：https://github.com/sipeed/M0P_BL618_examples/tree/main/sipeed_support/examples/m0pdock/wifi_screen
+Refer to: https://github.com/sipeed/M0P_BL618_examples/tree/main/sipeed_support/examples/m0pdock/wifi_screen
 
 ```shell
 bouffalolab />wifi_sta_connect SIPEED_TEST 12345678
@@ -77,14 +77,16 @@ recv[10240/174078] from 172.49.14.160
 recv[10240/163838] from 172.49.14.160
 ```
 
-### 启动信息
+### Startup Information
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Test: Actual results match expected results.
 
-测试失败：实际结果与预期结果不符。
+Failed Test: Actual results do not match expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

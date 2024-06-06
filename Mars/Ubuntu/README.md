@@ -1,37 +1,37 @@
 # Ubuntu on Milk-V Mars
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - Ubuntu
-  - 下载链接：
-  - 参考安装文档：https://milkv.io/zh/docs/mars/getting-started/boot
+  - Download link:
+  - Reference installation document: [Getting Started with Milk-V Mars](https://milkv.io/docs/mars/getting-started/boot)
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - Milk-V Mars
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flashing the Image
 
-使用 `unxz` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unxz` to decompress the image.
+Use `dd` to write the image to the microSD card.
 
-其中，`/dev/sdc` 为存储卡对应设备。
+The `/dev/sdc` corresponds to the storage card.
 
 ```bash
 unxz -d ubuntu-24.04-preinstalled-server-riscv64+milkvmars.img.xz
 sudo dd if=ubuntu-24.04-preinstalled-server-riscv64+milkvmars.img of=/dev/sdc bs=1M status=progress
 ```
 
-### 更新 U-Boot
+### Updating U-Boot
 
-**若出现启动时 Kernel Panic，需要更新 U-Boot**
+**If encountering Kernel Panic during startup, update U-Boot**
 
-插入烧好镜像的 SD 卡，在串口终端中出现 Hit any key to stop autoboot 时迅速按下回车键，进入 U-boot 命令行终端。
-进入 U-Boot 控制台后，依次输入：
+Insert the SD card with the burned image, press Enter quickly when Hit any key to stop autoboot appears in the serial terminal to enter the U-boot command-line terminal.
+Once in the U-Boot console, enter the following commands:
 ```bash
 sf probe
 load mmc 1:1 $kernel_addr_r /usr/lib/u-boot/starfive_visionfive2/u-boot-spl.bin.normal.out
@@ -40,24 +40,24 @@ load mmc 1:1 $kernel_addr_r /usr/lib/u-boot/starfive_visionfive2/u-boot.itb
 sf update $kernel_addr_r 0x100000 $filesize
 ```
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Log into the system via serial port.
 
-默认用户名： `ubuntu`
-默认密码： `ubuntu`
+Default username: `ubuntu`
+Default password: `ubuntu`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。能进入安装向导。
+System boots up successfully, can log in via the onboard serial port, and can access the installation wizard.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过串口查看输出。
+System boots up successfully, and the output can be viewed via the serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像：
+Screen recording:
 [![asciicast](https://asciinema.org/a/a3DgDMfhYPQgWhUjTTScbJ04n.svg)](https://asciinema.org/a/a3DgDMfhYPQgWhUjTTScbJ04n)
 
 ```log
@@ -111,12 +111,14 @@ ubuntu@ubuntu:~$
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-成功
+Successful
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

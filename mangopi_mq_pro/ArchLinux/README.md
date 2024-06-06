@@ -1,41 +1,41 @@
-# Archlinux MangoPi MQ Pro 测试报告
+# Archlinux MangoPi MQ Pro Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：
+- Download links:
     - Image Builder: https://github.com/sehraf/d1-riscv-arch-image-builder
     - U-Boot: https://github.com/smaeul/u-boot.git
     - RootFS: https://archriscv.felixc.at
-- 参考安装文档：https://github.com/sehraf/d1-riscv-arch-image-builder
+- Reference installation guide: https://github.com/sehraf/d1-riscv-arch-image-builder
 
-### 硬件信息
+### Hardware Information
 
 - MangoPi MQ Pro
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 安装依赖
+### Install Dependencies
 
-使用 Archlinux 安装依赖如下：
+To install dependencies using Archlinux, follow the steps below:
 ```bash
 pacman -Sy riscv64-linux-gnu-gcc swig cpio python3 python-setuptools base-devel bc arch-install-scripts qemu-user-static qemu-user-static-binfmt
 ```
 
-### 选择 dtb 文件
+### Choose dtb File
 
-下载 builder 后，更改 consts.sh:
+After downloading the builder, modify `consts.sh`:
 ```bash
 git clone https://github.com/sehraf/d1-riscv-arch-image-builder.git
 cd d1-riscv-arch-image-builder
 vim consts.sh
 ```
 
-选择 dtb：
+Choose dtb:
 ```diff
 diff --git a/consts.sh b/consts.sh
 index 11e51cd..6fc61d5 100644
@@ -53,49 +53,51 @@ index 11e51cd..6fc61d5 100644
 
 ```
 
-### 生成镜像
+### Generate Image
 
-运行 `1_compile.sh`：
+Run `1_compile.sh`:
 ```bash
 ./1_compile.sh
 ```
 
-### 刷写镜像
+### Write Image
 
-运行 `2_create_sd.sh`：
+Run `2_create_sd.sh`:
 
 ```bash
 2_create_sd.sh /dev/your/device
 ```
 
-### 登录系统
+### Log In to System
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-默认用户名：`root`
-默认密码：`archriscv`
+Default username: `root`
+Default password: `archriscv`
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up successfully, allowing login via the onboard serial port.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully, and login via the onboard serial port is achieved.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from writing image to logging into the system):
 
 ```log
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Success: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Test Failure: Actual outcome does not match the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

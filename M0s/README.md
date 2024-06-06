@@ -1,23 +1,26 @@
+
 # Sipeed M0s
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - FreeRTOS
-  - 下载链接：https://github.com/sipeed/M0S_BL616_example
-      - 工具链：https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux
-  - 参考安装文档：https://github.com/sipeed/M0S_BL616_example
-      - https://bl-mcu-sdk.readthedocs.io/zh-cn/latest/get_started/get_started.html
+  - Download Link: [https://github.com/sipeed/M0S_BL616_example](https://github.com/sipeed/M0S_BL616_example)
+      - Toolchain: [https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux](https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux)
+  - Installation Reference: [https://github.com/sipeed/M0S_BL616_example](https://github.com/sipeed/M0S_BL616_example)
+      - [https://bl-mcu-sdk.readthedocs.io/zh-cn/latest/get_started/get_started.html](https://bl-mcu-sdk.readthedocs.io/zh-cn/latest/get_started/get_started.html)
   
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - Sipeed M0s Dock
 
-## 测试结果
+## Test Results
 
-| 软件分类           | 软件包名    | 测试结果（测试报告） |
+| Software Category  | Package Name | Test Result (Test Report) |
 |------------------|-------------|------------------|
-| FreeRTOS 启动     | N/A        | [成功][FreeRTOS]  |
+| FreeRTOS Boot     | N/A         | [Success][FreeRTOS] |
 
 [FreeRTOS]: ./FreeRTOS/README.md
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

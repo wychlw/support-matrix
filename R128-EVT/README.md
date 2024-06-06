@@ -1,24 +1,26 @@
-# R128 EVT 开发套件
+# R128 EVT Development Kit
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - FreeRTOS
-    - SDK 链接：
+    - SDK Link:
         - https://r128.docs.aw-ol.com/r128/get_sdk/
-    - 测试预编译固件：https://www.aw-ol.com/downloads/resources/126
-    - 参考文档：
+    - Test Precompiled Firmware: https://www.aw-ol.com/downloads/resources/126
+    - Reference Documentation:
         - https://r128.docs.aw-ol.com/devkit/r128_evt/
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
-- R128 EVT 开发套件
+- R128 EVT Development Kit
 
-## 测试结果
+## Test Results
 
-| 软件分类      | 软件包名      | 测试结果（测试报告） |
+| Software Category | Package Name | Test Results (Test Report) |
 |--------------|-------------|------------------|
 | FreeRTOS     | N/A         | [CFT][FreeRTOS]   |
 
 [FreeRTOS]: ./FreeRTOS/README.md
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

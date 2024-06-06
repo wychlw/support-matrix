@@ -1,31 +1,31 @@
-# FreeRTOS Sipeed M1s Dock 测试报告
+# FreeRTOS Sipeed M1s Dock Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：
-    - SDK：https://gitee.com/Sipeed/M1s_BL808_SDK
-    - examples：https://gitee.com/Sipeed/M1s_BL808_example
-    - 烧录工具：https://dev.bouffalolab.com/download
-- 参考安装文档：https://wiki.sipeed.com/hardware/zh/maix/m1s/other/start.html
+- Download links:
+    - SDK: https://gitee.com/Sipeed/M1s_BL808_SDK
+    - Examples: https://gitee.com/Sipeed/M1s_BL808_example
+    - Flashing tool: https://dev.bouffalolab.com/download
+- Reference installation document: https://wiki.sipeed.com/hardware/zh/maix/m1s/other/start.html
 
-### 硬件信息
+### Hardware Information
 
 - Sipeed M1s Dock
-- type-c 线一根
+- One type-c cable
 
-## 安装步骤
+## Installation Steps
 
-### 获取 SDK 和工具链
+### Obtain SDK and Toolchain
 
-clone 相关仓库到工作目录：
+Clone relevant repositories to the working directory:
 ```bash
 git clone https://gitee.com/Sipeed/M1s_BL808_example.git
 git clone https://gitee.com/sipeed/M1s_BL808_SDK.git
 ```
 
-获取工具链：
+Obtain the toolchain:
 ```bash
 mkdir -p M1s_BL808_SDK/toolchain
 cd M1s_BL808_SDK/toolchain
@@ -34,24 +34,24 @@ mv m1s_toolchain Linux_x86_64
 cd ../../
 ```
 
-配置环境变量：
+Set up environment variables:
 ```bash
 cd M1s_BL808_SDK
 export BL_SDK_PATH=$(pwd)
 cd ..
 ```
 
-### 编译
+### Compilation
 
-编译 hello_world 例程：
+Compile the hello_world example:
 ```bash
 cd M1s_BL808_example/c906_app
 ./build.sh hello_world
 ```
 
-### U 盘方式刷写程序
+### Flashing via USB Drive
 
-使用 type-c 线连接电脑和**标有 OTG**的 C 口，能看到电脑新插入了一个 U 盘：
+Connect the computer and **OTG-labeled** C port using the type-c cable, a new USB drive should appear on the computer:
 ```log
 [66939.561779] usb-storage 3-2:1.0: USB Mass Storage device detected
 [66939.562424] scsi host0: usb-storage 3-2:1.0
@@ -66,7 +66,7 @@ cd M1s_BL808_example/c906_app
 
 ```
 
-将 build_out 下 d0fw.bin 移动到检测到的 U 盘中，根据实际替换下面的设备名：
+Move d0fw.bin under build_out to the detected USB drive, replace the device name accordingly:
 ```bash
 mkdir mnt
 sudo mount /dev/sda1 mnt
@@ -75,33 +75,33 @@ sudo umount mnt
 rm -r mnt
 ```
 
-### 串口方式刷写程序
+### Flashing via Serial Port
 
-使用 type-c 线连接电脑和**标有 UART**的 C 口
+Connect the computer and the C port labeled **UART** using the type-c cable
 
-构建 firmware：
+Build the firmware:
 ```bash
 cd M1s_BL808_example/e907_app
 ./build.sh firmware
 ```
 
-下载烧录工具后使用对应系统的工具烧录。
+Download the flashing tool and use the corresponding tool for the system.
 
-上电后，先按住 boot，再按 rst，再松开 boot。
+After powering on, press and hold boot, then press rst, and then release boot.
 
-### 连接串口
+### Connect to Serial Port
 
-将 type-c 线连接到**标有 UART**的 C 口。
+Connect the type-c cable to the C port labeled **UART**.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够看到串口输出。
+The system boots up normally, and serial output is visible.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够看到串口输出。
+The system boots up normally, and serial output is visible.
 
-### 启动信息
+### Boot Information
 
 ```log
 Starting bl808 now....
@@ -121,16 +121,18 @@ hello, world!
 
 ```
 
-屏幕录像：
+Screen recording:
 
 [![asciicast](https://asciinema.org/a/nYT21u4uOzQ7d7k5KF2Ge6633.svg)](https://asciinema.org/a/nYT21u4uOzQ7d7k5KF2Ge6633)
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

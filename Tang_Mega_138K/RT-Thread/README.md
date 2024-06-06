@@ -1,36 +1,35 @@
-# RT-Thread Tang Mega 138K Pro 测试报告
+# RT-Thread Tang Mega 138K Pro Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 构建系统：Linux
+- Build System: Linux
 - RT-Thread
-- 源码下载链接：https://cdn.gowinsemi.com.cn/RiscV_AE350_SOC_V1.1.zip
-	- bitstream：https://github.com/sipeed/TangMega-138KPro-example
-- 参考安装文档：https://cdn.gowinsemi.com.cn/MUG1029-1.1_Gowin_RiscV_AE350_SOC%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf
-- 参考设计文档：https://cdn.gowinsemi.com.cn/MUG1031-1.1_Gowin_RiscV_AE350_SOC%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf
+- Source Code Download Link: [RiscV_AE350_SOC_V1.1.zip](https://cdn.gowinsemi.com.cn/RiscV_AE350_SOC_V1.1.zip)
+    - Bitstream: [TangMega-138KPro-example](https://github.com/sipeed/TangMega-138KPro-example)
+- Reference Installation Document: [Gowin RiscV AE350 SOC Software Programming User Manual](https://cdn.gowinsemi.com.cn/MUG1029-1.1_Gowin_RiscV_AE350_SOC%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)
+- Reference Design Document: [Gowin RiscV AE350 SOC Hardware Design User Manual](https://cdn.gowinsemi.com.cn/MUG1031-1.1_Gowin_RiscV_AE350_SOC%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)
 
-### 硬件信息
+### Hardware Information
 
 - Tang Mega 138K Pro Dock
-- type A to C 线一根
-- UART串口线一根
-- 随机电源线
+- Type A to C cable x1
+- UART serial cable x1
+- Power cord
 
-## 安装步骤
+## Installation Steps
 
-**以下以 Linux 系统下的构建为例，Windows 下请安装 AE350 SOC RDS，并在附带的 cygwin 环境下进行除注明外相同的操作**
+**The following example is based on building in a Linux system. For Windows, please install AE350 SOC RDS and perform the same operations in the provided cygwin environment unless specified otherwise.**
 
-*若不需要 IDE 功能，Windows 下构建不需要 RDS License*
+*If IDE functionality is not needed, RDS License is not necessary for building on Windows.*
 
-### 拷贝并 patch 代码
+### Copy and Patch Code
 
-RT-Thread 代码位于源码压缩包内，ref_design/MCU_RefDesign/ae350_rtthread_nano 路径下。将其解压到您的工作区。
+The RT-Thread code is located in the compressed source code package, under the path ref_design/MCU_RefDesign/ae350_rtthread_nano. Extract it to your working directory.
 
-
-若为 Linux：patch Debug/makefile:
-替换以下内容：
+For Linux: patch Debug/makefile:
+Replace the following content:
 ```diff
 diff --git a/Debug/makefile b/Debug/makefile
 index eb97e6d..232a162 100644
@@ -47,82 +46,76 @@ index eb97e6d..232a162 100644
  
 
 ```
-失败请注意换行符应为 CRLF
+Note that line breaks should be CRLF
 
-替换工作路径：
+Replace the working directory:
 ```bash
 find -name "*.mk" -exec sed -i "s|/cygdrive/E/RDS5/workspace/ae350_rtthread_nano|$(pwd)|g" {} \;
 ```
 
-### 编译代码
+### Compile Code
 
 #### Linux
-解包交叉编译工具链，此处建议使用 nds32le-elf-mculib-v5。其位置以下记为 `$(nds32_path)`
+Unpack the cross-compilation toolchain. It is recommended to use nds32le-elf-mculib-v5. Hereafter, it will be referred to as `$(nds32_path)`.
 
-编译目标文件：
+Compile target files:
 ```bash
 cd Debug
 make CROSS_COMPILE=$(nds32_path)/bin/riscv32-elf-
 ```
 
 #### Windows
-打开 RDS 自带的 cygwin 环境：
-运行 RDS 安装目录下的 cygwin/Cygwin.bat
+Open the cygwin environment provided with RDS:
+Run Cygwin.bat located in the RDS installation directory under cygwin folder.
 
-cd 到源码文件夹（磁盘在 `/cygdrive/$(盘符)` 下）
+Navigate to the source code folder (drive is in `/cygdrive/$(drive_letter)`).
 
-编译目标文件，以下 RDS_ROOT 应被替换为您 RDS 的安装路径：
+Compile target files. Replace RDS_ROOT with your RDS installation path:
 ```bash
 cd Debug
 make ANDESIGHT_ROOT=<RDS_ROOT> CROSS_COMPILE=<RDS_ROOT>/toolchains/nds32le-elf-mculib-v5/bin/riscv32-elf-
 ```
 
-### 获取 FPGA 码流
+### Obtain FPGA Bitstream
 
-**Tang Mega 138K 支持仅在商业版中提供**
+**Exclusive to the commercial version of Tang Mega 138K.**
 
-FPGA 工程可以使用 Sipeed 官方提供的 demo，位于 [TangMega-138KPro-example](https://github.com/sipeed/TangMega-138KPro-example) 中的 ae350_customized_demo 里。其中码流已经编译好，不需要重新生成。
+The FPGA project can use the demo provided by Sipeed, located in ae350_customized_demo within [TangMega-138KPro-example](https://github.com/sipeed/TangMega-138KPro-example). The bitstream is already compiled and does not require regeneration.
 
-### 下载码流
+### Download Bitstream
 
-连接 FPGA，使用高云云源软件下载码流。
+Connect the FPGA and download the bitstream using software from the cloud source.
 
-### 烧录程序
+### Program Flash
 
-使用 RDS 目录下 flash 中的 programmer.exe 进行烧录。设置如下：
+Use the programmer.exe in the flash directory of the RDS for programming. Set as follows:
 - External Flash Mode 5AT
 - exFlash C Bin Erase, Program 5AT
 - Start address: 0x600000
 
-![image](image.png)
+After programming, if there is no output, download the bitstream again.
 
-烧录程序后若无输出，需要再次重新下载码流。
+### Connect Serial Port
 
-### 连接串口
-
-默认的 UART2 被绑定到了：
+The default UART2 is bound to:
 ```
 IO_LOC "UART2_TXD" U16;     //1
 IO_LOC "UART2_RXD" V16;     //2
 ```
 
-### 查看输出
+### Check Output
 
-通过串口查看 RT-Thread 输出。
+Check the RT-Thread output via the serial port.
 
-### 查看输出
+## Expected Results
 
-通过串口查看 RT-Thread 输出。
+The system should start normally, and the RT-Thread output should be viewable through the onboard serial port.
 
-## 预期结果
+## Actual Results
 
-系统正常启动，能够通过板载串口查看 RT-Thread 输出。
+The system started normally, and the RT-Thread output was visible through the onboard serial port.
 
-## 实际结果
-
-系统正常启动，能够通过板载串口查看 RT-Thread 输出。
-
-### 启动信息
+### Startup Information
 
 ```log
 
@@ -142,12 +135,14 @@ RT demo...
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Success: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Failure: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Successful test.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

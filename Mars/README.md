@@ -1,28 +1,30 @@
 # Milk-V Mars
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- BuildRoot/Debian（官方提供）
-    - 下载链接：https://github.com/milkv-mars/mars-buildroot-sdk/releases/
-    - 参考安装文档：https://milkv.io/zh/docs/mars/getting-started/boot
+- BuildRoot/Debian (Official)
+    - Download link: [Milk-V Mars BuildRoot SDK](https://github.com/milkv-mars/mars-buildroot-sdk/releases/)
+    - Installation guide: [Getting Started with Milk-V Mars](https://milkv.io/zh/docs/mars/getting-started/boot)
 - Ubuntu
-    - 下载链接：https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04-preinstalled-server-riscv64+milkvmars.img.xz
-    - 参考安装文档：https://milkv.io/zh/docs/mars/getting-started/booh
+    - Download link: [Ubuntu 24.04 Preinstalled Server for RISC-V64 Milk-V Mars](https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04-preinstalled-server-riscv64+milkvmars.img.xz)
+    - Installation guide: [Getting Started with Milk-V Mars](https://milkv.io/zh/docs/mars/getting-started/booh)
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - Milk-V Mars
 
-## 测试结果
+## Test Results
 
-| 软件分类             | 软件包名 | 测试结果（测试报告）             |
-|------------------|----------|--------------------------------|
-| Debian 镜像启动      | N/A      | [CFT][Debian]（Milk-V 厂商镜像） |
-| BuildRoot 构建及启动 | N/A      | [CFT][BuildRoot]               |
-| Ubuntu 镜像启动      | N/A      | [CFT][Ubuntu]                  |
+| Software Category        | Package Name | Test Results (Test Report)      |
+|------------------------|--------------|---------------------------------|
+| Debian Image Boot      | N/A          | [CFT][Debian] (Milk-V Manufacturer Image) |
+| BuildRoot Build and Boot | N/A          | [CFT][BuildRoot]                |
+| Ubuntu Image Boot      | N/A          | [CFT][Ubuntu]                   |
 
 [Debian]: ./Debian/README.md
 [BuildRoot]: ./BuildRoot/README.md
 [Ubuntu]: ./Ubuntu/README.md
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

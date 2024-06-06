@@ -1,52 +1,52 @@
-# Ubuntu VisionFive 测试报告
+# Ubuntu VisionFive Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：Ubuntu 23.10
-- 下载链接：[https://ubuntu.com/download/risc-v](https://ubuntu.com/download/risc-v)
-- 参考安装文档：[https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive](https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive)
+- System Version: Ubuntu 23.10
+- Download Link: [https://ubuntu.com/download/risc-v](https://ubuntu.com/download/risc-v)
+- Reference Installation Documentation: [https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive](https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flash Image
 
-使用 `unxz` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unxz` to decompress the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 unxz /path/to/ubuntu.img.xz
 sudo dd if=/path/to/ubuntu.img of=/dev/your-device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Login to the system via serial port.
 
-默认用户名： `ubuntu`
-默认密码： `ubuntu`
+Default username: `ubuntu`
+Default password: `ubuntu`
 
-初次启动后会强制要求更改密码。
+Upon initial boot, changing the password will be mandatory.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up correctly and allow login via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system booted up correctly and login via the onboard serial port was successful.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/yNX1czhlpU8K0CwIDzan6PZ9Q.svg)](https://asciinema.org/a/yNX1czhlpU8K0CwIDzan6PZ9Q)
 
@@ -96,12 +96,14 @@ LOGO=ubuntu-logo
 
 ```
 
-## 测试判定标准
+## Testing Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: The actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: The actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+The test was successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

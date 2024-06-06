@@ -1,50 +1,51 @@
+
 # Debian on Milk-V Mars
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - Debian bookworm/sid
-  - 下载链接：https://github.com/milkv-mars/mars-buildroot-sdk/releases/
-    - Milk-V 官方提供的 Debian 镜像，同时仓库中提供了 BuildRoot
-  - 参考安装文档：https://milkv.io/zh/docs/mars/getting-started/boot
+  - Download link: https://github.com/milkv-mars/mars-buildroot-sdk/releases/
+    - Debian image provided by Milk-V along with BuildRoot in the repository
+  - Installation guide: https://milkv.io/zh/docs/mars/getting-started/boot
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - Milk-V Mars
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flashing Image
 
-使用 `unzip` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unzip` to extract the image.
+Use `dd` to write the image to the microSD card.
 
-其中，`/dev/sdc` 为存储卡对应设备。
+Where `/dev/sdc` corresponds to the storage card's device.
 
 ```bash
 unzip mars_debian-desktop_sdk-v3.6.1_sdcard_v1.0.6.img.zip
 sudo dd if=mars_debian-desktop_sdk-v3.6.1_sdcard_v1.0.6.img of=/dev/sdc bs=1M status=progress
 ```
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Login to the system via serial port.
 
-默认用户名： `user`
-默认密码： `milkv`
+Default username: `user`
+Default password: `milkv`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。能进入安装向导。
+The system should boot up successfully, allowing login via onboard serial port, and access to the installation wizard.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过串口查看输出。
+The system boots up successfully, and the output is viewable via the serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像：
+Screen recording:
 [![asciicast](https://asciinema.org/a/v8FxrttpHTJVye5N4U5KCgUsT.svg)](https://asciinema.org/a/v8FxrttpHTJVye5N4U5KCgUsT)
 
 ```log
@@ -77,12 +78,14 @@ user@milkv:~$
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful test: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Failed test: Actual results differ from the expected results.
 
-## 测试结论
+## Test Conclusion
 
-成功
+Successful
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

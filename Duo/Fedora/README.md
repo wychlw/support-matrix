@@ -1,52 +1,52 @@
-# Fedora 38 Milk-V Duo 测试报告
+# Fedora 38 Milk-V Duo Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Fedora 38
-- 下载链接：https://github.com/chainsx/fedora-riscv-builder/releases/download/20230719-1650/Fedora-38-Minimal-MilkV-Duo-riscv64.img.xz
-- 参考安装文档：https://github.com/chainsx/fedora-riscv-builder
-- Issue/CFH: https://github.com/chainsx/fedora-riscv-builder/issues/6
-    - （镜像无法启动）
+- System Version: Fedora 38
+- Download Link: [Fedora-38-Minimal-MilkV-Duo-riscv64.img.xz](https://github.com/chainsx/fedora-riscv-builder/releases/download/20230719-1650/Fedora-38-Minimal-MilkV-Duo-riscv64.img.xz)
+- Installation Reference Document: [Fedora RISC-V Builder](https://github.com/chainsx/fedora-riscv-builder)
+- Issue/CFH: [Fedora-riscv-builder Issue #6](https://github.com/chainsx/fedora-riscv-builder/issues/6)
+    - (Image fails to boot)
 
-> Note: 此镜像为社区开发者提供，非官方镜像。
+> Note: This image is provided by community developers and not an official image.
 
-### 硬件信息
+### Hardware Information
 
 - Milk-V Duo 64M
-- USB 电源适配器一个
-- USB-A to C 或 USB C to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
-- Milk-V Duo 本体上预先焊接好调试所需的排针
-- 可选：Milk-V Duo IOB（底板）
+- 1 USB Power Adapter
+- 1 USB-A to C or USB C to C cable
+- 1 microSD card
+- 1 USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
+- 3 DuPont lines
+- Development board Milk-V Duo with pre-soldered pins for debugging
+- Optional: Milk-V Duo IOB (baseboard)
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `dd` 刷写镜像到 microSD 卡
+### Use `dd` to write the image to the microSD card
 
 ```shell
 xzcat Fedora-38-Minimal-MilkV-Duo-riscv64.img.xz | sudo dd of=/dev/sdc bs=4M iflag=fullblock status=progress 
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Access the system via serial console.
 
-用户名：`root`
-密码：`fedora`
+Username: `root`
+Password: `fedora`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过串口登录。
+The system boots successfully, allowing login via the serial console.
 
-## 实际结果
+## Actual Results
 
-系统未能成功启动，上电后 systemd 会 coredump，无法正常登录。
+The system failed to boot successfully. Upon booting, systemd core dumps, preventing normal login.
 
-### 启动信息
+### Boot Information
 
 ```log
 [  *** ] (2 of 7) Job systemd-update-utmp.se…ice/start running (20s / no limit)                                                     
@@ -66,20 +66,22 @@ xzcat Fedora-38-Minimal-MilkV-Duo-riscv64.img.xz | sudo dd of=/dev/sdc bs=4M ifl
 [  182.719818] status: 8000000201804020 badaddr: ffffffffffffffff cause: 000000000000000d
 ```
 
-启动流程屏幕录像：
+Boot process screen recording:
 
 [![asciicast](https://asciinema.org/a/MxHNPZZ2MG8vPEBSmMNwTz6DY.svg)](https://asciinema.org/a/MxHNPZZ2MG8vPEBSmMNwTz6DY)
 
-### 缺陷报告
+### Defect Report
 
-https://github.com/chainsx/fedora-riscv-builder/issues/6
+[Fedora-riscv-builder Issue #6](https://github.com/chainsx/fedora-riscv-builder/issues/6)
 
-## 测试判定标准
+## Test Judgement Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Test: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Failed Test: Actual results differ from the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试失败。
+Test Failed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

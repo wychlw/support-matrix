@@ -1,68 +1,68 @@
-# Arch Linux LPi4A 测试报告
+# Arch Linux LPi4A Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 下载链接：[https://mirror.iscas.ac.cn/archriscv/images/](https://mirror.iscas.ac.cn/archriscv/images/)
-- u-boot 与 boot 下载（采用 revyos 的）：[https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/20231210/](https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/)
-- fastboot 下载：[https://gitee.com/thead-yocto/light_deploy_images](https://gitee.com/thead-yocto/light_deploy_images)
-- 参考安装文档：
+- Download link: [https://mirror.iscas.ac.cn/archriscv/images/](https://mirror.iscas.ac.cn/archriscv/images/)
+- u-boot and boot downloads (using revyos): [https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/20231210/](https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/)
+- fastboot download: [https://gitee.com/thead-yocto/light_deploy_images](https://gitee.com/thead-yocto/light_deploy_images)
+- Refer to installation document:
     - [ArchWiki](https://wiki.archlinux.org/title/General_recommendations)
 
-### 硬件信息
+### Hardware Information
 
-- Lichee Pi 4A (8G RAM + 64G eMMC)
-- 电源适配器
-- USB to UART 调试器一个
+- Lichee Pi 4A (8GB RAM + 64GB eMMC)
+- Power adapter
+- USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 创建 rootfs
+### Create rootfs
 
-由于 Arch Linux 提供的并非打包好的镜像，而是 rootfs，我们需要自行打包镜像。
+Since Arch Linux does not provide pre-packaged images but a rootfs, we need to create the image ourselves.
 
-- 创建块设备，并创建文件系统
+- Create a block device and file system
 ```bash
-sudo dd if=/dev/zero of=rootfs.ext4 bs=1M count=6144 # 创建 6g 的rootfs
+sudo dd if=/dev/zero of=rootfs.ext4 bs=1M count=6144 # Create a 6GB rootfs
 sudo mkfs.ext4 rootfs.ext4
 mkdir mnt
 sudo mount ./rootfs.ext4 ./mnt
 ```
 
-- 将 rootfs 解压到根目录中
+- Extract rootfs into the root directory
 ```bash
 sudo tar -I zstd -xvf archriscv-2023-12-13.tar.zst -C mnt/
 ```
 
-- 获取该 fs 的 UUID
+- Obtain the UUID of the file system
 ```bash
 lsblk -o NAME,UUID
 ```
 
-- 到 rootfs 中进行必要的更新，包安装与调整
+- Perform necessary updates, package installation, and adjustments in rootfs
 ```bash
 sudo systemd-nspawn -D ./mnt --machine=archriscv
 
-# 接下来是在 rootfs 中进行的
+# The following commands are executed inside rootfs
 pacman -Syu
-# 在此处安装你需要的包，如 vim 等。
-echo "UUID=$UUID /  ext4  defaults  1  1 " >> /etc/fstab # 此处的 $UUID 是之前获得的
-passwd # 请设置你的root密码！！
+# Install necessary packages such as vim here.
+echo "UUID=$UUID /  ext4  defaults  1  1 " >> /etc/fstab # Use the $UUID obtained earlier
+passwd # Set your root password!
 exit
 ```
 
-- umount rootfs
+- Unmount rootfs
 ```bash
 sudo umount ./mnt
 ```
 
-### 刷写 bootloader
+### Flash bootloader
 
-解压安装套件。
-刷入 u-boot 与 boot。
+Extract the installation suite.
+Flash u-boot and boot.
 
-*根据你的硬件版本选择是否需要 16g*
+*Select whether you need 16GB according to your hardware version*
 
 ```bash
 zstd -d boot-lpi4a-20231210_134926.ext4.zst
@@ -72,36 +72,34 @@ sudo ./fastboot flash uboot ./path/to/u-boot-with-spl-lpi4a.bin
 sudo ./fastboot flash boot boot-lpi4a-20231210_134926.ext4
 ```
 
-### 刷写镜像
+### Flash Image
 
-将 root 分区刷入 eMMC 中。
+Flash the root partition into eMMC.
 
 ```bash
 sudo ./fastboot flash root rootfs.ext4
 ```
 
-### 登录系统
+### Login to System
 
-通过串口登录系统。
+Access the system via serial port.
 
-默认用户名： `root`
-默认密码：此处为你之前自行设置的密码。
+Default username: `root`
+Default password: the password you set earlier.
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully, allowing login via onboard serial port.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully, and login via onboard serial port is successful.
 
-### 启动信息
+### Boot Information
 
-![xfce](./xfce.png)
+### Screen Recording (from creating rootfs to logging into the system):
 
-屏幕录像（从创建 rootfs 到登录系统）：
-
-[![asciicast](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN.svg)](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN)
+Watch the video here: [![asciicast](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN.svg)](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN)
 
 ```log
 Arch Linux 5.10.113-yocto-standard (ttyS0)
@@ -131,12 +129,14 @@ Last login: Sat Mar  9 10:04:36 on ttyS0
  .`                                 `/
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Test: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Failed Test: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

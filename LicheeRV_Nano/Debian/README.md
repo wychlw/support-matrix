@@ -1,51 +1,51 @@
-# BuildRoot LicheeRV Nano 测试报告
+# BuildRoot LicheeRV Nano Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Initial Release
-- 下载链接：https://github.com/Fishwaldo/sophgo-sg200x-debian
-- 参考安装文档：https://github.com/Fishwaldo/sophgo-sg200x-debian
+- System Version: Initial Release
+- Download Link: [GitHub Repository](https://github.com/Fishwaldo/sophgo-sg200x-debian)
+- Installation Reference Document: [GitHub Repository](https://github.com/Fishwaldo/sophgo-sg200x-debian)
 
-### 硬件信息
+### Hardware Information
 
 - LicheeRV Nano
-- Type-C 电源线一根
-- UART 转 USB 调试器一个
+- One Type-C power cable
+- One UART to USB debugger
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `dd` 刷写镜像到 microSD 卡
+### Write Image to microSD Card Using `dd`
 
-下载镜像后进行解压和刷写：
+Download the image, then extract and write it:
 
 ```shell
 lz4 -dk licheervnano_sd.img.lz4
 sudo dd if=licheervnano_sd.img of=/dev/your_device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log in to the system using the serial port.
 
-| 用户名 | 密码 |
-|--------|------|
-| root   | rv   |
-| debian | rv   |
+| Username | Password |
+|----------|----------|
+| root     | rv       |
+| debian   | rv       |
 
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过串口登录。
+The system should boot up successfully and allow login via serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过串口登录。
+The system successfully boots up and allows login via serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from writing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/d6uwAengdlXVbMj0KAdVbPhMX.svg)](https://asciinema.org/a/d6uwAengdlXVbMj0KAdVbPhMX)
 
@@ -81,12 +81,14 @@ Linux licheervnano 5.10.4-20240329-1+ #1 PREEMPT Sat Apr 13 07:08:27 UTC 2024 ri
 root@licheervnano:~# 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

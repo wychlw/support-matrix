@@ -1,59 +1,61 @@
-# Ubuntu MangoPi MQ Pro 测试报告
+# Ubuntu MangoPi MQ Pro Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-riscv64+nezha.img.xz
-- 参考安装文档：https://mangopi.org/mqpro
+- Download link: https://cdimage.ubuntu.com/releases/23.10/release/ubuntu-23.10-preinstalled-server-riscv64+nezha.img.xz
+- Refer to installation guide: https://mangopi.org/mqpro
 
-### 硬件信息
+### Hardware Information
 
 - MangoPi MQ Pro
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flash Image
 
-使用 `xz` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `xz` to extract the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 xz -kd /path/to/ubuntu-23.10-preinstalled-server-riscv64+nezha.img.xz
 sudo dd if=/path/to/ubuntu-23.10-preinstalled-server-riscv64+nezha.img  of=/dev/your_device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-默认用户名：`ubuntu`
-默认密码：`ubuntu`
+Default username: `ubuntu`
+Default password: `ubuntu`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up normally and can be accessed via onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up normally and successfully logged in through the onboard serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 ```log
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

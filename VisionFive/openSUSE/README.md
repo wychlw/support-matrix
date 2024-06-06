@@ -1,37 +1,37 @@
-# openSUSE Tumbleweed VisionFive 测试报告
+# openSUSE Tumbleweed VisionFive Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：openSUSE Tumbleweed
-- 下载链接：[https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/StarFive/images/](https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/StarFive/images/)
-- 参考安装文档：[https://en.opensuse.org/HCL:VisionFive](https://en.opensuse.org/HCL:VisionFive)
+- System Version: openSUSE Tumbleweed
+- Download Link: [https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/StarFive/images/](https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/StarFive/images/)
+- Reference Installation Document: [https://en.opensuse.org/HCL:VisionFive](https://en.opensuse.org/HCL:VisionFive)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD Card
+- One USB to UART Debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flash the Image
 
-使用 `unxz` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unxz` to decompress the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 unxz /path/to/openSUSE.raw.xz
 sudo dd if=/path/to/openSUSE.raw of=/dev/your-device bs=1M status=progress
 ```
 
-### patch 镜像
+### Patch the Image
 
-挂载 SD 卡后：
+After mounting the SD card:
 
-创建 `/boot/uEnv.txt` 并加入以下内容：
+Create `/boot/uEnv.txt` and add the following content:
 
 ```
 fdt_high=0xffffffffffffffff
@@ -54,30 +54,30 @@ bootcmd=load mmc 0:1 0xa0000000 /EFI/BOOT/bootriscv64.efi; bootefi 0xa0000000
 bootcmd_mmc0=devnum=0; run mmc_boot
 ```
 
-在 `/boot/grub2/grub.cfg` 中每个入口后加入以下内容（在`linux`之后）：
+Add the following content after each entry in `/boot/grub2/grub.cfg` (after `linux`):
 
 ```
 devicetree /boot/dtb/starfive/jh7100-starfive-visionfive-v1.dtb
 ```
 
-### 登录系统
+### Login to the System
 
-通过串口登录系统。
+Log in to the system via the serial port.
 
-默认用户名： `root`
-默认密码： `linux`
+Default username: `root`
+Default password: `linux`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up normally and allows login via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up normally and successful login via the onboard serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/bTRGI0BeLsyA2Fg9xMZtXeVHU.svg)](https://asciinema.org/a/bTRGI0BeLsyA2Fg9xMZtXeVHU)
 
@@ -113,12 +113,14 @@ LOGO="distributor-logo-Tumbleweed"
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Successful: Actual results match expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

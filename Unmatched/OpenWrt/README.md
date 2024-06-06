@@ -1,47 +1,47 @@
-# OpenWrt 23.05.2 HiFive Unmatched 测试报告
+# OpenWrt 23.05.2 HiFive Unmatched Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：OpenWrt 23.05.2
-- 下载链接（OpenWrt Firmware Selector）：https://firmware-selector.openwrt.org/?version=23.05.2&target=sifiveu%2Fgeneric&id=sifive_unmatched
-- 参考安装文档：https://openwrt.org/docs/techref/hardware/soc/soc.sifive
+- System Version: OpenWrt 23.05.2
+- Download Link (OpenWrt Firmware Selector): [OpenWrt Firmware Selector](https://firmware-selector.openwrt.org/?version=23.05.2&target=sifiveu%2Fgeneric&id=sifive_unmatched)
+- Reference Installation Documentation: [OpenWrt Installation Documentation](https://openwrt.org/docs/techref/hardware/soc/soc.sifive)
 
-> 在 OpenWrt Firmware Selector 中可以在线定制构建系统镜像，添加用户所需要的预装软件包。本次测试使用的 & `ruyi` 包管理器提供的为**未经修改**的原版镜像。
+> The OpenWrt Firmware Selector allows customizing and building system images online, adding the necessary pre-installed software packages. The image used for this test was **unmodified** and provided by the & `ruyi` package manager.
 
-### 硬件信息
+### Hardware Information
 
 - HiFive Unmatched Rev A
-- microUSB 线缆一条（随 HiFive Unmatched 附赠）
-- ATX 电源一个
-- microSD 卡一张（Sandisk Extreme Pro 64G UHS-I）
+- One microUSB cable (included with HiFive Unmatched)
+- One ATX power supply
+- One microSD card (Sandisk Extreme Pro 64G UHS-I)
 
-## 安装步骤
+## Installation Steps
 
-### 引导设备选择
+### Boot Device Selection
 
-确保拨码开关已调整为从 microSD 卡引导。若您未更改，出厂默认即为从 microSD 卡引导。
+Make sure the DIP switch is set to boot from the microSD card. If you haven't made any changes, the factory default is set to boot from the microSD card.
 
-拨码开关应如下设置：`MSEL[3:0]=1011`
+DIP switch should be set as follows: `MSEL[3:0]=1011`
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Write Image to microSD Card using `ruyi` CLI
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install the [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-### 登录系统
+### Logging into the System
 
-通过板载串口（使用 microUSB 线缆连接至其他计算机）登录系统。
+Log into the system using the onboard serial port (connect to another computer using a microUSB cable).
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up normally and be accessible via the onboard serial port.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system booted up successfully, and login through the onboard serial port was successful.
 
-### 启动信息
+### Boot Information
 
 ```log
 [    3.585478] init: - preinit -
@@ -145,16 +145,18 @@ uarch           : sifive,u74-mc
 root@OpenWrt:/#
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from writing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/cAMBxvAP8iqIrdf1xCiQ3clJP.svg)](https://asciinema.org/a/cAMBxvAP8iqIrdf1xCiQ3clJP)
 
-## 测试判定标准
+## Test Evaluation Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual outcome does not match the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

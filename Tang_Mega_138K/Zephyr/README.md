@@ -1,114 +1,116 @@
-# Zephyr Tang Mega 138K Pro 测试报告
+# Zephyr Tang Mega 138K Pro Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 构建系统：Linux
+- Build System: Linux
 - FreeRTOS
-- 源码下载链接：https://cdn.gowinsemi.com.cn/RiscV_AE350_SOC_V1.1.zip
-	- bitstream：https://github.com/sipeed/TangMega-138KPro-example
-- 参考安装文档：https://cdn.gowinsemi.com.cn/MUG1029-1.1_Gowin_RiscV_AE350_SOC%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf
-- 参考设计文档：https://cdn.gowinsemi.com.cn/MUG1031-1.1_Gowin_RiscV_AE350_SOC%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf
+- Source Code Download Link: [RiscV_AE350_SOC_V1.1.zip](https://cdn.gowinsemi.com.cn/RiscV_AE350_SOC_V1.1.zip)
+    - Bitstream: [TangMega-138KPro-example](https://github.com/sipeed/TangMega-138KPro-example)
+- Installation Reference Document: [Gowin RiscV AE350 SOC Software Programming User Manual](https://cdn.gowinsemi.com.cn/MUG1029-1.1_Gowin_RiscV_AE350_SOC%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8B%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)
+- Design Reference Document: [Gowin RiscV AE350 SOC Hardware Design User Manual](https://cdn.gowinsemi.com.cn/MUG1031-1.1_Gowin_RiscV_AE350_SOC%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf)
 
-### 硬件信息
+### Hardware Information
 
 - FreeRTOS Tang Mega 138K Pro Dock
-- type A to C 线一根
-- UART串口线一根
-- 随机电源线
+- Type A to C cable x1
+- UART serial cable x1
+- Random power cable
 
-## 安装步骤
+## Installation Steps
 
-**以下以 Linux 系统下的构建为例，Windows 下请安装 AE350 SOC RDS，并在附带的 cygwin 环境下进行除注明外相同的操作**
+**The following steps are based on building in a Linux system. For Windows, please install AE350 SOC RDS and perform the same operations in the included cygwin environment unless specified otherwise**
 
-*若不需要 IDE 功能，Windows 下构建不需要 RDS License*
+*If IDE functionality is not required, RDS License is not needed for building in Windows*
 
-### 拷贝代码
+### Copy Code
 
-Zephyr 代码位于源码压缩包内，ref_design/MCU_RefDesign/ae350_zephyr 路径下。将其解压到您的工作区。
+The Zephyr code is located in the compressed source package under the path ref_design/MCU_RefDesign/ae350_zephyr. Extract it to your working directory.
 
-### 编译代码
+### Compile Code
 
-进入到代码目录下，设置环境变量：
+Navigate to the code directory and set the environment variables:
 ```bash
 source zephyr-env.sh
 export ZEPHYR_TOOLCHAIN_VARIANT='cross-compile
 ```
 
-设置交叉编译工具链，此处建议使用 nds32le-elf-mculib-v5：
+Set up the cross-compilation toolchain. It is recommended to use nds32le-elf-mculib-v5 here:
 ```bash
 export CROSS_COMPILE=path/to/nds32le-elf-mculib-v5/bin/riscv32-elf-
 ```
 
-Windows 下该文件在 RDS 安装目录下的 toolchains 中。
+For Windows, this file is located in the toolchains directory under the RDS installation directory.
 
-进入 hello_world 目录：
+Access the hello_world directory:
 ```bash
 cd samples/hello_world
 ```
 
-准备构建文件：
+Prepare the build files:
 ```bash
 mkdir build
 cd build
 cmake -DBOARD=adp_xc7k_ae350 ../
 ```
 
-图形化配置构建选项：`make menuconfig`
+Configure build options graphically: `make menuconfig`
 
-构建源码：`make`
+Build the source code: `make`
 
 
-### 获取 FPGA 码流
+### Obtain FPGA Bitstream
 
-**Tang Mega 138K 支持仅在商业版中提供**
+**FPGA support is available only in the commercial version**
 
-FPGA 工程可以使用 Sipeed 官方提供的 demo，位于 [TangMega-138KPro-example](https://github.com/sipeed/TangMega-138KPro-example) 中的 ae350_customized_demo 里。其中码流已经编译好，不需要重新生成。
+The FPGA project can use the demo provided by Sipeed, located in [TangMega-138KPro-example](https://github.com/sipeed/TangMega-138KPro-example) under ae350_customized_demo. The bitstream is pre-compiled and does not need to be regenerated.
 
-### 下载码流
+### Download Bitstream
 
-连接 FPGA，使用高云云源软件下载码流。
+Connect FPGA and download the bitstream using HighCloud Source software.
 
-### 烧录程序
+### Program Flash
 
-使用 RDS 目录下 flash 中的 programmer.exe 进行烧录。设置如下：
+Use the programmer.exe under the flash directory in RDS for programming. Set as follows:
 - External Flash Mode 5AT
 - exFlash C Bin Erase, Program 5AT
 - Start address: 0x600000
 
-烧录程序后若无输出，需要再次重新下载码流。
+If there is no output after programming, it may be necessary to redownload the bitstream.
 
-### 连接串口
+### Connect Serial Port
 
-默认的 UART2 被绑定到了：
+The default UART2 is bound to:
 ```
 IO_LOC "UART2_TXD" U16;     //1
 IO_LOC "UART2_RXD" V16;     //2
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Login to the system via the serial port.
 
-## 预期结果
+## Expected Result
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully, allowing login through the onboard serial port.
 
-## 实际结果
+## Actual Result
 
-成功编译并刷入镜像，但串口无任何输出。
+Image compiled and flashed successfully, but no output on the serial port.
 
-### 启动信息
+### Boot Information
 
 N/A
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual result matches the expected result.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual result does not match the expected result.
 
-## 测试结论
+## Test Conclusion
 
 CFH
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

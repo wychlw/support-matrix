@@ -1,42 +1,42 @@
-# BuildRoot Milk-V Duo 测试报告
+# BuildRoot Milk-V Duo Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Duo-V1.0.7
-- 下载链接：https://github.com/milkv-duo/duo-buildroot-sdk/releases
-- 参考安装文档：https://github.com/milkv-duo/duo-buildroot-sdk
+- System Version: Duo-V1.0.7
+- Download Link: [GitHub Duo Buildroot SDK Releases](https://github.com/milkv-duo/duo-buildroot-sdk/releases)
+- Reference Installation Document: [GitHub Duo Buildroot SDK](https://github.com/milkv-duo/duo-buildroot-sdk)
 
-### 硬件信息
+### Hardware Information
 
 - Milk-V Duo 64M
-- USB 电源适配器一个
-- USB-A to C 或 USB C to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
-- Milk-V Duo 本体上预先焊接好调试所需的排针
+- USB Power Adapter x1
+- USB-A to C or USB C to C Cable x1
+- MicroSD Card x1
+- USB to UART Debugger x1 (e.g. CH340, CH341, FT2232, etc.)
+- Dupont Cables x3
+- Pre-soldered debugging pin headers on the Milk-V Duo board
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Flash Image to MicroSD Card using `ruyi` CLI
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the instructions.
 
-### 登录系统
+### Login to the System
 
-通过串口登录系统。
+Login to the system via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+System boots up correctly and can be accessed via onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up correctly and successfully logs in via the onboard serial port.
 
-### 启动信息
+### Boot Information
 
 ```log
 [root@milkv-duo]~# uname -a                                                                                                                                             
@@ -50,16 +50,18 @@ mmu             : sv39
 [root@milkv-duo]~# 
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/rsenSOJwdlmUXcJ8sQwubPgtr.svg)](https://asciinema.org/a/rsenSOJwdlmUXcJ8sQwubPgtr)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

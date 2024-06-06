@@ -1,33 +1,36 @@
+
 # Milk-V Duo S
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - BuildRoot & FreeRTOS
-  - 下载链接：https://github.com/milkv-duo/duo-buildroot-sdk/releases
-    - Milk-V 官方提供的 BuildRoot SDK，同时包含了 FreeRTOS
-  - 参考安装文档：https://github.com/milkv-duo/duo-buildroot-sdk
+  - Download link: [Milk-V Duo BuildRoot SDK](https://github.com/milkv-duo/duo-buildroot-sdk/releases)
+    - Official BuildRoot SDK provided by Milk-V, includes FreeRTOS
+  - Installation guide: [Milk-V Duo BuildRoot SDK Installation](https://github.com/milkv-duo/duo-buildroot-sdk)
 - Apache NuttX RTOS
-  - 源码链接
-    - NuttX: https://github.com/lupyuen2/wip-nuttx/tree/sg2000
-    - NuttX Apps: https://github.com/lupyuen2/wip-nuttx-apps/tree/sg2000
-  - 参考安装文档；https://github.com/lupyuen/nuttx-sg2000
+  - Source code links
+    - NuttX: [NuttX Source Code](https://github.com/lupyuen2/wip-nuttx/tree/sg2000)
+    - NuttX Apps: [NuttX Apps Source Code](https://github.com/lupyuen2/wip-nuttx-apps/tree/sg2000)
+  - Installation guide: [NuttX SG2000 Installation](https://github.com/lupyuen/nuttx-sg2000)
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - Milk-V Duo S (512M, SG2000)
 
-## 测试结果
+## Test Results
 
-| 软件分类                | 软件包名     | 测试结果（测试报告）  |
-|-----------------------|--------------|---------------------|
-| BuildRoot 镜像启动      | N/A          | [Basic][BuildRoot]  |
-| FreeRTOS 启动           | mailbox-test | [Basic][FreeRTOS]   |
-| Apache NuttX 构建及启动 | N/A          | [Basic, WIP][NuttX] |
-| Zephyr 镜像构建及启动    | N/A          | [Basic][Zephyr]   |
+| Software Category       | Package Name | Test Results (Test Report) |
+|-----------------------|--------------|-------------------------|
+| BuildRoot Image Boot     | N/A          | [Basic][BuildRoot]     |
+| FreeRTOS Boot            | mailbox-test | [Basic][FreeRTOS]      |
+| Apache NuttX Build & Boot| N/A          | [Basic, WIP][NuttX]    |
+| Zephyr Image Build & Boot| N/A          | [Basic][Zephyr]        |
 
 [BuildRoot]: ./BuildRoot/README.md
 [FreeRTOS]: ./FreeRTOS/README.md
 [NuttX]: ./NuttX/README.md
 [Zephyr]: ./Zephyr/README.md
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -1,48 +1,48 @@
-# RT-Thread DongshanPI-D1s 测试报告
+# RT-Thread DongshanPI-D1s Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://github.com/RT-Thread/rt-thread
-- 参考安装文档：https://github.com/RT-Thread/rt-thread/blob/master/bsp/allwinner/d1s/README-MQ.md
+- Download Link: https://github.com/RT-Thread/rt-thread
+- Reference Installation Document: https://github.com/RT-Thread/rt-thread/blob/master/bsp/allwinner/d1s/README-MQ.md
 
-### 硬件信息
+### Hardware Information
 
 - DongshanPI-D1s
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
+- One microSD card
+- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
 
-## 安装步骤
+## Installation Steps
 
-### 下载代码
+### Download Code
 
-下载 RT-Thread 代码：
+Download RT-Thread code:
 ```bash
 git clone https://github.com/RT-Thread/userapps.git
 cd userapps
 git clone -b rt-smart https://gitee.com/rtthread/rt-thread.git
 ```
 
-配置工具链：
+Configure the toolchain:
 ```bash
 python3 get_toolchain.py riscv64
 source smart-env.sh riscv64
 ```
 
-编译内核：
+Compile the kernel:
 ```bash
 scons --menuconfig
 source ~/.env/env.sh
 pkgs --update
 ```
 
-### 烧写镜像
+### Flash Image
 
-分区 SD 卡：前部留 8M 的空间以容纳 bootloadr：
+Partition the SD card: reserve 8M space at the front for the bootloader:
 ```bash
 sudo fdisk /dev/your/device
-# 以下在fdisk中
+# In fdisk
 o
 n
 p
@@ -51,39 +51,41 @@ p
 w
 ```
 
-刷入系统到 sd 卡：
+Write the system image to the SD card:
 ```bash
 sudo dd if=boot0_sdcard_sun20iw1p1.bin of=/dev/your/device bs=1024 seek=8
 sudo dd if=sd.bin of=/dev/your/device bs=1024 seek=56
 ```
 
-### 登录系统
+### Log in to the System
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up normally and allow login via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system booted up successfully, and login via the onboard serial port was successful.
 
-### 启动信息
+### Boot Information
 
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 ```log
 ```
 
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: The actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: The actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -1,44 +1,44 @@
-# Armbian Lichee Cluster 4A 版本测试报告
+# Armbian Lichee Cluster 4A Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Ubuntu 20.04 LTS 
-- 下载链接：[https://github.com/chainsx/armbian-riscv-build/tree/main](https://github.com/chainsx/armbian-riscv-build/tree/main)
+- System Version: Ubuntu 20.04 LTS
+- Download Link: [https://github.com/chainsx/armbian-riscv-build/tree/main](https://github.com/chainsx/armbian-riscv-build/tree/main)
     - u-boot: [https://github.com/chainsx/thead-u-boot/actions](https://github.com/chainsx/thead-u-boot/actions)
-- 参考安装文档：[https://github.com/chainsx/armbian-riscv-build/blob/main/doc/licheepi-4a-install-guide.md](https://github.com/chainsx/armbian-riscv-build/blob/main/doc/licheepi-4a-install-guide.md)
-- fastboot 链接：
+- Reference Installation Document: [https://github.com/chainsx/armbian-riscv-build/blob/main/doc/licheepi-4a-install-guide.md](https://github.com/chainsx/armbian-riscv-build/blob/main/doc/licheepi-4a-install-guide.md)
+- fastboot links:
     - [https://pan.baidu.com/e/1xH56ZlewB6UOMlke5BrKWQ](https://pan.baidu.com/e/1xH56ZlewB6UOMlke5BrKWQ)
     - [https://mega.nz/folder/phoQlBTZ#cZeQ3qZ__pDvP94PT3_bGA](https://mega.nz/folder/phoQlBTZ#cZeQ3qZ__pDvP94PT3_bGA)
 
 
-### 硬件信息
+### Hardware Information
 
 - Lichee Cluster 4A 8G / 16G
-- DC 12V 电源
+- DC 12V Power Supply
 - USB-A to A
-    - 或 LPi4A 底板
-- microSD 卡一张
-- 网络和网线（注意连接到 BMC 而非交换机）
+    - or LPi4A Baseboard
+- One microSD card
+- Network and Ethernet cable (connect to BMC not switch)
 
-## 安装步骤
+## Installation Steps
 
-*以下以刷写到集群中一号板为例*
+*Below is an example of flashing to the first board in the cluster*
 
-### 刷写镜像
+### Flash Image
 
-使用 `unxz` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unxz` to extract the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 unxz /path/to/Armbian.img.xz
 sudo dd if=/path/to/Armbian.img of=/dev/your_device bs=1M status=progress
 ```
 
-### 刷写 bootloader
+### Flash Bootloader
 
-此处使用上面下载的 u-boot。
+Use the u-boot downloaded above.
 
 ```bash
 sudo ./fastboot flash ram ./path/to/your/lpi4a-$(ram_size)-u-boot-with-spl.bin
@@ -47,36 +47,35 @@ sleep 10
 sudo ./fastboot flash uboot ./path/to/your/lpi4a-$(ram_size)-u-boot-with-spl.bin
 ```
 
-### 登录系统
+### Login to the System
 
-通过 SOL (Serial Over LAN) 登录系统。
+Login to the system via SOL (Serial Over LAN).
 
-BMC 默认用户名：`root`
+Default BMC username: `root`
 
-BMC 默认密码：`0penBmc` **注意是 `0` 而不是 `O`**
+Default BMC password: `0penBmc` **Note that it's `0` not `O`**
 
-通过 `ssh -p 2301 root@lichee-rv.local` 连接
+Connect via `ssh -p 2301 root@lichee-rv.local`
 
-初次启动会要求设置用户及密码。
+Initially, the system will prompt you to set a username and password.
 
-### 常见问题
+### Common Issues
 
-若无法使用 USB，是因为 Linux 设备树需要 patch。[patch 下载](https://dl.sipeed.com/fileList/LICHEE/LicheeCluster4A/04_Firmware/lpi4a/src/linux/0001-arch-riscv-boot-dts-lpi4a-disable-i2c-io-expander-fo.patch)
+If USB is not working, it's because the Linux device tree needs patching. [Download patch](https://dl.sipeed.com/fileList/LICHEE/LicheeCluster4A/04_Firmware/lpi4a/src/linux/0001-arch-riscv-boot-dts-lpi4a-disable-i2c-io-expander-fo.patch)
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过 SOL (Serial Over LAN) 登录。
+The system should boot up normally, allowing login via SOL (Serial Over LAN).
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过 SOL (Serial Over LAN) 登录。
+The system booted up normally, allowing login via SOL (Serial Over LAN).
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写系统到启动）：
+Screen recording (from flashing system to booting):
 
 [![asciicast](https://asciinema.org/a/glbyZg6rjqfWu1YiQhyj62Zww.svg)](https://asciinema.org/a/glbyZg6rjqfWu1YiQhyj62Zww)
-
 
 ```log
 Welcome to ARMBIAN! 
@@ -145,12 +144,14 @@ root@licheepi-4a:~#
 
 ```
 
-## 测试判定标准
+## Test Judgement Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

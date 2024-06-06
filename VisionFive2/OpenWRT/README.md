@@ -1,26 +1,26 @@
-# OpenWRT SnapShot VisionFive 2 测试报告
+# OpenWRT SnapShot VisionFive 2 Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：OpenWRT SnapShot
-- 下载链接：[https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=starfive%2Fgeneric&id=visionfive2-v1.3b](https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=starfive%2Fgeneric&id=visionfive2-v1.3b)
-- 参考安装文档：[https://doc.rvspace.org/VisionFive2/Application_Notes/VisionFive2_OpenWrt/VisionFive_2/openwrt/compile.html](https://doc.rvspace.org/VisionFive2/Application_Notes/VisionFive2_OpenWrt/VisionFive_2/openwrt/compile.html)
+- System Version: OpenWRT SnapShot
+- Download Link: [https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=starfive%2Fgeneric&id=visionfive2-v1.3b](https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=starfive%2Fgeneric&id=visionfive2-v1.3b)
+- Reference Installation Document: [https://doc.rvspace.org/VisionFive2/Application_Notes/VisionFive2_OpenWrt/VisionFive_2/openwrt/compile.html](https://doc.rvspace.org/VisionFive2/Application_Notes/VisionFive2_OpenWrt/VisionFive_2/openwrt/compile.html)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive2
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flashing Image
 
-使用 `gzip` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Decompress the image using `gzip`.
+Write the image to the microSD card using `dd`.
 
 ```bash
 wget https://downloads.openwrt.org/snapshots/targets/starfive/generic/openwrt-starfive-generic-visionfive2-v1.3b-ext4-sdcard.img.gz
@@ -28,23 +28,23 @@ gzip -d /path/to/openwrt.img.gz
 sudo dd if=/path/to/openwrt.img of=/dev/your-device bs=1M status=progress
 ```
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Login to the system via a serial port.
 
-默认无密码，自动登录 root。
+No password required by default, automatically logs in as root.
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and can be accessed via the onboard serial port.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and can be accessed via the onboard serial port.
 
-### 启动信息
+### Boot-up Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/cNB8FumIO4mB00Ppi1OoMCFyq.svg)](https://asciinema.org/a/cNB8FumIO4mB00Ppi1OoMCFyq)
 
@@ -88,12 +88,14 @@ OPENWRT_RELEASE="OpenWrt SNAPSHOT r25665-79e9ce354e"
 root@OpenWrt:/# 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Successful: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual outcome does not match the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

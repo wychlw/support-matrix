@@ -1,23 +1,23 @@
-# Tina Linux D1s NeZha 测试报告
+# Tina Linux D1s NeZha Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 链接：https://pan.baidu.com/s/1v55AKMFripaEu22tJ92lmw?pwd=awol 提取码：awol
-- 参考安装文档：https://d1s.docs.aw-ol.com/study/study_1tina/
+- Link: [https://pan.baidu.com/s/1v55AKMFripaEu22tJ92lmw?pwd=awol](https://pan.baidu.com/s/1v55AKMFripaEu22tJ92lmw?pwd=awol) Extraction code: awol
+- Reference Installation Document: [https://d1s.docs.aw-ol.com/study/study_1tina/](https://d1s.docs.aw-ol.com/study/study_1tina/)
 
-### 硬件信息
+### Hardware Information
 
 - D1s NeZha
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
+- One microSD card
+- One USB to UART debugger (such as: CH340, CH341, FT2232, etc.)
 
-## 安装步骤
+## Installation Steps
 
-### 打包镜像
+### Image Packaging
 
-下载并解压后，准备编译 SDK：
+After downloading and extracting, prepare to compile the SDK:
 ```bash
 source build/envsetup.sh
 lunch
@@ -25,15 +25,15 @@ make -j$(nproc)
 pack
 ```
 
-### 烧写镜像
+### Burning Image
 
-使用 LiveSuit 软件，选择镜像后，连接开发板刷写。
+Use LiveSuit software, select the image, and connect to the development board for flashing.
 
-LiveSuit 获取见：https://linux-sunxi.org/LiveSuit
+For LiveSuit acquisition, visit: [https://linux-sunxi.org/LiveSuit](https://linux-sunxi.org/LiveSuit)
 
 #### LiveSuit
 
-下载并构建：
+Download and build:
 ```bash
 git clone https://github.com/linux-sunxi/sunxi-livesuite.git
 apt-get install dkms
@@ -48,38 +48,38 @@ KERNEL=="aw_efex[0-9]*", MODE="0666"
 udevadm control --reload-rules
 ```
 
-运行：
+Run:
 ```bash
 ./LiveSuit.sh
 ```
 
-### 登录系统
+### Login to System
 
-通过串口登录系统。
+Login to the system via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up normally and can be accessed by logging in via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up normally and login via the onboard serial port is successful.
 
-### 启动信息
+### Boot Information
 
-
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 ```log
 ```
 
+## Test Criteria
 
-## 测试判定标准
+Test Passed: Actual results match the expected results.
 
-测试成功：实际结果与预期结果相符。
+Test Failed: Actual results do not match the expected results.
 
-测试失败：实际结果与预期结果不符。
-
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

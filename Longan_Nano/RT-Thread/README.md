@@ -1,30 +1,31 @@
-# RT-Thread Longan Nano 测试报告
 
-## 测试环境
+# RT-Thread Longan Nano Test Report
 
-### 操作系统信息
+## Test Environment
 
-- 源码链接：https://github.com/Nuclei-Software/nuclei-sdk
-- 参考文档：https://doc.nucleisys.com/nuclei_sdk/design/board/gd32vf103c_longan_nano.html
-- 下载链接：
-    - SDK：https://github.com/Nuclei-Software/nuclei-sdk
-    - toolchain：https://www.nucleisys.com/download.php
-        - https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2
-    - openocd：https://www.nucleisys.com/download.php
-        - https://download.nucleisys.com/upload/files/toolchain/openocd/nuclei-openocd-2024.02.28-linux-x64.tgz
+### Operating System Information
 
-### 硬件信息
+- Source Code Link: [Nuclei-Software/nuclei-sdk](https://github.com/Nuclei-Software/nuclei-sdk)
+- Reference Documentation: [GD32VF103C Longan Nano](https://doc.nucleisys.com/nuclei_sdk/design/board/gd32vf103c_longan_nano.html)
+- Download Links:
+    - SDK: [Nuclei-Software/nuclei-sdk](https://github.com/Nuclei-Software/nuclei-sdk)
+    - Toolchain: [NucleiSys Downloads](https://www.nucleisys.com/download.php)
+        - [Nuclei RISC-V Newlib prebuilt Linux 64](https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2)
+    - OpenOCD: [NucleiSys Downloads](https://www.nucleisys.com/download.php)
+        - [nuclei-openocd-2024.02.28-linux-x64](https://download.nucleisys.com/upload/files/toolchain/openocd/nuclei-openocd-2024.02.28-linux-x64.tgz)
+
+### Hardware Information
 
 - Longan Nano
-- USB to UART 调试器一个
-- **JTAG 调试器**
-- type-c 线一根
+- One USB to UART debugger
+- **One JTAG debugger**
+- One Type-C cable
 
-## 安装步骤
+## Installation Steps
 
-### 配置环境
+### Configure Environment
 
-下载工具链和 OpenOCD 并解压，设置工具链目录：
+Download the toolchain and OpenOCD, then unzip them. Set the toolchain directory:
 ```bash
 wget https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2
 tar -xzf nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2
@@ -33,7 +34,7 @@ tar -xzvf nuclei-openocd-2024.02.28-linux-x64.tgz
 export NUCLEI_TOOL_ROOT=$(pwd)
 ```
 
-下载 SDK：
+Download the SDK:
 ```bash
 git clone https://github.com/Nuclei-Software/nuclei-sdk.git
 cd nuclei-sdk
@@ -43,46 +44,47 @@ EOF
 source setup.sh
 ```
 
-### 编译代码
+### Compile Code
 
-编译 FreeRTOS:
+Compile FreeRTOS:
 ```bash
 cd application/rtthread/demo
 make SOC=gd32vf103 BOARD=gd32vf103c_longan_nano clean
 make SOC=gd32vf103 BOARD=gd32vf103c_longan_nano all
 ```
 
-### 烧写镜像
+### Flash Image
 
 ```bash
 make SOC=gd32vf103 BOARD=gd32vf103c_longan_nano upload
 ```
 
-### 启动系统
+### System Startup
 
-通过串口连接开发板。
+Connect to the development board via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system boots up successfully, and information can be viewed through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system boots up successfully, and information can be viewed through the onboard serial port.
 
-### 启动信息
+### Startup Information
 
-屏幕录像（从编译到启动）：
-
+Video recording (from compile to boot):
 ```log
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

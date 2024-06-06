@@ -1,36 +1,37 @@
-# RT-Thread Nuclei DDR200T 测试报告
+# RT-Thread Nuclei DDR200T Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 源码链接：https://github.com/Community-PIO-CH32V/ch32-pio-projects
-- 参考文档：
-    - PlatformIO Core：https://docs.platformio.org/en/latest/core/installation/index.html
-    - PlatformIO ch32v：https://pio-ch32v.readthedocs.io/en/latest/installation.html
+- Source Code Link: [https://github.com/Community-PIO-CH32V/ch32-pio-projects](https://github.com/Community-PIO-CH32V/ch32-pio-projects)
+- Reference Documents:
+    - PlatformIO Core: [https://docs.platformio.org/en/latest/core/installation/index.html](https://docs.platformio.org/en/latest/core/installation/index.html)
+    - PlatformIO ch32v: [https://pio-ch32v.readthedocs.io/en/latest/installation.html](https://pio-ch32v.readthedocs.io/en/latest/installation.html)
 
-### 硬件信息
+### Hardware Information
 
-- Nuclei DDR200T 开发板
-## 安装步骤
+- Nuclei DDR200T Development Board
 
-### 安装 PlatformIO Core
+## Installation Steps
 
-可以先尝试包管理器中是否带有如 [platformio-core](https://archlinux.org/packages/?name=platformio-core) 包。若无可采用安装脚本安装：
+### Install PlatformIO Core
+
+You can first check if the package manager includes a package like [platformio-core](https://archlinux.org/packages/?name=platformio-core). If not, you can use the installation script:
 
 ```bash
 curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
 python3 get-platformio.py
 ```
 
-### 配置 PlatformIO 环境
+### Configure PlatformIO Environment
 
-安装 Nuclei 开发环境：
+Install Nuclei development environment:
 ```bash
 pio pkg install --global --platform "nuclei/nuclei@^1.0.11"
 ```
 
-添加 udev 规则并应用（根据发行版不同可能需要更改 GROUP）：
+Add udev rules and apply them (may need to change GROUP according to the distribution):
 ```bash
 curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
 cat << EOF | sudo tee -a /etc/udev/rules.d/99-platformio-udev.rules
@@ -42,71 +43,72 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-添加用户组：
-- Debian 系：
+Add user group:
+- Debian-based:
 ```bash
 sudo usermod -a -G dialout $USER
 sudo usermod -a -G plugdev $USER
 ```
-- Arch 系：
+- Arch-based:
 ```bash
 sudo usermod -a -G uucp $USER
 sudo usermod -a -G lock $USER
 ```
 
-### 准备工程仓库
+### Prepare Project Repository
 
-clone 相关仓库：
+Clone the relevant repository:
 ```bash
 git clone https://github.com/Nuclei-Software/platform-nuclei.git
 ```
 
-### 编译代码
+### Compile Code
 
-使用 pio 编译代码：
+Compile the code using pio:
 ```bash
 cd cd platform-nuclei/examples/rtthread_demo
 pio run
 ```
 
-### 烧写镜像
+### Flash Image
 
-确认 WCH-Link(E) 连接到 SWD 调试口后，使用 pio 烧写镜像：
+After confirming the WCH-Link(E) is connected to the SWD debug port, use pio to flash the image:
 ```bash
 pio run --target upload
 ```
 
-pio 会自行检测开发板。若烧录不成功也可尝试手动指定：
+If the flashing fails, you can try to specify manually:
 ```bash
 pio run -e hbird_eval --target upload
 ```
 
-### 登录系统
+### Log in to the System
 
-通过串口连接开发板。
+Connect to the development board via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system boots up normally, and information can be viewed through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system boots up normally, and information can be viewed through the onboard serial port.
 
-### 启动信息
+### Boot-up Information
 
-屏幕录像（从编译到启动）：
-
+Screen recording (from compilation to boot-up):
 
 ```log
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

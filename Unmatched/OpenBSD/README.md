@@ -1,70 +1,72 @@
-# OpenBSD 7.4 HiFive Unmatched 版本测试报告
+# OpenBSD 7.4 HiFive Unmatched Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：OpenBSD 7.4
-- 下载链接（USTC Mirror）：https://mirrors.tuna.tsinghua.edu.cn/OpenBSD/7.4/riscv64/install74.img
-- 参考安装文档：https://wiki.freebsd.org/riscv/HiFiveUnmatched
+- System Version: OpenBSD 7.4
+- Download Link (USTC Mirror): [https://mirrors.tuna.tsinghua.edu.cn/OpenBSD/7.4/riscv64/install74.img](https://mirrors.tuna.tsinghua.edu.cn/OpenBSD/7.4/riscv64/install74.img)
+- Reference Installation Documentation: [https://wiki.freebsd.org/riscv/HiFiveUnmatched](https://wiki.freebsd.org/riscv/HiFiveUnmatched)
 
-### 硬件信息
+### Hardware Information
 
 - HiFive Unmatched Rev A
-- microUSB 线缆一条（随 HiFive Unmatched 附赠）
-- ATX 电源一个
-- microSD 卡一张（Sandisk Extreme Pro 64G UHS-I），提前刷入 Freedom U SDK
-- U 盘一个（Lexar S25 32G）
+- One microUSB cable (included with HiFive Unmatched)
+- One ATX power supply
+- One microSD card (Sandisk Extreme Pro 64G UHS-I) preloaded with Freedom U SDK
+- One USB flash drive (Lexar S25 32G)
 
-## 安装步骤
+## Installation Steps
 
-### 引导设备选择
+### Boot Device Selection
 
-确保拨码开关已调整为从 microSD 卡引导。若您未更改，出厂默认即为从 microSD 卡引导。
+Ensure that the DIP switches are set to boot from the microSD card. If you have not made any changes, the factory default setting is to boot from the microSD card.
 
-拨码开关应如下设置：`MSEL[3:0]=1011`
+The DIP switch should be set as follows: `MSEL[3:0]=1011`
 
-### 刷写 Freedom U SDK
+### Flash Freedom U SDK
 
-从 [此处](https://github.com/sifive/freedom-u-sdk/releases/latest) 获取 demo-coreip-cli-unmatched.rootfs.wic.xz 镜像。
+Download the demo-coreip-cli-unmatched.rootfs.wic.xz image from [here](https://github.com/sifive/freedom-u-sdk/releases/latest).
 
-解压并将镜像写入 microSD 卡。其中 `/dev/sdc` 为 microSD 卡所在位置。
+Unzip the image and write it to the microSD card. The position of the microSD card is `/dev/sdc`.
 
 ```bash
 xz -dk demo-coreip-cli-unmatched.rootfs.wic.xz
 sudo dd if=demo-coreip-cli-unmatched.rootfs.wic of=/dev/sdc status=progress
 ```
 
-### 刷写安装镜像到 U 盘
+### Write Installation Image to USB Flash Drive
 
-使用 `dd` 命令写入镜像到 microSD 卡。
+Use the `dd` command to write the image to the microSD card.
 
 ```bash
 sudo dd if=install74.img of=/dev/sdc status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过板载串口（使用 microUSB 线缆连接至其他计算机）登录系统。
+Login to the system via the onboard serial port (connect to another computer using the microUSB cable).
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully, and login via the onboard serial port is possible.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully, and login via the onboard serial port is successful.
 
-### 启动信息
+### Boot Information
 
 ![alt text](image.png)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Successful: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

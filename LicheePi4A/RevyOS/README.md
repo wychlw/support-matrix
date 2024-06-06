@@ -1,42 +1,41 @@
-# RevyOS LPi4A 版本测试报告
+# RevyOS LPi4A Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：RevyOS 20231210
-- 下载链接：https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/
-- 参考安装文档：https://revyos.github.io/docs/
+- System Version: RevyOS 20231210
+- Download Link: [Click here](https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/)
+- Reference Installation Guide: [Visit here](https://revyos.github.io/docs/)
 
-### 硬件信息
+### Hardware Information
 
-- Lichee Pi 4A (16G RAM + 128G eMMC)
-- USB-C 电源适配器 / DC 电源一个
-- USB-UART 调试器一个
+- Lichee Pi 4A (16GB RAM + 128GB eMMC)
+- USB-C Power Adapter / DC Power Supply
+- USB-UART Debugger
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `ruyi` CLI 刷写镜像到板载 eMMC
+### Using the `ruyi` CLI to Flash Image to Onboard eMMC
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install the [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-### 登录系统
+### Log into the System
 
-通过串口或图形界面登录系统。
+Log into the system via serial console or graphical interface.
 
-默认用户名：`debian`
-默认密码：`debian`
+Default username: `debian`
+Default password: `debian`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过串口登录。
+The system boots up successfully and can be accessed via the serial console.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过串口登录。
+The system boots up successfully and login via the serial console is successful.
 
-### 启动信息
-
+### Boot Information
 
 ```log
 Debian GNU/Linux 12 lpi4a ttyS0
@@ -52,7 +51,7 @@ Password:
                |___/                    
                    -- Presented by ISCAS
 
-  Debian GNU/Linux 12 (bookworm) (kernel 5.10.113-lpi4a)
+Debian GNU/Linux 12 (bookworm) (kernel 5.10.113-lpi4a)
 
 Linux lpi4a 5.10.113-lpi4a #2023.12.08.03.26+b8c5d3546 SMP PREEMPT Fri Dec 8 03:26:13 UTC 2 riscv64
 
@@ -63,7 +62,6 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 debian@lpi4a:~$ [   55.898441] es8156_set_bias_level codec_uninit_sequence
-
 debian@lpi4a:~$ uname -a
 Linux lpi4a 5.10.113-lpi4a #2023.12.08.03.26+b8c5d3546 SMP PREEMPT Fri Dec 8 03:26:13 UTC 2 riscv64 GNU/Linux
 debian@lpi4a:~$ cat /proc/cpu-i[   64.361096] es8156_set_bias_level codec_uninit_sequence
@@ -104,20 +102,22 @@ cpu-l2cache     : 1MB
 cpu-tlb         : 1024 4-ways
 cpu-cacheline   : 64Bytes
 cpu-vector      : 0.7.1
+```  
 
-processor       : 3
-hart            : 3
-isa             : rv64imafdcvsu
-mmu             : sv39
-cpu-freq        : 1.848Ghz
-cpu-icache      : 64KB
-cpu-dcache      : 64KB
-cpu-l2cache     : 1MB
-cpu-tlb         : 1024 4-ways
-cpu-cacheline   : 64Bytes                                               
-cpu-vector      : 0.7.1                                                   |
-                                                                        |
-debian@lpi4a:~$ cat /etc/os-release                                     
+```markdown
+- Processor: 3
+- Architecture: 3
+- Instruction Set Architecture: rv64imafdcvsu
+- Memory Management Unit: sv39
+- CPU Frequency: 1.848GHz
+- L1 Instruction Cache: 64KB
+- L1 Data Cache: 64KB
+- L2 Cache: 1MB
+- TLB: 1024 entries, 4-ways set-associative
+- Cache Line Size: 64 Bytes
+- SIMD Support: 0.7.1
+
+debian@lpi4a:~$ cat /etc/os-release
 PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
 NAME="Debian GNU/Linux"
 VERSION_ID="12"
@@ -127,7 +127,7 @@ ID=debian
 HOME_URL="https://www.debian.org/"
 SUPPORT_URL="https://www.debian.org/support"
 BUG_REPORT_URL="https://bugs.debian.org/"
-debian@lpi4a:~$ cat /etc/revyos-release 
+debian@lpi4a:~$ cat /etc/revyos-release
 BUILD_ID=20231210_134926
 BUILD_DATE=20231210
 RELEASE_ID=20231210
@@ -136,12 +136,4 @@ RUNNER_ID=7158219074
 debian@lpi4a:~$
 ```
 
-## 测试判定标准
-
-测试成功：实际结果与预期结果相符。
-
-测试失败：实际结果与预期结果不符。
-
-## 测试结论
-
-测试成功。
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

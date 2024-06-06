@@ -1,44 +1,45 @@
-# Milk-V Vega BuildRoot 构建测试报告
 
-## 测试环境
+# Milk-V Vega BuildRoot Build Test Report
 
-### 操作系统信息
+## Test Environment
+
+### Operating System Information
 
 - Host: Ubuntu 22.04.4 LTS x86_64 (in Docker)
 - Milk-V Vega Switch
-- 参考文档：https://milkv.io/zh/docs/vega/getting-started/buildroot-sdk
+- Reference Documentation: https://milkv.io/docs/vega/getting-started/buildroot-sdk
 - Issue/CFH: https://github.com/milkv-vega/vega-buildroot-sdk/issues/1
-  - BuildRoot 构建失败
+  - BuildRoot build failure
 
-## 操作步骤
+## Operating Steps
 
-### 构建依赖包安装
+### Install Build Dependencies
 
 ```bash
 sudo apt install -y make git gcc g++ bison flex device-tree-compiler mtd-utils zip unzip lz4
 ```
 
-### 获取 SDK
+### Get SDK
 
 ```bash
 git clone --depth=1 https://github.com/milkv-vega/vega-buildroot-sdk
 ```
 
 > [!TIP]
-> 目前官方仓库构建会失败，需要手动更新 `m4`, `fakeroot` 和 `autoconf`
-> 已经有社区开发者修复了这一问题，在官方合并 PR 或修复之前请先使用此仓库：
+> Currently, the official repository build will fail, manually update `m4`, `fakeroot`, and `autoconf` are required.
+> A community developer has already fixed this issue, before it is merged or fixed in the official repository, please use this repository:
 > `git clone --depth=1 https://github.com/michaelfuckner/vega-buildroot-sdk`
 
-### 构建固件
+### Build Firmware
 
 ```bash
 cd vega-buildroot-sdk/
 ./build.sh
 ```
 
-> 注意：初次构建过程中会连接至 GitHub 自动下载所需的工具链。请确保您的互联网连接正常。
+> Note: During the initial build, it will connect to GitHub to automatically download the necessary toolchains. Please ensure your internet connection is stable.
 
-构建成功后会在 `out` 目录输出三个镜像：
+After successful build, three images will be output in the `out` directory:
 
 ```
 out/
@@ -47,16 +48,16 @@ out/
 └── ubifs.img
 ```
 
-### 预期结果
+### Expected Outcome
 
-构建成功，烧写后可以正常启动。
+Successful build, able to start normally after burning.
 
-### 实际结果
+### Actual Outcome
 
-使用来自官方仓库的源码构建失败。
+Build failed using the source code from the official repository.
 
 <details>
-<summary>日志如下。</summary>
+<summary>Here is the log.</summary>
 
 ```log
 In file included from /usr/include/signal.h:328,
@@ -139,7 +140,7 @@ $
 ```
 </details>
 
-使用社区开发者更新了部分包之后的源码成功构建。
+Build successful with updates to some packages from the community developer.
 
 ```log
 make -C /home/mx/vega-buildroot-sdk/freeloader ARCH=rv64gc ABI=lp64d CROSS_COMPILE=/home/mx/vega-buildroot-sdk/work/buildroot_initramfs/host/bin/riscv-nuclei-linux-gnu- \                      FW_JUMP_BIN=/home/mx/vega-buildroot-sdk/work/opensbi/platform/nuclei/ux600/firmware/fw_jump.bin UBOOT_BIN=/home/mx/vega-buildroot-sdk/work/u-boot/u-boot.bin DTB=/home/mx/vega-buildroot-sdk/work/nuclei_ux600fd.dtb                                                                                                                                                    make[1]: Entering directory '/home/mx/vega-buildroot-sdk/freeloader_rootfs'                                                                                                             cp /home/mx/vega-buildroot-sdk/work/u-boot/u-boot.bin .                                                                                                                                 cp /home/mx/vega-buildroot-sdk/work/opensbi/platform/nuclei/ux600/firmware/fw_jump.bin .                                                                                                cp ../work/boot/uImage.lz4 ./kernel.bin                                                                                                                                                 cp ../work/boot/uInitrd.lz4 ./initrd.bin                                                                                                                                                cp /home/mx/vega-buildroot-sdk/work/nuclei_ux600fd.dtb ./fdt.dtb                                                                                                                        /home/mx/vega-buildroot-sdk/work/buildroot_initramfs/host/bin/riscv-nuclei-linux-gnu-gcc -g -march=rv64gc -mabi=lp64d freeloader.S -o freeloader.elf -nostartfiles -Tlinker.lds         /home/mx/vega-buildroot-sdk/work/buildroot_initramfs/host/bin/riscv-nuclei-linux-gnu-objcopy freeloader.elf -O binary freeloader.bin                                                    /home/mx/vega-buildroot-sdk/work/buildroot_initramfs/host/bin/riscv-nuclei-linux-gnu-objdump -d freeloader.elf > freeloader.dis                                                         make[1]: Leaving directory '/home/mx/vega-buildroot-sdk/freeloader_rootfs'                  
@@ -171,3 +172,5 @@ drwxrwxr-x 1 mx mx  336 Apr 16 09:55 ..
 -rw-rw-r-- 1 mx mx 3.5M Apr 16 09:55 kernel.bin
 -rw-rw-r-- 1 mx mx  20M Apr 16 09:55 ubifs.img
 ```
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

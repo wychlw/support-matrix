@@ -1,50 +1,50 @@
-# Fedora 33 VisionFive 测试报告
+# Fedora 33 VisionFive Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：Fedora 33
-- 下载链接：[https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst](https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst)
-- 参考安装文档：[https://doc.rvspace.org/VisionFive/PDF/VisionFive_Quick_Start_Guide.pdf](https://doc.rvspace.org/VisionFive/PDF/VisionFive_Quick_Start_Guide.pdf)
+- System Version: Fedora 33
+- Download Link: [Download VisionFive Fedora 33 Image](https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst)
+- Installation Guide: [VisionFive Quick Start Guide](https://doc.rvspace.org/VisionFive/PDF/VisionFive_Quick_Start_Guide.pdf)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Image Flashing
 
-使用 `zstd` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `zstd` to decompress the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 zstd -d /path/to/fedora.raw.zst
 sudo dd if=/path/to/fedora of=/dev/your-device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log into the system via serial port.
 
-默认用户名： `root`
-默认密码： `starfive`
+Default username: `root`
+Default password: `starfive`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up successfully, allowing login via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system booted up successfully and login via the onboard serial port was also successful.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to system login):
 
 [![asciicast](https://asciinema.org/a/wuaUJ0h23U1eWMFzoyQPLTvgp.svg)](https://asciinema.org/a/wuaUJ0h23U1eWMFzoyQPLTvgp)
 
@@ -106,12 +106,14 @@ Last login: Tue Dec 21 01:25:23 on pts/0
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+The test was successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

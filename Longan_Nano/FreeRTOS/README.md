@@ -1,30 +1,30 @@
-# FreeRTOS Longan Nano 测试报告
+# FreeRTOS Longan Nano Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 源码链接：https://github.com/Nuclei-Software/nuclei-sdk
-- 参考文档：https://doc.nucleisys.com/nuclei_sdk/design/board/gd32vf103c_longan_nano.html
-- 下载链接：
-    - SDK：https://github.com/Nuclei-Software/nuclei-sdk
-    - toolchain：https://www.nucleisys.com/download.php
-        - https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2
-    - openocd：https://www.nucleisys.com/download.php
-        - https://download.nucleisys.com/upload/files/toolchain/openocd/nuclei-openocd-2024.02.28-linux-x64.tgz
+- Source Code Link: [https://github.com/Nuclei-Software/nuclei-sdk](https://github.com/Nuclei-Software/nuclei-sdk)
+- Reference Documentation: [https://doc.nucleisys.com/nuclei_sdk/design/board/gd32vf103c_longan_nano.html](https://doc.nucleisys.com/nuclei_sdk/design/board/gd32vf103c_longan_nano.html)
+- Download Links:
+    - SDK: [https://github.com/Nuclei-Software/nuclei-sdk](https://github.com/Nuclei-Software/nuclei-sdk)
+    - Toolchain: [https://www.nucleisys.com/download.php](https://www.nucleisys.com/download.php)
+        - [https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2](https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2)
+    - OpenOCD: [https://www.nucleisys.com/download.php](https://www.nucleisys.com/download.php)
+        - [https://download.nucleisys.com/upload/files/toolchain/openocd/nuclei-openocd-2024.02.28-linux-x64.tgz](https://download.nucleisys.com/upload/files/toolchain/openocd/nuclei-openocd-2024.02.28-linux-x64.tgz)
 
-### 硬件信息
+### Hardware Information
 
 - Longan Nano
-- USB to UART 调试器一个
-- **JTAG 调试器**
-- type-c 线一根
+- One USB to UART Debugger
+- **JTAG Debugger**
+- One type-C cable
 
-## 安装步骤
+## Installation Steps
 
-### 配置环境
+### Environment Configuration
 
-下载工具链和 OpenOCD 并解压，设置工具链目录：
+Download the toolchain and OpenOCD, unzip them, and set the toolchain directory:
 ```bash
 wget https://download.nucleisys.com/upload/files/toolchain/gcc/nuclei_riscv_newlibc_prebuilt_linux64_nuclei-2024.tar.bz2
 wget https://download.nucleisys.com/upload/files/toolchain/openocd/nuclei-openocd-2024.02.28-linux-x64.tgz
@@ -32,7 +32,7 @@ tar -xzvf nuclei-openocd-2024.02.28-linux-x64.tgz
 export NUCLEI_TOOL_ROOT=$(pwd)
 ```
 
-下载 SDK：
+Download the SDK:
 ```bash
 git clone https://github.com/Nuclei-Software/nuclei-sdk.git
 cd nuclei-sdk
@@ -42,46 +42,48 @@ EOF
 source setup.sh
 ```
 
-### 编译代码
+### Code Compilation
 
-编译 FreeRTOS:
+Compile FreeRTOS:
 ```bash
 cd application/freertos/demo/
 make SOC=gd32vf103 BOARD=gd32vf103c_longan_nano clean
 make SOC=gd32vf103 BOARD=gd32vf103c_longan_nano all
 ```
 
-### 烧写镜像
+### Flashing Image
 
 ```bash
 make SOC=gd32vf103 BOARD=gd32vf103c_longan_nano upload
 ```
 
-### 启动系统
+### System Startup
 
-通过串口连接开发板。
+Connect to the development board via the serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system should start up properly, and information should be viewable through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system started up correctly, and information was viewable through the onboard serial port.
 
-### 启动信息
+### Startup Information
 
-屏幕录像（从编译到启动）：
+Screen recording (from compilation to startup):
 
 ```log
 ```
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Success: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failure: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

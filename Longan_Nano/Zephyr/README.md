@@ -1,23 +1,23 @@
-# Zephyr Longan Nano 测试报告
+# Zephyr Longan Nano Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 源码链接：https://github.com/zephyrproject-rtos/zephyr/tree/main
-- 参考文档：https://docs.zephyrproject.org/latest/develop/getting_started/index.html
+- Source Code Link: [link](https://github.com/zephyrproject-rtos/zephyr/tree/main)
+- Reference Documentation: [link](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)
 
-### 硬件信息
+### Hardware Information
 
 - Longan Nano
-- USB to UART 调试器一个
-- type-c 线一根
+- 1 x USB to UART Debugger
+- 1 x Type-C Cable
 
-## 安装步骤
+## Installation Steps
 
-### 安装 Zephyr
+### Install Zephyr
 
-创建虚拟环境：
+Create a virtual environment:
 
 ```bash
 python3 -m venv ~/zephyrproject/.venv
@@ -25,47 +25,47 @@ source ~/zephyrproject/.venv/bin/activate
 pip install west
 ```
 
-获取 Zephyr：
+Get Zephyr:
 ```bash
 west init ~/zephyrproject
 cd ~/zephyrproject
 west update
 ```
 
-配置环境：
+Set up the environment:
 ```bash
 west zephyr-export
 pip install -r ~/zephyrproject/zephyr/scripts/requirements.txt
 ```
 
-### 编译代码
+### Compile Code
 
-使用 west 编译代码：
+Compile the code using west:
 ```bash
 west build -p always -b longan_nano samples/basic/blinky
 
 ```
 
-### 烧写镜像
+### Flash Image
 
-按住 boot 后再按 reset，再松开 boot。
-使用 USB 口烧写：
+Press and hold the boot button, then press reset, and release the boot button.
+Flash using the USB port:
 ```bash
 west flash --runner dfu-util
 
 ```
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system should boot up properly, and information should be visible through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过板载串口查看信息。
+The system booted up successfully, and information was visible through the onboard serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从编译到启动）：
+Screen recording (from compilation to boot):
 [![asciicast](https://asciinema.org/a/Kz2OGHEaRjIODgvzJWO5dPTWm.svg)](https://asciinema.org/a/Kz2OGHEaRjIODgvzJWO5dPTWm)
 
 ```log
@@ -78,12 +78,14 @@ LED state: OFF
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Success: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failure: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功
+Test successful
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

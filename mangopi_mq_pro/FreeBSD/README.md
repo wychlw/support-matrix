@@ -1,58 +1,60 @@
-# FreeBSD MangoPi MQ Pro 测试报告
+# FreeBSD MangoPi MQ Pro Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://github.com/freebsd-d1/freebsd-d1
-- 参考安装文档：https://github.com/freebsd-d1/freebsd-d1
+- Download link: [https://github.com/freebsd-d1/freebsd-d1](https://github.com/freebsd-d1/freebsd-d1)
+- Reference installation document: [https://github.com/freebsd-d1/freebsd-d1](https://github.com/freebsd-d1/freebsd-d1)
 
-### 硬件信息
+### Hardware Information
 
 - MangoPi MQ Pro
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flash Image
 
-clone 仓库并生成镜像：
+Clone the repository and create an image:
 
 ```bash
 gmake
 dd if=freebsd-d1.img of=/dev/your/device
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Login to the system via serial port.
 
-默认用户名：`root`
-第一次后会设置密码
+Default username: `root`
+Password will be set after the first login
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and can be accessed through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and login through the onboard serial port is successful.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing image to system login):
 
 ```log
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

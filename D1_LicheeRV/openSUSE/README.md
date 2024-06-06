@@ -1,55 +1,54 @@
-# openSUSE Tumbleweed D1 测试报告
+# openSUSE Tumbleweed D1 Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：openSUSE Tumbleweed
-- 下载链接：[https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/AllwinnerD1/images/](https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/AllwinnerD1/images/)
-- 参考安装文档：[https://en.opensuse.org/HCL:Nezha](https://en.opensuse.org/HCL:Nezha)
+- System Version: openSUSE Tumbleweed
+- Download Link: [https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/AllwinnerD1/images/](https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/AllwinnerD1/images/)
+- Reference Installation Document: [https://en.opensuse.org/HCL:Nezha](https://en.opensuse.org/HCL:Nezha)
 
-### 硬件信息
+### Hardware Information
 
 - AWOL Nezha D1 / Sipeed Lichee RV Dock
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flash Image
 
-使用 `unxz` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unxz` to decompress the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 unxz /path/to/openSUSE.raw.xz
 sudo dd if=/path/to/openSUSE.raw of=/dev/your-device bs=1M status=progress
 ```
 
-### 登录系统
+### Log in to the System
 
-*系统启动较为缓慢。*
+*The system boot process is quite slow.*
 
-通过串口登录系统。
+Log in to the system via serial console.
 
-默认用户名： `root`
-默认密码： `linux`
+Default username: `root`
+Default password: `linux`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up normally and allow login via the onboard serial console.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system booted up normally and successfully allowed login via the onboard serial console.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/qGx3Er1vKkhIuC19Ixbj50HNk.svg)](https://asciinema.org/a/qGx3Er1vKkhIuC19Ixbj50HNk)
-
 
 ```log
 
@@ -84,12 +83,14 @@ LOGO="distributor-logo-Tumbleweed"
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: The actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: The actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+The test was successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

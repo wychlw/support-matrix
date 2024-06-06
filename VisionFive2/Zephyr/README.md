@@ -1,31 +1,31 @@
-# Zephyr VisionFive 2 测试报告
+# Zephyr VisionFive 2 Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
 - Host: Arch Linux
-- 参考安装文档：[https://docs.zephyrproject.org/latest/boards/starfive/visionfive2/doc/index.html](https://docs.zephyrproject.org/latest/boards/starfive/visionfive2/doc/index.html)
+- Reference Installation Documentation: [https://docs.zephyrproject.org/latest/boards/starfive/visionfive2/doc/index.html](https://docs.zephyrproject.org/latest/boards/starfive/visionfive2/doc/index.html)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive2
-- 电源适配器
-- USB to UART 调试器一个
+- Power Adapter
+- One USB to UART Debugger
 
-## 安装步骤
+## Installation Steps
 
-### 配置 Zephyr 环境
+### Configure Zephyr Environment
 
-*其余发行版环境配置见：[Zephyr 官方文档](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)*
+*For configuration in other distributions, refer to: [Zephyr Official Documentation](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)*
 
-对于 Arch Linux，环境可以直接从 AUR 安装：
+For Arch Linux, the environment can be directly installed from AUR:
 ```bash
 yay -Syu python-west zephyr-sdk openocd
 # paru -S python-west zephyr-sdk openocd pyocd
 ```
 
-接下来搭建环境（注意替换 SDK 路径）：
+Next, set up the environment (remember to replace the SDK path):
 ```bash
 cp /usr/share/zephyr-sdk/zephyrrc ~/.zephyrrc
 sudo cp /opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d/
@@ -39,9 +39,9 @@ west update
 west zephyr-export
 ```
 
-### 编译 spl_tools
+### Compile spl_tools
 
-clone [https://github.com/starfive-tech/Tools.git](https://github.com/starfive-tech/Tools.git) 并编译其中的 spl_tool
+Clone [https://github.com/starfive-tech/Tools.git](https://github.com/starfive-tech/Tools.git) and compile the spl_tool within.
 
 ```bash
 git clone https://github.com/starfive-tech/Tools.git
@@ -50,9 +50,9 @@ make
 cd ../..
 ```
 
-### 编译示例程序
+### Compile Sample Program
 
-编译示例程序并添加 SPL 头：
+Compile the sample program and add the SPL header:
 
 ```bash
 pip install -r ~/zephyrproject/zephyr/scripts/requirements.txt
@@ -60,18 +60,18 @@ west build -p always -b visionfive2 ~/zephyrproject/zephyr/samples/hello_world
 Tools/spl_tool/spl_tool -c -f ~/zephyrproject/zephyr/build/zephyr/zephyr.bin
 ```
 
-此时应在 `~/zephyrproject/zephyr/build/zephyr/` 下生成了 `zephyr.bin.normal.out`。
+At this point, a `zephyr.bin.normal.out` file should have been generated in `~/zephyrproject/zephyr/build/zephyr/`.
 
-### 烧录并运行示例程序
+### Flash and Run Sample Program
 
-将 VisionFive2 的启动方式设置为从 UART 启动（两个拨码开关都为 1），若正确应能看到 UART 输出提示：`CCCCCC...`
+Set the start-up mode of VisionFive2 to boot from UART (both DIP switches set to 1). If done correctly, you should see UART output prompt: `CCCCCC...`
 
-在工作目录下 clone 以下仓库：
+Clone the following repositories in your working directory:
 
 - vf2-loader tool [https://github.com/orangecms/vf2-loader.git](https://github.com/orangecms/vf2-loader.git)
 - xmodem tool [https://github.com/orangecms/xmodem.rs.git](https://github.com/orangecms/xmodem.rs.git)
 
-将 xmodem.rs 切到 dev 分支
+Switch to the dev branch of xmodem.rs
 
 ```bash
 git clone https://github.com/orangecms/vf2-loader.git 
@@ -81,40 +81,42 @@ git checkout dev
 cd ..
 ```
 
-cd 进 `vf2-loader` 目录，并将之前生成的 `zephyr.bin.normal.out` 拷贝到当前目录：
+Navigate into the `vf2-loader` directory, and copy the previously generated `zephyr.bin.normal.out` file to the current directory:
 
 ```bash
 cd vf2-loader
 cp ~/zephyrproject/zephyr/build/zephyr/zephyr.bin.normal.out .
 ```
 
-连接 UART，烧录镜像：
+Connect the UART, flash the image:
 
 ```bash
 cargo run -- zephyr.bin.normal.out && minicom -D /dev/ttyUSB0
 ```
 
-## 预期结果
+## Expected Results
 
-系统正常启动，输出 Hello World 信息。
+The system should start up normally and display the "Hello World" message.
 
-## 实际结果
+## Actual Results
 
-UART 刷入，但未看到任何输出。
+UART flashing completed, but no output is visible.
 
-屏幕记录：
+Screen recording:
 [![asciicast](https://asciinema.org/a/a2i4u5ryVYGEBo73UzswGGFAn.svg)](https://asciinema.org/a/a2i4u5ryVYGEBo73UzswGGFAn)
 
-### 论坛帖
+### Forum Post
 
 https://forum.rvspace.org/t/no-output-while-trying-zephyr-on-visionfive-2/4243
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试失败。
+Test Failed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

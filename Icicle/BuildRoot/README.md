@@ -1,29 +1,29 @@
-# Buildroot VisionFive 测试报告
+# Buildroot Icicle Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Buildroot
-- 源码链接：https://buildroot.org/download.html
-    - 截止本文编写时，Buildroot 的最新稳定 / LTS 版本为：[buildroot-2024.02.2](https://buildroot.org/downloads/buildroot-2024.02.2.tar.gz)
-- 参考安装文档：https://gitlab.com/buildroot.org/buildroot/-/tree/master/board/visionfive?ref_type=heads
-- 构建机系统：Arch Linux x86_64
+- System Version: Buildroot
+- Source Link: [Buildroot Download Page](https://buildroot.org/download.html)
+    - As of the time of writing, the latest stable/LTS version of Buildroot is: [buildroot-2024.02.2](https://buildroot.org/downloads/buildroot-2024.02.2.tar.gz)
+- Reference Installation Document: [Buildroot VisionFive Board Installation Guide](https://gitlab.com/buildroot.org/buildroot/-/tree/master/board/visionfive?ref_type=heads)
+- Build System: Arch Linux x86_64
 
-### 硬件信息
+### Hardware Information
 
-- Microchip Polarfire SoC FPGA Icicle Kit 开发板
-- 原装 12V 5A DC 5.5*2.1mm 电源适配器（原厂附带线材为美标插脚，在中国大陆使用需要转接器/更换国标线材）
-- micro-USB to USB-A 线缆两条（出厂附带），用于连接 USB-UART、更新 FPGA/HSS 和烧录镜像至板载 eMMC
-- （可选）SD 卡一张（不推荐使用 microSD + 卡套转接的方式，可能无法识别；此外请确保存储卡没有处于写保护状态）
+- Microchip Polarfire SoC FPGA Icicle Kit Development Board
+- Original 12V 5A DC 5.5*2.1mm Power Adapter (Original cable comes with US plug, adapter/change to local plug may be needed in mainland China)
+- Two micro-USB to USB-A cables (factory-supplied) for connecting USB-UART, updating FPGA/HSS, and flashing images to onboard eMMC
+- (Optional) One SD card (not recommended to use microSD + adapter as it may not be recognized; also ensure the card is not write-protected)
 
-## 构建及刷写镜像
+## Image Building and Flashing
 
-由于 PolarFire SoC FPGA Icicle Kit 的 Buildroot 已经主线化，直接从 Buildroot 获取源码即可构建出可用镜像。
+Since the Buildroot for PolarFire SoC FPGA Icicle Kit has been mainstreamed, obtaining the source code from Buildroot allows for the construction of a usable image.
 
-### 准备构建环境
+### Setting Up the Build Environment
 
 ```shell
 sudo pacman -S which sed make binutils diffutils gcc bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget
@@ -31,9 +31,9 @@ sudo pacman -S which sed make binutils diffutils gcc bash patch gzip bzip2 perl 
 # paru -S buildroot-meta
 ```
 
-若您不使用 Arch Linux，请参考 [官方文档](https://buildroot.org/downloads/manual/manual.html#requirement) 安装所需依赖（注意，软件包名称可能不一致）。
+If you are not using Arch Linux, please refer to the [official documentation](https://buildroot.org/downloads/manual/manual.html#requirement) for installing the necessary dependencies (note that package names may vary).
 
-### 构建镜像
+### Building the Image
 
 ```shell
 wget https://buildroot.org/downloads/buildroot-2024.02.2.tar.gz
@@ -43,81 +43,81 @@ make microchip_mpfs_icicle_defconfig
 make -j$(nproc)
 ```
 
-Note: 请确保您的互联网连接正常，编译过程中会自动下载依赖。
+Note: Ensure your internet connection is active as dependencies will be downloaded during compilation.
 
-构建结束后将在 `output/images` 生成 `sdcard.img` 镜像。
+After the build, an `sdcard.img` image will be generated in `output/images`.
 
-### （可选）更新 FPGA Design 和 Hart Software Services (HSS)
+### (Optional) Updating FPGA Design and Hart Software Services (HSS)
 
-此操作并非必须，如果遇到问题可尝试更新 FPGA 和 HSS。
+This step is not mandatory but can be attempted if issues arise.
 
-参考 [Ubuntu](../Ubuntu/README.md) 中提到的步骤进行更新。
+Follow the steps outlined in [Ubuntu](../Ubuntu/README.md) for updating.
 
-### 烧写镜像
+### Flashing the Image
 
-Polarfire SoC FPGA Icicle Kit 支持从板载 eMMC 启动或 SD 卡启动。
+Polarfire SoC FPGA Icicle Kit supports booting from onboard eMMC or SD card.
 
-默认优先 SD 卡。当 SD 卡不存在或 SD 卡启动失败时会从板载 eMMC 启动。
+SD card is the default priority. If the SD card is absent or fails to boot, the system will boot from the onboard eMMC.
 
-### 烧录镜像至 eMMC
+### Flashing the Image to eMMC
 
-连接 microUSB 线缆至 USB OTG 接口，位于 SD 卡槽附近，丝印 `J19`。
+Connect the microUSB cable to the USB OTG port near the SD card slot labeled `J19`.
 
-连接 USB UART，位于以太网接口一侧，丝印 `J11`。
+Connect the USB UART located on the side of the Ethernet port labeled `J11`.
 
-计算机上会识别到一个 CP2108 USB 转 UART，如果这是您计算机上唯一一个 USB 转 UART，此时会识别到四个串口。
+The computer will recognize a CP2108 USB to UART, and if this is the only one on your computer, four serial ports will be recognized.
 
-Windows 上会出现四个 COM 口，Linux 下会出现 /dev/ttyUSB{0,1,2,3}。
+On Windows, four COM ports will appear, on Linux, /dev/ttyUSB{0,1,2,3} will appear.
 
-其中，`Interface 0` 为 `HSS` 输出，`Interface 1` 为 U-Boot 和 Linux 控制台输出。
+`Interface 0` is the `HSS` output, `Interface 1` is for U-Boot and Linux console output.
 
-在 Linux 系统下，分别对应第一个和第二个串口。
+In Linux, they respectively correspond to the first and second serial ports.
 
-| 串口功能              | Windows     | Linux        |
-|--------------------|-------------|--------------|
-| HSS 控制台            | Interface 0 | /dev/ttyUSB0 |
-| U-Boot & Linux 控制台 | Interface 1 | /dev/ttyUSB1 |
+| Serial Port Function | Windows     | Linux        |
+| -------------------- | ----------- | ------------ |
+| HSS Console          | Interface 0 | /dev/ttyUSB0 |
+| U-Boot & Linux Console | Interface 1 | /dev/ttyUSB1 |
 
-欲向 eMMC 烧录镜像，连接至 `HSS` 控制台，在启动时（提示 `Press a key to enter CLI, ESC to skip`）按任意键打断启动流程。
+To write the image to eMMC, connect to the `HSS` console, interrupt the boot process by pressing any key when prompted with `Press a key to enter CLI, ESC to skip`.
 
-输入：
+Enter:
 
 ```
 mmc
 usbdmsc
 ```
 
-会提示 `Waiting for USB Host to connect`。
+It will prompt `Waiting for USB Host to connect`.
 
-此时计算机一侧应该会出现一个 USB 大容量存储设备。至此可以使用 Win32DiskImager/Rufus/USBImager/dd 等工具直接向其中写入镜像了。
+A USB Mass Storage Device should appear on the computer side. You can now use tools like Win32DiskImager/Rufus/USBImager/dd to write the image directly to it.
 
-镜像烧写完成后，在 HSS 控制台按 Ctrl+C 退出 USB 存储模式。至此镜像烧录结束。
+After writing the image, press Ctrl+C on the HSS console to exit USB storage mode. This concludes the image flashing process.
 
-### 烧录镜像至 SD 卡
+### Flashing the Image to SD Card
 
-直接使用 Rufus/Win32DiskImager/dd 等工具写入镜像至 SD 卡即可。
+Simply use Rufus/Win32DiskImager/dd or similar tools to write the image to the SD card.
 
 ```shell
 sudo dd if=sdcard.img of=/dev/sdX bs=1M status=progress
 ```
 
-### 登录系统
+### Logging In
 
-通过串口登录系统。
+Log into the system via serial console.
 
-默认用户名： `root`
+Default username: `root`
 
-默认密码：无，输入用户名后自动登录
+Default password: none, automatically logs in after entering the username
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully, and login is possible through the onboard serial console.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully, and login is possible through the onboard serial console.
 
-### 启动信息
+### Boot Information
 
 ```log
 Welcome to Buildroot
@@ -170,16 +170,18 @@ mimpid          : 0x0
 #
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/js18pAh0YMTp0g9bQD1tXsBgH.svg)](https://asciinema.org/a/js18pAh0YMTp0g9bQD1tXsBgH)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Success: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Test Failure: Actual outcome does not match the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

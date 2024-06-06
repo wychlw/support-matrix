@@ -1,33 +1,33 @@
 # NuttX on Milk-V Duo S
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
+ 
+- Build System: Arch Linux
+- Debian Linux Image + U-Boot: [Fishwaldo/sophgo-sg200x-debian release v1.1.0](https://github.com/Fishwaldo/sophgo-sg200x-debian/releases/tag/v1.1.0)
+- Source Code Links
+    - NuttX: [lupyuen2/wip-nuttx branch sg2000](https://github.com/lupyuen2/wip-nuttx/tree/sg2000)
+    - NuttX Apps: [lupyuen2/wip-nuttx-apps branch sg2000](https://github.com/lupyuen2/wip-nuttx-apps/tree/sg2000)
+- Toolchain: xPack (installed using [xpm](https://xpack.github.io/xpm/install/), refer to section [Configuring the Toolchain](#configure-the-toolchain) below)
+- Installation Reference document: [lupyuen/nuttx-sg2000](https://github.com/lupyuen/nuttx-sg2000)
 
-- 构建系统：Arch Linux
-- Debian Linux 镜像 + U-Boot：https://github.com/Fishwaldo/sophgo-sg200x-debian/releases/tag/v1.1.0
-- 源码链接
-    - NuttX: https://github.com/lupyuen2/wip-nuttx/tree/sg2000
-    - NuttX Apps: https://github.com/lupyuen2/wip-nuttx-apps/tree/sg2000
-- 工具链：xPack（使用 [xpm](https://xpack.github.io/xpm/install/) 安装，见下文 [配置工具链](#配置工具链) 章节）
-- 参考安装文档；https://github.com/lupyuen/nuttx-sg2000
+The NuttX SG2000 port is still in progress and currently requires booting via TFTP.
 
-NuttX SG2000 移植仍在进行中，目前需要通过 TFTP 启动。
-
-### 硬件信息
+### Hardware Information
 
 - Milk-V Duo S (512M, SG2000)
-- USB 电源适配器一个
-- USB-A to C 或 USB C to C 线缆一条，用于给开发板供电
-- microSD 卡一张
-- USB 读卡器一个
-- USB to UART 调试器一个（如：CP2102, FT2232 等，注意不可使用 CH340/341 系列，会出现乱码）
-- 杜邦线三根
-- 以太网接入，用于 TFTP Boot
+- One USB power adapter
+- One USB-A to C or USB C to C cable for powering the development board
+- One microSD card
+- One USB card reader
+- One USB to UART debugger (such as CP2102, FT2232, etc., do not use CH340/341 series to avoid garbled text)
+- Three DuPont wires
+- Ethernet connection for TFTP Boot
 
-## 安装步骤
+## Installation Steps
 
-### 构建依赖安装
+### Install Build Dependencies
 
 ```shell
 sudo pacman -S --needed base-devel ncurses5-compat-libs gperf pkg-config gmp libmpc mpfr libelf expat picocom uboot-tools util-linux git wget libisl
@@ -38,7 +38,7 @@ paru -S kconfig-frontends genromfs
 # yay -S kconfig-frontends genromfs
 ```
 
-### 获取源码
+### Get the Source Code
 
 ```shell
 git clone -b sg2000 https://github.com/lupyuen2/wip-nuttx nuttx
@@ -52,12 +52,12 @@ echo NuttX Source: https://github.com/apache/nuttx/tree/$hash1 >nuttx.hash
 echo NuttX Apps: https://github.com/apache/nuttx-apps/tree/$hash2 >>nuttx.hash
 ```
 
-### 配置工具链并构建 NuttX
+### Configure the Toolchain and Build NuttX
 
 > [!Note]
-> 使用 Arch Linux 软件源提供的 `riscv64-elf-gcc` 工具链时，可能会在编译过程中报缺少 `math.h` 而中断编译。使用 xPack 工具链以规避此问题。
+> When using the `riscv64-elf-gcc` toolchain provided by Arch Linux software sources, you may encounter a missing `math.h` error during compilation. To avoid this issue, use the xPack toolchain.
 >
-> 使用 `xpm` 安装 xPack 工具链到 NuttX 目录。
+> Install the xPack toolchain to the NuttX directory using `xpm`.
 
 ```shell
 sudo pacman -S npm
@@ -134,16 +134,16 @@ scp Image tftpserver:/tftpboot/Image
 ssh tftpserver ls -l /tftpboot/Image
 ```
 
-### 从 TFTP Server 启动 NuttX RTOS
+### Boot NuttX RTOS from TFTP Server
 
-首先，烧录 Debian 镜像到存储卡。
+First, burn the Debian image to the memory card.
 
 ```shell
 unzip milkv-duos-sd-v1.1.0-2024-0410.img.zip
 sudo dd if=milkv-duos-sd-v1.1.0-2024-0410.img of=/dev/sdX bs=1M status=progress
 ```
 
-接下来会使用镜像中自带的 U-Boot 和 dtb。挂载刚刚烧录好的存储卡的第一个 FAT 分区，复制里面的 dtb：
+Next, use the included U-Boot and dtb from the image. Mount the first FAT partition of the freshly burned memory card and copy the dtb file:
 
 ```shell
 sudo mount /dev/sdX1 /mnt
@@ -151,15 +151,15 @@ cp /mnt/fdt/linux-image-duos-5.10.4-20240329-1+/cv181x_milkv_duos_sd.dtb ~/
 sudo umount /mnt
 ```
 
-至此，存储卡准备完成。将存储卡插入开发板。
+The memory card is now ready. Insert it into the development board.
 
-在计算机上开启一个 TFTP Server。确保先前编译生成的 Image（位于 NuttX 源码目录下）和 dtb 均可被 TFTP Server 访问。
+Start a TFTP Server on your computer. Ensure that both the previously compiled Image (located in the NuttX source code directory) and dtb are accessible by the TFTP Server.
 
-TFTP Server 配置请参考：[Arch Wiki/TFTP](https://wiki.archlinux.org/title/TFTP)
+For TFTP Server configuration, please refer to: [Arch Wiki/TFTP](https://wiki.archlinux.org/title/TFTP)
 
-若您是在 Windows 下，可考虑使用 [Tftpd64](http://tftpd32.jounin.net)。
+If you are using Windows, you may consider using [Tftpd64](http://tftpd32.jounin.net).
 
-接上 UART 调试线，给开发板上电，在提示 `Hit any key to stop autoboot` 时按任意键打断 U-Boot，并手动配置 U-Boot 以从 TFTP 启动 NuttX：
+Connect the UART debug cable, power on the development board, interrupt U-Boot by pressing any key when prompted with `Hit any key to stop autoboot`, and manually configure U-Boot to boot NuttX from TFTP:
 
 ```shell
 setenv tftp_server your_tftp_server_ip
@@ -168,18 +168,17 @@ tftpboot ${fdt_addr_r} ${tftp_server}:cv181x_milkv_duos_sd.dtb
 booti ${kernel_addr_r} ${ramdisk_addr_r}:${ramdisk_size} ${fdt_addr_r}
 ```
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，通过串口连接时能成功进入 NuttX Shell。
+The system should boot successfully, and you should enter the NuttX Shell via serial connection.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，通过串口连接时能成功进入 NuttX Shell。
+The system boots successfully, and NuttX Shell is accessible via serial connection.
 
-能够执行 `uname`, `ls`, `ostest` 等指令。
+Commands like `uname`, `ls`, and `ostest` can be executed.
 
-### 启动信息
-
+### Boot Information
 
 <details><summary>Boot log</summary>
 
@@ -809,16 +808,18 @@ nsh>
 
 </details>
 
-屏幕录像：
+Screen recording:
 
 [![asciicast](https://asciinema.org/a/P4kzXcnL4g0A0LIiiOLtsG779.svg)](https://asciinema.org/a/P4kzXcnL4g0A0LIiiOLtsG779)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Testing: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Testing failed: the actual result does not match the expected result.
 
-## 测试结论
+## Test Conclusion
 
-测试通过。
+Test passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

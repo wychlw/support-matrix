@@ -1,49 +1,49 @@
-# Armbian 香蕉派 BPI-F3 测试报告
+# Armbian Banana Pi BPI-F3 Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 下载链接：
-  - 百度网盘：https://pan.baidu.com/s/1VIp3bwbDjMairyXXMZwNkQ?pwd=8888
-  - 谷歌网盘：https://drive.google.com/drive/folders/1Y5iKY55hFEO2z0sEeG_KC5EInD6nVDft?usp=sharing
-- 参考安装文档：https://docs.banana-pi.org/en/BPI-F3/GettingStarted_BPI-F3
+- Download Links:
+  - Baidu Cloud: [https://pan.baidu.com/s/1VIp3bwbDjMairyXXMZwNkQ?pwd=8888](https://pan.baidu.com/s/1VIp3bwbDjMairyXXMZwNkQ?pwd=8888)
+  - Google Drive: [https://drive.google.com/drive/folders/1Y5iKY55hFEO2z0sEeG_KC5EInD6nVDft?usp=sharing](https://drive.google.com/drive/folders/1Y5iKY55hFEO2z0sEeG_KC5EInD6nVDft?usp=sharing)
+- Reference Installation Documentation: [https://docs.banana-pi.org/en/BPI-F3/GettingStarted_BPI-F3](https://docs.banana-pi.org/en/BPI-F3/GettingStarted_BPI-F3)
 
-### 硬件信息
+### Hardware Information
 
-- 香蕉派 BPI-F3
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Banana Pi BPI-F3
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像（sd 卡）
+### Image Flashing (SD Card)
 
-下载并解压镜像后，使用 `dd` 将镜像写入 microSD 卡。
+Download and unzip the image, then use `dd` to write the image to the microSD card.
 
 ```bash
 xz -kd Armbian-bpi-SpacemiT_24.5.0-trunk_Bananapif3_noble_legacy_6.1.15_xfce_desktop.img.xz
 sudo dd if=/path/to/Armbian-bpi-SpacemiT_24.5.0-trunk_Bananapif3_noble_legacy_6.1.15_xfce_desktop.img of=/dev/your-device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Login to the system via serial port.
 
-首次启动创建用户
+Create a user during the first boot.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and can be accessed through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and logging in via the onboard serial port is also successful.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from image flashing to system login):
 [![asciicast](https://asciinema.org/a/aoWgw2BtCDRHOpxG4eYsWRPKZ.svg)](https://asciinema.org/a/aoWgw2BtCDRHOpxG4eYsWRPKZ)
 
 ```log
@@ -359,12 +359,14 @@ root@bananapif3:~#
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-成功
+Success
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

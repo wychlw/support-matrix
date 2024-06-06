@@ -1,24 +1,24 @@
-# BuildRoot LicheeRV Nano 测试报告
+# BuildRoot LicheeRV Nano Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：20240401
-- 下载链接：https://github.com/sipeed/LicheeRV-Nano-Build/releases
-- 参考安装文档：https://github.com/sipeed/LicheeRV-Nano-Build/releases
+- System Version: 20240401
+- Download Link: [LicheeRV Nano Build Releases](https://github.com/sipeed/LicheeRV-Nano-Build/releases)
+- Installation Reference Document: [LicheeRV Nano Build Installation Document](https://github.com/sipeed/LicheeRV-Nano-Build/releases)
 
-### 硬件信息
+### Hardware Information
 
 - LicheeRV Nano
-- type-c 电源线一根
-- UART 转 USB 调试器一个
+- One type-c power cable
+- One UART to USB debugger
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `dd` 刷写镜像到 microSD 卡
+### Write Image to microSD Card Using `dd`
 
-下载镜像后进行解压和刷写：
+Download the image, then unzip and write it to the microSD card:
 
 ```shell
 gzip -kd c906-2024-04-10-14-19-16d76b.img.gz
@@ -26,24 +26,24 @@ sudo dd if=c906-2024-04-10-14-19-16d76b.img of=/dev/your_device bs=1M status=pro
 
 ```
 
-### 登录系统
+### Log into System
 
-通过串口登录系统。
+Log into the system via serial port.
 
-默认用户名：root
-默认密码：root
+Default username: root
+Default password: root
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should start up normally, and login should be possible via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过板载串口登录。
+The system started up normally, and login was possible via the onboard serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from image writing to system login):
 
 [![asciicast](https://asciinema.org/a/yNDWWKvYyXReaexbXm1t5dLxi.svg)](https://asciinema.org/a/yNDWWKvYyXReaexbXm1t5dLxi)
 
@@ -64,12 +64,14 @@ Linux licheervnano-b6c0 5.10.4-tag- #1 PREEMPT Wed Apr 10 14:12:37 HKT 2024 risc
  
 ```
 
-## 测试判定标准
+## Test Determination Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Success: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failure: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

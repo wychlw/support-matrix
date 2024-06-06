@@ -1,57 +1,59 @@
-# OpenWrt MangoPi MQ Pro 测试报告
+# OpenWrt MangoPi MQ Pro Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接（OpenWrt Firmware Selector）：https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=d1%2Fgeneric&id=mangopi_mq_pro
-- 参考安装文档：https://openwrt.org/docs/techref/hardware/soc/soc.allwinner.d1
+- Download link (OpenWrt Firmware Selector): [here](https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=d1%2Fgeneric&id=mangopi_mq_pro)
+- Reference installation document: [here](https://openwrt.org/docs/techref/hardware/soc/soc.allwinner.d1)
 
-> 在 OpenWrt Firmware Selector 中可以在线定制构建系统镜像，添加用户所需要的预装软件包。本次测试使用的为**未经修改**的原版镜像。
+> In OpenWrt Firmware Selector, you can customize and build system images online, adding the necessary pre-installed packages. The image used in this test is the **unmodified** original image.
 
-### 硬件信息
+### Hardware Information
 
 - MangoPi MQ Pro
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
+- One microSD card
+- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像到 microSD 卡
+### Flash Image to microSD Card
 
-使用 `dd` 刷入镜像到 microSD 卡。
+Use `dd` to flash the image to the microSD card.
 
 ```bash
 gzip -kd openwrt-d1-generic-mangopi_mq_pro-ext4-sdcard.img.gz
 sudo dd if=openwrt-d1-generic-mangopi_mq_pro-ext4-sdcard.img of=/dev/your/device bs=1M status=progress
 ```
 
-### 登录系统
+### Log into the System
 
-通过串口登录系统。
+Log into the system via serial port.
 
-## 预期结果
+## Expected Result
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully, allowing login via the onboard serial port.
 
-## 实际结果
+## Actual Result
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully, and login via the onboard serial port is successful.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 ```log
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual result matches the expected result.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual result does not match the expected result.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

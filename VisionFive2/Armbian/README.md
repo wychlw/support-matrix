@@ -1,28 +1,28 @@
-# Armbian VisionFive 2 版本测试报告
+# Armbian VisionFive 2 Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Armbian Noble Minimal & Armbian Jammy Xfce
-- 下载链接：https://www.armbian.com/visionfive2/
-- 参考安装文档：https://www.armbian.com/visionfive2/
+- System Versions: Armbian Noble Minimal & Armbian Jammy Xfce
+- Download Link: [https://www.armbian.com/visionfive2/](https://www.armbian.com/visionfive2/)
+- Installation Guide: [https://www.armbian.com/visionfive2/](https://www.armbian.com/visionfive2/)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive 2
-- USB 电源适配器一个
-- USB-A to C 或 C to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
-- 可选：显示器/采集卡 & HDMI 线缆（测试 Jammny 版本 Xfce 桌面）
+- 1 x USB Power Adapter
+- 1 x USB-A to C or C to C cable
+- 1 x microSD card
+- 1 x USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
+- 3 x DuPont wires
+- Optional: Monitor/Capture card & HDMI cable (for testing Jammy version Xfce desktop)
 
-## 安装步骤
+## Installation Steps
 
-### 解压并刷写镜像到 microSD 卡
+### Extracting and Flashing Image to microSD Card
 
-假定 `/dev/sdc` 为存储卡。
+Assuming `/dev/sdc` is the storage card.
 
 ```bash
 wipefs -af /dev/sdc
@@ -32,31 +32,29 @@ xzcat Armbian_community_24.5.0-trunk.278_Visionfive2_jammy_edge_5.15.0_xfce_desk
 xzcat Armbian_community_24.5.0-trunk.278_Visionfive2_noble_edge_5.15.0_minimal.img.xz | sudo dd of=/dev/sdc iflag=fullblock status=progress bs=4M
 ```
 
-### 引导模式选择
+### Boot Mode Selection
 
-StarFive VisionFive 2 提供了多种引导模式，可在上电前通过板载拨码开关进行配置；开发板本体上亦有丝印标注。
+StarFive VisionFive 2 offers multiple boot modes, which can be configured using onboard DIP switches before powering on; the board itself is also labeled.
 
-为了启动 openKylin 镜像，选择 1-bit QSPI Nor Flash 模式（即：`RGPIO_0 = 0`, `RGPIO_1 = 0`）。注意，此模式可能需要提前更新 Flash 内的固件，若启动不成功，请参考官方文档进行固件升级：[更新 SPL 和 U-Boot](https://doc.rvspace.org/VisionFive2/Quick_Start_Guide/VisionFive2_QSG/spl_u_boot_0.html)
+To boot the openKylin image, select the 1-bit QSPI Nor Flash mode (i.e., `RGPIO_0 = 0`, `RGPIO_1 = 0`). Note that this mode may require firmware updates in the Flash beforehand. If booting fails, please refer to the official documentation for firmware upgrading: [Updating SPL and U-Boot](https://doc.rvspace.org/VisionFive2/Quick_Start_Guide/VisionFive2_QSG/spl_u_boot_0.html)
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Log into the system via serial console.
 
-启动后，系统会要求用户手动配置用户名、密码、时区、语言等。
+Upon booting up, the system will prompt the user to manually configure the username, password, timezone, language, etc.
 
-Xfce 版本需要配置完成后方可进入桌面。
+For Xfce version, configuration must be completed before entering the desktop. Configuration can be done via serial console or, if a keyboard and monitor are connected, via keyboard.
 
-可通过串口配置。若接入了键盘和显示器，亦可通过键盘配置。
+## Expected Outcome
 
-## 预期结果
+The system should boot up successfully and allow login through the graphical interface or serial console.
 
-系统正常启动，能够通过图形界面或串口登录。
+## Actual Outcome
 
-## 实际结果
+Both Xfce and Minimal versions of the system boot up successfully, and login can be achieved through the graphical interface or serial console.
 
-Xfce 版本和 Minimal 版本系统均正常启动，成功通过图形界面或串口登录。
-
-### 启动信息
+### Boot Information
 
 ```log
 root@visionfive2:~# uname -a
@@ -79,18 +77,20 @@ ARMBIAN_PRETTY_NAME="Armbian_community 24.5.0-trunk.278 noble"
 root@visionfive2:~# 
 ```
 
-Xfce 版屏幕录像（从刷写镜像到登录系统）：
+Xfce Version Screen Recording (From flashing image to system login):
 
-[![asciicast](https://asciinema.org/a/pCI6icBzsw2UrqNN5kL20LUxH.svg)](https://asciinema.org/a/pCI6icBzsw2UrqNN5kL20LUxH)
+![asciicast](https://asciinema.org/a/pCI6icBzsw2UrqNN5kL20LUxH)
 
-Xfce 屏幕截图：
+Xfce Screenshot:
 
 ![alt text](image.png)
 
-屏幕录像：
+Screen Recording for Xfce:
 
-https://github.com/ruyisdk/support-matrix/assets/17025286/14c27bbd-5477-426b-a3e4-85cca5f5eabd
+[https://github.com/ruyisdk/support-matrix/assets/17025286/14c27bbd-5477-426b-a3e4-85cca5f5eabd](https://github.com/ruyisdk/support-matrix/assets/17025286/14c27bbd-5477-426b-a3e4-85cca5f5eabd)
 
-Minimal 版屏幕录像（从刷写镜像到登录系统）：
+Minimal Version Screen Recording (From flashing image to system login):
 
-[![asciicast](https://asciinema.org/a/kLOG9FnxGs9AnXpZqpjDJeiNo.svg)](https://asciinema.org/a/kLOG9FnxGs9AnXpZqpjDJeiNo)
+![asciicast](https://asciinema.org/a/kLOG9FnxGs9AnXpZqpjDJeiNo)
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -1,54 +1,54 @@
-# Tina Linux Mangopi MQ 测试报告
+# Tina Linux Mangopi MQ Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://mangopi.org/_media/mq-r-f133-rtl8189fs-5113-dns-uart0.zip
-- 参考安装文档：https://mangopi.org/mangopi_mq
+- Download link: [https://mangopi.org/_media/mq-r-f133-rtl8189fs-5113-dns-uart0.zip](https://mangopi.org/_media/mq-r-f133-rtl8189fs-5113-dns-uart0.zip)
+- Reference installation document: [https://mangopi.org/mangopi_mq](https://mangopi.org/mangopi_mq)
 
-### 硬件信息
+### Hardware Information
 
 - Mangopi MQ
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
+- One microSD card
+- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
 
-## 安装步骤
+## Installation Steps
 
-### 烧写镜像
+### Image Burning
 
-下载并解压后，使用 dd 将镜像烧写到 SD 卡：
+After downloading and extracting, use `dd` to burn the image to the SD card:
 ```bash
 sudo dd if=mq-r-f133-rtl8189fs-5113-dns-uart0.img of=/dev/your/device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log into the system via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and can be accessed by logging in through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and login through the onboard serial port is achieved.
 
-### 启动信息
+### Boot Information
 
-
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from image flashing to system login):
 
 ```log
 ```
 
+## Test Criteria
 
-## 测试判定标准
+Test passed: Actual results match the expected results.
 
-测试成功：实际结果与预期结果相符。
+Test failed: Actual results do not match the expected results.
 
-测试失败：实际结果与预期结果不符。
-
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

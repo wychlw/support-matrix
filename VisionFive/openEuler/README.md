@@ -1,44 +1,44 @@
-# openEuler RISC-V 23.09 VisionFive 测试报告
+# openEuler RISC-V 23.09 VisionFive Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：openEuler 23.09 RISC-V preview
-- 下载链接：https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/Visionfive/
-- 参考安装文档：https://gitee.com/openeuler/RISC-V/tree/master/release/openEuler-23.03/Installation_Book/Visionfive
+- System Version: openEuler 23.09 RISC-V preview
+- Download Link: [Download Link](https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/Visionfive/)
+- Installation Guide: [Installation Guide](https://gitee.com/openeuler/RISC-V/tree/master/release/openEuler-23.03/Installation_Book/Visionfive)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Write Image to microSD Card Using `ruyi` CLI
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install the [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-### 登录系统
+### Log in to the System
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-默认用户名：`openeuler`
-默认密码：`openEuler12#$`
+Default Username: `openeuler`
+Default Password: `openEuler12#$`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and can be accessed through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and logging in through the onboard serial port is successful.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from writing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/lkduJVcErVoqb3ewZuzjl4TVi.svg)](https://asciinema.org/a/lkduJVcErVoqb3ewZuzjl4TVi)
 
@@ -68,12 +68,14 @@ ANSI_COLOR="0;31"
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

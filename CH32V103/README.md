@@ -1,32 +1,34 @@
 # CH32V103C
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - FreeRTOS
-    - 源码链接：https://www.wch.cn/downloads/CH32V103EVT_ZIP.html
-    - 参考文档：官方文档位于压缩包内
-        - PlatformIO 提供文档：https://github.com/Community-PIO-CH32V/platform-ch32v
+    - Source code link: [https://www.wch.cn/downloads/CH32V103EVT_ZIP.html](https://www.wch.cn/downloads/CH32V103EVT_ZIP.html)
+    - Reference document: Official documentation is located inside the compressed package
+        - PlatformIO documentation: [https://github.com/Community-PIO-CH32V/platform-ch32v](https://github.com/Community-PIO-CH32V/platform-ch32v)
 - RT-Thread / FreeRTOS (PlatformIO)
-    - 源码链接：https://github.com/Community-PIO-CH32V/ch32-pio-projects
-    - 参考文档：
-        - PlatformIO Core：https://docs.platformio.org/en/latest/core/installation/index.html
-        - PlatformIO ch32v：https://pio-ch32v.readthedocs.io/en/latest/installation.html
+    - Source code link: [https://github.com/Community-PIO-CH32V/ch32-pio-projects](https://github.com/Community-PIO-CH32V/ch32-pio-projects)
+    - Reference documents:
+        - PlatformIO Core: [https://docs.platformio.org/en/latest/core/installation/index.html](https://docs.platformio.org/en/latest/core/installation/index.html)
+        - PlatformIO ch32v: [https://pio-ch32v.readthedocs.io/en/latest/installation.html](https://pio-ch32v.readthedocs.io/en/latest/installation.html)
 
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - CH32V103C-EVT-R1-1v1
 
-## 测试结果
+## Test Results
 
-| 软件分类      | 软件包名      | 测试结果（测试报告）|
+| Software Category | Package Name | Test Result (Test Report) |
 |--------------|-------------|------------------|
-| FreeRTOS     | N/A         | [成功][FreeRTOS]  |
-| FreeRTOS     | PlatformIO  | [成功][FreeRTOS_pio]  |
-| RT-Thread    | N/A         | [成功][RTThread]  |
+| FreeRTOS     | N/A         | [Pass][FreeRTOS]  |
+| FreeRTOS     | PlatformIO  | [Pass][FreeRTOS_pio]  |
+| RT-Thread    | N/A         | [Pass][RTThread]  |
 
 [FreeRTOS]: ./FreeRTOS/README.md
 [RTThread]: ./RT-Thread/README.md
 [FreeRTOS_pio]: ./FreeRTOS/README_pio.md
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

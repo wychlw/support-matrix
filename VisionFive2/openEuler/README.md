@@ -1,75 +1,77 @@
-# openEuler RISC-V 23.09 VisionFive 2 版本测试报告
+# openEuler RISC-V 23.09 VisionFive 2 Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：openEuler 23.09 RISC-V preview
-- 下载链接：https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/VisionFive2/
-- 参考安装文档：https://gitee.com/openeuler/RISC-V/blob/master/release/openEuler-23.03/Installation_Book/Visionfive2/README.md
+- System Version: openEuler 23.09 RISC-V preview
+- Download Link: [Download here](https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/VisionFive2/)
+- Installation Guide: [Installation Guide Reference](https://gitee.com/openeuler/RISC-V/blob/master/release/openEuler-23.03/Installation_Book/Visionfive2/README.md)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive 2
-- USB 电源适配器一个
-- USB-A to C 或 C to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
+- One USB Power Adapter
+- One USB-A to C or C to C Cable
+- One microSD Card
+- One USB to UART Debugger (e.g., CH340, CH341, FT2232)
+- Three DuPont Wires
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Write Image to microSD Card using `ruyi` CLI
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install the [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the instructions provided.
 
-### 引导模式选择
+### Boot Mode Selection
 
-StarFive VisionFive 2 提供了多种引导模式，可在上电前通过板载拨码开关进行配置，可参考 StarFive [官方文档](https://doc.rvspace.org/VisionFive2/Quick_Start_Guide/VisionFive2_SDK_QSG/boot_mode_settings.html)。
+StarFive VisionFive 2 offers various boot modes that can be configured using onboard DIP switches before powering on. Refer to the StarFive [official documentation](https://doc.rvspace.org/VisionFive2/Quick_Start_Guide/VisionFive2_SDK_QSG/boot_mode_settings.html) for details.
 
-开发板本体上亦有丝印标注。
+The board itself is also labeled.
 
-为了启动 openEuler 镜像，选择 1-bit QSPI Nor Flash 模式（即：`RGPIO_0 = 0`, `RGPIO_1 = 0`）。注意，此模式可能需要提前更新 Flash 内的固件，详情请参考官方文档：[更新 SPL 和 U-Boot](https://doc.rvspace.org/VisionFive2/Quick_Start_Guide/VisionFive2_QSG/spl_u_boot_0.html)
+To boot the openEuler image, select the 1-bit QSPI Nor Flash mode (i.e., `RGPIO_0 = 0`, `RGPIO_1 = 0`). Note that this mode may require firmware updates in the Flash memory. For more details, refer to the official documentation: [Update SPL and U-Boot](https://doc.rvspace.org/VisionFive2/Quick_Start_Guide/VisionFive2_QSG/spl_u_boot_0.html)
 
-若不更新固件，请选择 microSD 卡引导（即：`RGPIO_0 = 1`, `RGPIO_1 = 0`）。
+If you choose not to update the firmware, opt for microSD card boot (i.e., `RGPIO_0 = 1`, `RGPIO_1 = 0`).
 
-> 注意，此模式下有小概率出现启动失败的情况，如遇到启动失败，串口输出类似如下信息：
->
->```log
->dwmci_s: Response Timeout.                                                                                            
->dwmci_s: Response Timeout.                                                                                            
->BOOT fail,Error is 0xffffffff
->```
->
-> 您可以尝试重新给开发板上电，或点按一下 USB Type-C 供电接口附近的按钮。通常这可以解决无法启动的问题。
+> Note: There is a slight possibility of startup failure in this mode. If faced with startup issues, and the serial port output resembles the following:
 
-### 登录系统
+```log
+dwmci_s: Response Timeout.                                                                                            
+dwmci_s: Response Timeout.                                                                                            
+BOOT fail,Error is 0xffffffff
+```
 
-通过串口登录系统。
+> You can try power cycling the board or pressing the button near the USB Type-C power interface. This often resolves startup problems.
 
-默认用户名：`openeuler` 或 `root`
-默认密码：`openEuler12#$`
+### System Login
 
-## 预期结果
+Login to the system via serial console.
 
-系统正常启动，能够通过图形界面登录。
+Default username: `openeuler` or `root`
+Default password: `openEuler12#$`
 
-## 实际结果
+## Expected Results
 
-系统正常启动，成功通过图形界面登录。
+The system should boot up successfully, allowing login through the graphical interface.
 
-### 启动信息
+## Actual Results
 
-屏幕录像（从刷写镜像到登录系统）：
+The system booted up successfully, and graphical interface login was achieved.
+
+### Boot Information
+
+Screen recording (from image writing to system login):
 
 [![asciicast](https://asciinema.org/a/A3KitOgctHGhyUvkUd2a8LwsH.svg)](https://asciinema.org/a/A3KitOgctHGhyUvkUd2a8LwsH)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual results differ from the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

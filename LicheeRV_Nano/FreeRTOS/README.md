@@ -1,43 +1,43 @@
-# FreeRTOS LicheeRV Nano 测试报告
+# FreeRTOS LicheeRV Nano Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：20240401
-- 下载链接：https://github.com/sipeed/LicheeRV-Nano-Build/releases
-- 参考安装文档：https://github.com/sipeed/LicheeRV-Nano-Build/releases
+- System Version: 20240401
+- Download Link: [**Download link**](https://github.com/sipeed/LicheeRV-Nano-Build/releases)
+- Installation Reference Document: [**Installation guide**](https://github.com/sipeed/LicheeRV-Nano-Build/releases)
 
-### 硬件信息
+### Hardware Information
 
 - LicheeRV Nano
-- type-c 电源线一根
-- UART 转 USB 调试器一个
+- One Type-C power cable
+- One UART to USB debugger
 
-## 安装步骤
+## Installation Steps
 
-LicheeRV Nano 的 FreeRTOS 被集成在了 Linux SDK 中，使用 mailbox 与 Linux 系统进行交互。
+FreeRTOS for LicheeRV Nano is integrated into the Linux SDK, communicating with the Linux system using a mailbox.
 
-### 查看 FreeRTOS 设备
+### Checking FreeRTOS Device
 
-FreeRTOS 与 Linux 之间的交互通过 mailbox 实现，可以在 `/dev` 中找到 `cvi-rtos-cmdqu`。
+Communication between FreeRTOS and Linux is achieved through a mailbox, located in `/dev` as `cvi-rtos-cmdqu`.
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log into the system via serial port.
 
-默认用户名：root
-默认密码：root
+Default username: root
+Default password: root
 
-## 预期结果
+## Expected Result
 
-系统正常启动，能够看到 rtos 设备。
+The system starts up normally, and the rtos device is visible.
 
-## 实际结果
+## Actual Result
 
-系统正常启动，能够看到 rtos 设备。
+The system boots up successfully, and the rtos device is visible.
 
-### 启动信息
+### Boot Information
 
 ```log
 
@@ -51,16 +51,18 @@ cvi-rtos-cmdqu
 
 ```
 
-屏幕录像：
+Screen recording:
 
 [![asciicast](https://asciinema.org/a/zG1HsQyGWkGTVHFI74Nwhxcv8.svg)](https://asciinema.org/a/zG1HsQyGWkGTVHFI74Nwhxcv8)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual result matches the expected result.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual result does not match the expected result.
 
-## 测试结论
+## Test Conclusion
 
-测试成功
+Test Passed
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

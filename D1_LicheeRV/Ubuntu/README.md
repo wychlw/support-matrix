@@ -1,47 +1,47 @@
-# Ubuntu 23.10 D1 测试报告
+# Ubuntu 23.10 D1 Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Ubuntu 23.10
-- 下载链接：https://ubuntu.com/download/risc-v
-    - 或者镜像站：[Nezha](https://mirror.tuna.tsinghua.edu.cn/ubuntu-cdimage/releases/mantic/release/ubuntu-23.10-preinstalled-server-riscv64+nezha.img.xz) | [Lichee RV](https://mirror.tuna.tsinghua.edu.cn/ubuntu-cdimage/releases/mantic/release/ubuntu-23.10-preinstalled-server-riscv64+licheerv.img.xz)
-- 参考安装文档：https://wiki.ubuntu.com/RISC-V/LicheeRV
+- System Version: Ubuntu 23.10
+- Download Link: [Ubuntu RISC-V](https://ubuntu.com/download/risc-v)
+    - Or mirror sites: [Nezha](https://mirror.tuna.tsinghua.edu.cn/ubuntu-cdimage/releases/mantic/release/ubuntu-23.10-preinstalled-server-riscv64+nezha.img.xz) | [Lichee RV](https://mirror.tuna.tsinghua.edu.cn/ubuntu-cdimage/releases/mantic/release/ubuntu-23.10-preinstalled-server-riscv64+licheerv.img.xz)
+- Reference Installation Document: [RISC-V/LicheeRV](https://wiki.ubuntu.com/RISC-V/LicheeRV)
 
-### 硬件信息
+### Hardware Information
 
 - AWOL Nezha D1 / Sipeed Lichee RV Dock
-- USB-A 电源一个
-- USB-A to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
+- One USB-A power supply
+- One USB-A to C cable
+- One microSD card
+- One USB to UART debugger (e.g. CH340, CH341, FT2232, etc.)
+- Three DuPont wires
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像到 microSD 卡
+### Write Image to microSD Card
 
-使用 `dd` 将镜像写入至 microSD 卡。
+Use `dd` to write the image to the microSD card.
 
-### 登录系统
+### Accessing the System
 
-通过串口登录系统。
+Access the system via serial console.
 
-默认用户名：`ubuntu`
-默认密码：`ubuntu`
+Default username: `ubuntu`
+Default password: `ubuntu`
 
-初次登录时，系统会提示更改密码。
+During the initial login, the system will prompt for a password change.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots successfully and allows login via on-board serial console.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots successfully and login via on-board serial console is successful.
 
-### 启动信息
+### Boot Information
 
 ```log
 ubuntu@ubuntu:~$ cat /proc/cpuinfo                                                                                    
@@ -57,16 +57,18 @@ mimpid          : 0x0
 ubuntu@ubuntu:~$
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from writing image to accessing system):
 
 [![asciicast](https://asciinema.org/a/wEtZPokxvzJ72S9ETh8PSqdUt.svg)](https://asciinema.org/a/wEtZPokxvzJ72S9ETh8PSqdUt)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

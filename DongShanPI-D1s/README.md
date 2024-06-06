@@ -1,26 +1,28 @@
 # DongshanPI-D1s
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
 - Tina Linux
-  - 下载链接：https://gitlab.com/dongshanpi/tools/-/raw/main/tina_d1s-nezha_sd_uart0.zip
-  - 参考安装文档：https://dongshanpi.com/DongshanPI-D1s/03-1_FlashSystem/
+  - Download link: [Tina Linux Download](https://gitlab.com/dongshanpi/tools/-/raw/main/tina_d1s-nezha_sd_uart0.zip)
+  - Installation guide: [Tina Linux Installation Guide](https://dongshanpi.com/DongshanPI-D1s/03-1_FlashSystem/)
 - RT-Thread:
-  - 下载链接：https://github.com/RT-Thread/rt-thread
-  - 参考安装文档：https://github.com/RT-Thread/rt-thread/blob/master/bsp/allwinner/d1s/README-MQ.md
+  - Download link: [RT-Thread Download](https://github.com/RT-Thread/rt-thread)
+  - Installation guide: [RT-Thread Installation Guide](https://github.com/RT-Thread/rt-thread/blob/master/bsp/allwinner/d1s/README-MQ.md)
 
-### 硬件开发板信息
+### Hardware Development Board Information
 
 - DongshanPI-D1s
 
-## 测试结果
+## Test Results
 
-| 软件分类                       | 软件包名     | 测试结果（测试报告）        |
+| Software Category               | Package Name | Test Result (Test Report) |
 |----------------------------|--------------|---------------------------|
-| Tina-Linux 镜像启动            | N/A          | [CFT][Tina]            |
-| RT-Thread 镜像启动             | N/A          | [CFT][RT-Thread]       |
+| Tina-Linux Image Boot       | N/A          | [CFT][Tina]               |
+| RT-Thread Image Boot        | N/A          | [CFT][RT-Thread]          |
 
 [Tina]: ./TinaLinux/README.md
 [RT-Thread]: ./RT-Thread/README.md
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

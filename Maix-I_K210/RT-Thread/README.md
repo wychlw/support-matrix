@@ -1,27 +1,27 @@
-# RT-Thread Maix-I K210 测试报告
+# RT-Thread Maix-I K210 Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 源码链接：https://github.com/RT-Thread/rt-thread/
-- 参考安装文档：https://github.com/RT-Thread/rt-thread/tree/master/bsp/k210
-- 工具链：https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases
-    - kflash：https://github.com/kendryte/kflash.py
+- Source Code Link: [RT-Thread GitHub Repository](https://github.com/RT-Thread/rt-thread/)
+- Installation Reference Document: [RT-Thread Installation Guide](https://github.com/RT-Thread/rt-thread/tree/master/bsp/k210)
+- Toolchain: [RISC-V None Embed GCC xPack](https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases)
+    - Kflash Tool: [Kendryte Kflash](https://github.com/kendryte/kflash.py)
 
-### 硬件信息
+### Hardware Information
 
 - Sipeed Maix-Bit (K210)
 
-## 安装步骤
+## Installation Steps
 
-### 准备源码及环境
+### Prepare Source Code and Environment
 
-获取工具链，下载并解压。
+Obtain the toolchain, download, and unzip it.
 
-注：kendryte 的官方工具链会报浮点类型不兼容的错误，risc-v 工具链 8.2.0 之前的版本会出现头文件不兼容的问题。（见[安装文档](https://github.com/RT-Thread/rt-thread/tree/master/bsp/k210)）
+Note: Kendryte's official toolchain may report compatibility errors with floating-point types, and versions of the RISC-V toolchain prior to 8.2.0 may have header file compatibility issues. (Refer to the [installation document](https://github.com/RT-Thread/rt-thread/tree/master/bsp/k210))
 
-clone 仓库并进行配置：
+Clone the repository and configure:
 ```bash
 git clone https://github.com/RT-Thread/rt-thread/
 cd rt-thread/bsp/k210
@@ -30,7 +30,7 @@ source ~/.env/env.sh
 pkgs --update
 ```
 
-在 menuconfig 中需要检查以下选项是否正确：
+In the menuconfig, ensure the following options are correct:
 > RT-Thread online packages --->
 > > peripheral libraries and drivers --->
 > > > Kendryte SDK --->
@@ -38,39 +38,39 @@ pkgs --update
 
 > RT-Thread Components --->  C++ features
 
-而后打开 rtconfig.py，找到第 18 行，并将 EXEC_PATH 替换为你工具链解压后 bin 所在的位置。
+Then open rtconfig.py, locate line 18, and replace EXEC_PATH with the location of your toolchain's bin directory after extraction.
 
-### 进行编译
+### Compilation
 
-使用 scons 进行编译：
+Compile using scons:
 ```bash
 scons --exec-path="path/to/toolchain/bin"
 ```
 
-### 烧写镜像
+### Image Flashing
 
-使用 k_flash 进行烧写，工具链文档可见：https://github.com/kendryte/kflash.py
+Flash the image using k_flash, refer to the toolchain documentation: [Kendryte Kflash](https://github.com/kendryte/kflash.py)
 
 ```bash
 pip install kflash
 kflash -b 115200 -p /dev/ttyUSBx rtthread.bin
 ```
 
-### 登录系统
+### System Login
 
-通过串口连接开发板。
+Connect to the development board via serial port.
 
-## 预期结果
+## Expected Results
 
-构建成功，开发板正常输出 RT-Thread 启动信息。
+Successful build with the development board displaying RT-Thread startup information.
 
-## 实际结果
+## Actual Results
 
-构建成功，开发板正常输出 RT-Thread 启动信息。
+Successful build with the development board displaying RT-Thread startup information.
 
-### 启动信息
+### Startup Information
 
-屏幕录像（从刷写系统到启动）：
+Screen recording (from system flashing to startup):
 [![asciicast](https://asciinema.org/a/UeYag1L9qPvAPgcuuWKMpF7ye.svg)](https://asciinema.org/a/UeYag1L9qPvAPgcuuWKMpF7ye)
 
 ```log
@@ -87,12 +87,14 @@ please use: addr2line -e rtthread.elf -a -f 0x80013392[0] W/kernel.service: rt_h
 
 ```
 
-## 测试判定标准
+## Test Judging Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功
+Test Passed
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

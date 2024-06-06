@@ -1,147 +1,146 @@
-# Yocto PolarFire SoC Icicle Kit 测试报告
+# Yocto PolarFire SoC Icicle Kit Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://github.com/polarfire-soc/meta-polarfire-soc-yocto-bsp/releases
-- 参考安装文档：https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/icicle-kit-user-guide.md
+- Download Link: [PolarFire SoC Yocto BSP Releases](https://github.com/polarfire-soc/meta-polarfire-soc-yocto-bsp/releases)
+- Reference Installation Document: [Icicle Kit User Guide](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/icicle-kit-user-guide.md)
 
-### 硬件信息
+### Hardware Information
 
-- Microchip Polarfire SoC FPGA Icicle Kit 开发板
-- 原装 12V 5A DC 5.5*2.1mm 电源适配器（原厂附带线材为美标插脚，在中国大陆使用需要转接器/更换国标线材）
-- micro-USB to USB-A 线缆两条（出厂附带），用于连接 USB-UART、更新 FPGA/HSS 和烧录镜像至板载 eMMC
-- （可选）SD 卡一张（不推荐使用 microSD + 卡套转接的方式，可能无法识别；此外请确保存储卡没有处于写保护状态）
+- Microchip Polarfire SoC FPGA Icicle Kit Development Board
+- Original 12V 5A DC 5.5*2.1mm Power Adapter (comes with US plug, may require adapter/change to CN plug in mainland China)
+- Two micro-USB to USB-A cables (factory-supplied) for connecting USB-UART, updating FPGA/HSS, and burning images to onboard eMMC
+- (Optional) One SD card (not recommended to use microSD + adapter, as it may not be recognized; also ensure the storage card is not write-protected)
 
-### 其他信息
+### Other Information
 
 - Icicle Kit Reference Design Release v2024.02
-    - 下载链接：https://github.com/polarfire-soc/icicle-kit-reference-design/releases/tag/v2024.02
-- FlashPro Express v2024.1（打包在 Programming and Debug Tools 内）
-    - 下载链接（需要登录）：https://www.microchip.com/en-us/products/fpgas-and-plds/fpga-and-soc-design-tools/programming-and-debug/lab
+    - Download Link: [Icicle Kit Reference Design Release v2024.02](https://github.com/polarfire-soc/icicle-kit-reference-design/releases/tag/v2024.02)
+- FlashPro Express v2024.1 (bundled in Programming and Debug Tools)
+    - Download Link (login required): [Microchip Programming and Debug Lab](https://www.microchip.com/en-us/products/fpgas-and-plds/fpga-and-soc-design-tools/programming-and-debug/lab)
 
-## 安装步骤
+## Installation Steps
 
-### （可选，建议）更新 FPGA Design 和 Hart Software Services (HSS)
+### (Optional, Recommended) Update FPGA Design and Hart Software Services (HSS)
 
-#### 安装 FlashPro Express 工具
+#### Install FlashPro Express Tool
 
-访问上面提到的下载链接，根据您所使用的操作系统下载。
+Visit the download link mentioned above and download the version compatible with your operating system.
 
-> 注意，有登录墙，需要注册并登录后方可下载。
+> Note: Login required for download.
 >
-> 填写邮箱等信息后即可免费注册。
+> Register and login to download the tool for free after providing email and other information.
 
-此工具支持的系统有：
+Supported systems for this tool are:
 
 - Windows 10/11
 - RHEL/CentOS 7.x, RHEL/CentOS 8.0-8.2
 - OpenSUSE Leap 42.3 (SLES 12.3)
-- Ubuntu 18.04 LTS, 20.04.3 LTS, 以及 22.04.1 LTS
+- Ubuntu 18.04 LTS, 20.04.3 LTS, and 22.04.1 LTS
 
-笔者使用的为 Windows 11 Home x64，尽管安装程序会提示不受支持的系统环境，但实测可正常安装。
+The author used Windows 11 Home x64. Although the installation program may indicate an unsupported system environment, it installed successfully.
 
-下载后直接运行并按默认流程安装即可。Linux 环境下先 `chmod +x` 赋予可执行权限再执行。可能需要 `root` 权限。
+Download and run the program, following the default installation process. For Linux, grant executable permissions with `chmod +x` before running. Root permissions might be required.
 
-#### 更新 FPGA Design & HSS
+#### Update FPGA Design & HSS
 
-从 GitHub 下载最新版本：
+Download the latest version from GitHub:
 
-https://github.com/polarfire-soc/icicle-kit-reference-design/releases
+[Latest Version Download](https://github.com/polarfire-soc/icicle-kit-reference-design/releases)
 
-下载 `MPFS_ICICLE_BASE_DESIGN_yyyy_mm.zip` 文件解压备用。
+Unzip the `MPFS_ICICLE_BASE_DESIGN_yyyy_mm.zip` file for later use.
 
-使用 microUSB 线缆连接开发板和计算机。
+Connect the development board to the computer using a microUSB cable.
 
-开发板上共有两个 microUSB 接口，烧写 FPGA 时请连接至 `J33` 接口，即位于电源开关附近的 microUSB 接口，如下图所示。
+There are two microUSB interfaces on the development board. When burning the FPGA, connect to the `J33` interface near the power switch, as shown in the image below.
 
 ![Connectors](https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/reference-designs-fpga-and-development-kits/images/icicle-kit-user-guide/icicle-kit-connectors.png?raw=true)
 
-打开 FlashPro Express，点击左上角菜单栏 `Project -> New Job Project`
+Open FlashPro Express, click on the top left menu bar `Project -> New Job Project`
 
 ![](./images/image.png)
 
-选择先前解压的 `MPFS_ICICLE_BASE_DESIGN`，插上 12V 电源，给开发板上电，然后点击 OK：
+Select the previously unzipped `MPFS_ICICLE_BASE_DESIGN`, plug in the 12V power supply to power up the development board, then click OK:
 
 ![alt text](./images/image-1.png)
 
-此时应该已经识别到 FPGA 了。确保左侧下拉菜单选择的是 `PROGRAM`，点击 `RUN` 开始烧写 FPGA。
+The FPGA should now be recognized. Ensure that the `PROGRAM` option is selected from the left dropdown menu and click `RUN` to start burning the FPGA.
 
 ![alt text](./images/image-2.png)
 
-烧写成功会有绿色提示：
+A successful burn will display a green confirmation message:
 
 ![alt text](./images/image-3.png)
 
-### 烧写镜像
+### Burning Image
 
-Polarfire SoC FPGA Icicle Kit 支持从板载 eMMC 启动或 SD 卡启动。
+The Polarfire SoC FPGA Icicle Kit supports booting from onboard eMMC or an SD card.
 
-默认优先 SD 卡。当 SD 卡不存在或 SD 卡启动失败时会从板载 eMMC 启动。
+It prioritizes booting from the SD card by default. If there is no SD card present or if SD card boot fails, it will boot from the onboard eMMC.
 
-### 烧录镜像至 eMMC
+### Burn Image to eMMC
 
-连接 microUSB 线缆至 USB OTG 接口，位于 SD 卡槽附近，丝印 `J19`。
+Connect the microUSB cable to the USB OTG interface labeled `J19` near the SD card slot.
 
-连接 USB UART，位于以太网接口一侧，丝印 `J11`。
+Connect the USB UART to the interface labeled `J11` near the Ethernet port.
 
-计算机上会识别到一个 CP2108 USB 转 UART，如果这是您计算机上唯一一个 USB 转 UART，此时会识别到四个串口。
+A CP2108 USB to UART interface will be recognized on the computer. If this is the only USB to UART interface on your computer, you will see four serial ports.
 
-Windows 上会出现四个 COM 口，Linux 下会出现 /dev/ttyUSB{0,1,2,3}，如下图所示：
+On Windows, you will see four COM ports, while on Linux, you will see /dev/ttyUSB{0,1,2,3} as shown below:
 
 ![alt text](./images/image-4.png)
 
-其中，`Interface 0` 为 `HSS` 输出，`Interface 1` 为 U-Boot 和 Linux 控制台输出。
+`Interface 0` is for `HSS` output, and `Interface 1` is for U-Boot and Linux console output.
 
-在 Linux 系统下，分别对应第一个和第二个串口。
+In a Linux system, they correspond to the first and second serial ports.
 
-| 串口功能              | Windows     | Linux        |
+| Serial Port Function  | Windows     | Linux        |
 |--------------------|-------------|--------------|
-| HSS 控制台            | Interface 0 | /dev/ttyUSB0 |
-| U-Boot & Linux 控制台 | Interface 1 | /dev/ttyUSB1 |
+| HSS Console        | Interface 0 | /dev/ttyUSB0 |
+| U-Boot & Linux Console | Interface 1 | /dev/ttyUSB1 |
 
-欲向 eMMC 烧录镜像，连接至 `HSS` 控制台，在启动时（提示 `Press a key to enter CLI, ESC to skip`）按任意键打断启动流程。
+To burn the image to eMMC, connect to the `HSS` console. During startup (prompt `Press a key to enter CLI, ESC to skip`), press any key to interrupt the boot process.
 
-输入：
+Input:
 ```
 mmc
 usbdmsc
 ```
-会提示 `Waiting for USB Host to connect`。
+You will see `Waiting for USB Host to connect` prompt.
 
-此时计算机一侧应该会出现一个 USB 大容量存储设备。至此可以使用 Win32DiskImager/Rufus/USBImager/dd 等工具直接向其中写入镜像了。
+At this point, a high-capacity USB storage device should appear on your computer. You can now use tools like Win32DiskImager, Rufus, USBImager, dd, etc., to write the image to the device.
 
-镜像烧写完成后，在 HSS 控制台按 Ctrl+C 退出 USB 存储模式。至此镜像烧录结束。
+After burning the image, press Ctrl+C in the HSS console to exit USB storage mode. The image burning process is now complete.
 
-### 烧录镜像至 SD 卡
+### Burn Image to SD Card
 
-直接使用 Rufus/Win32DiskImager/dd 等工具写入镜像至 SD 卡即可。
+You can directly use Rufus, Win32DiskImager, dd, etc., to write the image to an SD card.
 
 ```shell
 gzip -kd core-image-minimal-dev-icicle-kit-es-20240221160407.rootfs.wic.gz
 sudo dd if=core-image-minimal-dev-icicle-kit-es-20240221160407.rootfs.wic of=/dev/sdX bs=1M status=progress
 ```
 
-### 登录系统
+### Log in to the System
 
-通过串口登录系统。
+Login to the system via a serial connection.
 
-默认用户名： `root`
-默认密码：无密码
+Default username: `root`
+Default password: None
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system boots up normally, allowing login via the onboard serial port.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system boots up normally, and successful login via the onboard serial port is achieved.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写镜像到登录系统）：
-
+Screen recording (from image burning to system login):
 
 ```log
 DDR training ... Passed ( 2775 ms)
@@ -807,16 +806,18 @@ Linux icicle-kit-es 6.1.74-linux4microchip+fpga-2024.02 #1 SMP Wed Feb 21 12:18:
 root@icicle-kit-es:~#
 ```
 
-屏幕录像：
+Screen recording:
 
 [![asciicast](https://asciinema.org/a/kDLq4sYhwK9bCzMyQm6xlSVpn.svg)](https://asciinema.org/a/kDLq4sYhwK9bCzMyQm6xlSVpn)
 
-## 测试判定标准
+## Test Judgement Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Test: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Failed Test: Actual outcome differs from the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

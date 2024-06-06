@@ -1,30 +1,31 @@
-# FreeRTOS Milk-V Duo S 测试报告
 
-## 测试环境
+# FreeRTOS Milk-V Duo S Test Report
 
-### 操作系统信息
+## Test Environment
 
-- 构建系统：Ubuntu 22.04.4 LTS x86_64
-- 系统版本：Duo-V1.1.0
-- 下载链接：https://github.com/milkv-duo/duo-buildroot-sdk/releases
-- 参考安装文档：https://github.com/milkv-duo/duo-buildroot-sdk
-    - FreeRTOS: https://milkv.io/zh/docs/duo/getting-started/rtoscore
+### Operating System Information
 
-### 硬件信息
+- Build System: Ubuntu 22.04.4 LTS x86_64
+- System Version: Duo-V1.1.0
+- Download Link: [here](https://github.com/milkv-duo/duo-buildroot-sdk/releases)
+- Installation Reference Document: [here](https://github.com/milkv-duo/duo-buildroot-sdk)
+    - FreeRTOS: [link](https://milkv.io/zh/docs/duo/getting-started/rtoscore)
+
+### Hardware Information
 
 - Milk-V Duo S (512M, SG2000)
-- USB 电源适配器一个
-- USB-A to C 或 USB C to C 线缆一条，用于给开发板供电
-- microSD 卡一张
-- USB 读卡器一个
-- USB to UART 调试器一个（如：CP2102, FT2232 等，注意不可使用 CH340/341 系列，会出现乱码）
-- 杜邦线三根
+- One USB power adapter
+- One USB-A to C or USB C to C cable, for powering the development board
+- One microSD card
+- One USB card reader
+- One USB to UART debugger (CP2102, FT2232, etc., do not use CH340/341 series to avoid garbled text)
+- Three DuPont wires
 
-## 安装步骤
+## Installation Steps
 
-### 构建 mailbox-test 二进制
+### Building the mailbox-test Binary
 
-拉取 duo-examples 仓到本地并构建。
+Clone the duo-examples repository locally and build.
 
 ```shell
 sudo apt install -y wget git make
@@ -35,11 +36,11 @@ cd mailbox-test
 make
 ```
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Flashing the Image to microSD Card using `ruyi` CLI
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-#### 将构建出的二进制复制进 microSD 卡
+#### Copy the compiled binary to the microSD card
 
 ```shell
 sudo mount /dev/sdX2 /mnt
@@ -48,23 +49,23 @@ sudo umount /mnt
 sudo eject /dev/sdX2
 ```
 
-至此，存储卡准备完成。插入开发板，准备启动。
+At this point, the SD card is ready. Insert it into the development board and prepare for booting.
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Log into the system via the serial port.
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，通过板载串口登录后运行 `mailbox_test` 二进制，板载蓝色 LED 灯先亮后灭。
+The system starts up normally, runs the `mailbox_test` binary after logging in via the onboard serial port, and the onboard blue LED turns on and then off.
 
-（待机状态为蓝色 LED 闪烁）
+(Standby mode indicated by blinking blue LED)
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录，Duo S 官方镜像目前暂不支持 wiringX，`mailbox_test` 未能正常运行，但系统已检测到 rtos 设备。
+The system starts up normally, successfully logged in via the onboard serial port; however, the official Duo S image currently does not support wiringX. Thus, the `mailbox_test` did not run as expected, but the system has detected the rtos device.
 
-### 启动信息
+### Boot Information
 
 ```log
 [root@milkv-duo]~# ls
@@ -80,16 +81,18 @@ find: /proc/338: No such file or directory
 [root@milkv-duo]~#
 ```
 
-屏幕录像：
+Screen recording:
 
 [![asciicast](https://asciinema.org/a/y8YaDpY5YnKWgw4ydZPVDf4YB.svg)](https://asciinema.org/a/y8YaDpY5YnKWgw4ydZPVDf4YB)
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual outcome does not match the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
-测试失败。
+Test Failed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

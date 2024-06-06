@@ -1,39 +1,38 @@
-# RevyOS Sipeed 厂商镜像 Lichee Cluster 4A 版本测试报告
+# RevyOS Sipeed Manufacturer Image Lichee Cluster 4A Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：RevyOS 20230614-183009
-- 下载链接：https://dl.sipeed.com/shareURL/LICHEE/LicheeCluster4A/04_Firmware/lpi4a/bin
-- 参考安装文档：https://wiki.sipeed.com/hardware/zh/lichee/th1520/lc4a/lc4a.html
+- System Version: RevyOS 20230614-183009
+- Download Link: [Lichee Cluster 4A Firmware](https://dl.sipeed.com/shareURL/LICHEE/LicheeCluster4A/04_Firmware/lpi4a/bin)
+- Reference Installation Document: [Installation Guide](https://wiki.sipeed.com/hardware/zh/lichee/th1520/lc4a/lc4a.html)
 
-### 硬件信息
+### Hardware Information
 
 - Lichee Cluster 4A 8G / 16G
-- DC 12V 电源
+- DC 12V Power Supply
 - USB-A to A
-    - 或 LPi4A 底板
-- 网络和网线（注意连接到 BMC 而非交换机）
+    - or LPi4A Baseboard
+- Network and Ethernet Cable (Ensure connection to BMC instead of switch)
 
+## Installation Steps
 
-## 安装步骤
+*The following steps are based on flashing the image to board number one in the cluster*
 
-*以下以刷写到集群中一号板为例*
+### Connect to Corresponding SOM
 
-### 连接对应 SOM
+Use an A to A cable to connect to the SOM.
 
-使用 A to A 线缆连接 SOM。
+### Flash Image
 
-### 刷写镜像
-
-使用 `unxz` 解压镜像。
+Use `unxz` to extract the image.
 
 ```bash
 unxz -k boot-20230614-182922.ext4.xz rootfs-20230614-183009.ext4.xz
 ```
 
-使用 `fastboot` 刷写镜像
+Use `fastboot` to flash the image.
 ```bash
 sudo ./fastboot flash ram u-boot-with-spl-lpi4a.bin
 sudo ./fastboot reboot
@@ -42,30 +41,30 @@ sudo ./fastboot flash boot boot-20230614-182922.ext4
 sudo ./fastboot flash root rootfs-20230614-183009.ext4
 ```
 
-### 登录系统
+### Login to System
 
-通过 SOL (Serial Over LAN) 登录系统。
+Log in to the system via SOL (Serial Over LAN).
 
-BMC 默认用户名：`root`
+BMC Default Username: `root`
 
-BMC 默认密码：`0penBmc`  **注意是 `0` 而不是 `O`**
+BMC Default Password: `0penBmc` **Note that it is `0` not `O`**
 
-通过 `ssh -p 2301 root@lichee-rv.local` 连接
+Connect via `ssh -p 2301 root@lichee-rv.local`
 
-默认用户名：`debian`
-默认密码：`debian`
+Default Username: `debian`
+Default Password: `debian`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过 SOL (Serial Over LAN) 登录。
+The system starts up correctly, and you can log in via SOL (Serial Over LAN).
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够通过 SOL (Serial Over LAN) 登录。
+The system starts up correctly, and you can log in via SOL (Serial Over LAN).
 
-### 启动信息
+### Boot Information
 
-屏幕录像（从刷写系统到启动）：
+Screen recording (from system flashing to startup):
 
 [![asciicast](https://asciinema.org/a/KwCIHjcPOuepxFiwUGhh7sLuh.svg)](https://asciinema.org/a/KwCIHjcPOuepxFiwUGhh7sLuh)
 
@@ -101,22 +100,24 @@ debian@lc4aa0c8:~$
 
 ```
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

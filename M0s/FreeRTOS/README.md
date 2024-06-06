@@ -1,67 +1,67 @@
-# FreeRTOS Sipeed M0s Dock 测试报告
 
-## 测试环境
+# FreeRTOS Sipeed M0s Dock Test Report
 
-### 操作系统信息
+## Test Environment
 
-- 下载链接：https://github.com/sipeed/M0S_BL616_example
-    - 工具链：https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux
-- 参考安装文档：https://github.com/sipeed/M0S_BL616_example
-    - https://bl-mcu-sdk.readthedocs.io/zh-cn/latest/get_started/get_started.html
+### Operating System Information
 
-### 硬件信息
+- Download Link: [here](https://github.com/sipeed/M0S_BL616_example)
+    - Toolchain: [here](https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux)
+- Reference Installation Document: [here](https://github.com/sipeed/M0S_BL616_example)
+    - [here](https://bl-mcu-sdk.readthedocs.io/zh-cn/latest/get_started/get_started.html)
+
+### Hardware Information
 
 - Sipeed M0s Dock
-- type-c 线一根
+- One Type-C cable
 
-## 安装步骤
+## Installation Steps
 
-### 获取 SDK 和工具链
+### Get SDK and Toolchain
 
-clone 相关仓库到工作目录：
+Clone the relevant repositories to the working directory:
 ```bash
 git clone https://github.com/sipeed/M0S_BL616_example.git
 git clone https://gitee.com/bouffalolab/toolchain_gcc_t-head_linux.git
 ```
 
-配置环境：
+Configure the environment:
 ```bash
 export PATH=path/to/toolchain_gcc_t-head_linux/bin:$PATH
 ```
 
-### 编译
+### Compilation
 
-编译 FreeRTOS 例程：
+Compile the FreeRTOS demo:
 ```bash
 cd M0S_BL616_example/examples/freertos
 make CHIP=bl616 BOARD=bl616dk
 ```
 
-### 刷写程序
+### Flashing Program
 
+Connect the computer and the C port using a Type-C cable.
 
-使用 type-c 线连接电脑和 C 口
+Press and hold the boot button, then connect the C port to power up.
 
-先按住 boot，再连接 C 口上电。
-
-而后：
+Then:
 ```bash
 make flash CHIP=bl616 COMX=/dev/ttyACM0 # Change com on your machine
 ```
 
-### 连接串口
+### Connect Serial Port
 
-需要连接的串口位于 C 口旁，波特率为 2000000。
+The serial port for connection is located next to the C port, with a baud rate of 2000000.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够看到串口输出。
+The system boots up normally, and serial output is visible.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，能够看到串口输出。
+The system boots up normally, and serial output is visible.
 
-### 启动信息
+### Startup Information
 
 ```log
   ____               __  __      _       _       _     
@@ -116,16 +116,19 @@ cgen1:9f7ffffd
 
 ```
 
-屏幕录像：
+Screen Recording:
 
 [![asciicast](https://asciinema.org/a/zH5ndg9eZTbjEHEkWFfAxVNQk.svg)](https://asciinema.org/a/zH5ndg9eZTbjEHEkWFfAxVNQk)
 
-## 测试判定标准
+## Test Judgement Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

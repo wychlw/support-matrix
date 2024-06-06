@@ -1,36 +1,36 @@
-# OpenBSD 7.5 VisionFive 2 测试报告
+# OpenBSD 7.5 VisionFive 2 Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：OpenWRT SnapShot
-- 下载链接：[https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/](https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/)
-    - dtb 文件：https://marc.info/?l=openbsd-misc&m=169046816826966&w=2
-- 参考安装文档：[https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/INSTALL.riscv64](https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/INSTALL.riscv64)
-    -  社区教程：https://gist.github.com/csgordon/74658096f7838382b40bd64e11f6983e
+- System Version: OpenWRT SnapShot
+- Download Link: [https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/](https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/)
+    - dtb File: https://marc.info/?l=openbsd-misc&m=169046816826966&w=2
+- Installation Reference Document: [https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/INSTALL.riscv64](https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/INSTALL.riscv64)
+    - Community Tutorial: https://gist.github.com/csgordon/74658096f7838382b40bd64e11f6983e
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
-- Internet 有线网连接
+- Power Adapter
+- One microSD Card
+- One USB to UART Debugger
+- Wired Internet Connection
 
-## 安装步骤
+## Installation Steps
 
-### 刷写安装镜像
+### Flashing Installation Image
 
-使用 `gzip` 解压镜像。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `gzip` to decompress the image.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 wget https://cdn.openbsd.org/pub/OpenBSD/snapshots/riscv64/install75.img
 sudo dd if=install75.img of=/dev/your-device bs=1M status=progress
 ```
 
-将 dtb 文件放入 EFI 根目录中：
+Place the dtb file in the EFI root directory:
 
 ```bash
 mkdir -p mnt
@@ -39,18 +39,18 @@ cp jh7110-starfive-visionfive-2-v1.3b.dtb mnt/
 sudo umount mnt
 ```
 
-### 启动系统
+### System Boot-up
 
-手动中断 u-boot 流程，并输入启动命令：
+Manually interrupt the u-boot process and enter the boot command:
 ```bash
 load mmc 1:1 ${fdt_addr_r} jh7110-starfive-visionfive-2-v1.3b.dtb
 load mmc 1:1 ${kernel_addr_r} efi/boot/bootriscv64.efi
 bootefi ${kernel_addr_r} ${fdt_addr_r}
 ```
 
-跟随流程安装，然后将 dtb 再次放入 EFI 根目录内（若其被覆盖）。
+Follow the process to install, then place dtb in the EFI root directory again (if it was overwritten).
 
-### 持久化 uboot
+### U-boot Persistence
 
 ```bash
 env default -a -f
@@ -58,26 +58,25 @@ setenv bootcmd "load mmc 1:1 ${fdt_addr_r} jh7110-starfive-visionfive-2-v1.3b.dt
 saveenv
 ```
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Log into the system via serial console.
 
-用户和密码在安装时被设置。
+User credentials are set during installation.
 
-## 预期结果
+## Expected Outcome
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and allows login through the onboard serial console.
 
-## 实际结果
+## Actual Outcome
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and login through the onboard serial console is successful.
 
-### 启动信息
+### Boot-up Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/Cz0uvucqmbP1P0yzgZ2hnMbZY.svg)](https://asciinema.org/a/Cz0uvucqmbP1P0yzgZ2hnMbZY)
-
 
 ```log
 Tue Mar 26 22:01:09 CST 2024
@@ -103,12 +102,14 @@ plct#
 
 ```
 
-## 测试判定标准
+## Test Success Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual outcome matches the expected outcome.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual outcome does not match the expected outcome.
 
-## 测试结论
+## Test Conclusion
 
-测试部分成功。
+Partial success in the testing.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -1,60 +1,62 @@
-# OpenWrt 23.05.2 DongshanPI-哪吒 STU 测试报告
+# OpenWrt 23.05.2 DongshanPI-Nezha STU Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接（OpenWrt Firmware Selector）：https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=d1%2Fgeneric&id=dongshan_nezha_stu
-- 参考安装文档：https://openwrt.org/docs/techref/hardware/soc/soc.allwinner.d1
+- Download Link (OpenWrt Firmware Selector): [link](https://firmware-selector.openwrt.org/?version=SNAPSHOT&target=d1%2Fgeneric&id=dongshan_nezha_stu)
+- Reference Installation Document: [link](https://openwrt.org/docs/techref/hardware/soc/soc.allwinner.d1)
 
-> 在 OpenWrt Firmware Selector 中可以在线定制构建系统镜像，添加用户所需要的预装软件包。本次测试使用的为**未经修改**的原版镜像。
+> The OpenWrt Firmware Selector allows online customization of the build system image, adding pre-installed software packages as needed by the user. The image used in this test is **unmodified** original version.
 
-### 硬件信息
+### Hardware Information
 
-- DongshanPI-哪吒 STU 
-- USB-A 电源一个
-- USB-A to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
+- DongshanPI-Nezha STU
+- One USB-A power
+- One USB-A to C cable
+- One microSD card
+- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
+- Three DuPont wires
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像到 microSD 卡
+### Flashing the Image to the microSD Card
 
-使用 `dd` 刷入镜像到 microSD 卡。
+Use `dd` to flash the image to the microSD card.
 
 ```bash
 gzip -kd openwrt-d1-generic-dongshan_nezha_stu-ext4-sdcard.img.gz
 sudo dd if=openwrt-d1-generic-dongshan_nezha_stu-ext4-sdcard.img of=/dev/your/device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up normally and allow login through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system booted up successfully and allowed login via the onboard serial port.
 
-### 启动信息
+### Boot-up Information
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 ```log
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Test: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Failed Test: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

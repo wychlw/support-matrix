@@ -1,48 +1,49 @@
-# openEuler RISC-V 23.09 HiFive Unmatched 版本测试报告
 
-## 测试环境
+# openEuler RISC-V 23.09 HiFive Unmatched Version Test Report
 
-### 操作系统信息
+## Test Environment
 
-- 系统版本：openEuler 23.09 RISC-V preview
-- 下载链接：https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/Unmatched/
-- 参考安装文档：https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/Unmatched/README.unmatched.txt
+### Operating System Information
 
-### 硬件信息
+- System Version: openEuler 23.09 RISC-V preview
+- Download Link: https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/Unmatched/
+- Reference Installation Documentation: https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.09-V1-riscv64/Unmatched/README.unmatched.txt
+
+### Hardware Information
 
 - HiFive Unmatched Rev A
-- microUSB 线缆一条（随 HiFive Unmatched 附赠）
-- ATX 电源一个
-- microSD 卡一张（Sandisk Extreme Pro 64G UHS-I）
+- One microUSB cable (included with HiFive Unmatched)
+- One ATX power supply
+- One microSD card (Sandisk Extreme Pro 64G UHS-I)
 
-## 安装步骤
+## Installation Steps
 
-### 引导设备选择
+### Boot Device Selection
 
-确保拨码开关已调整为从 microSD 卡引导。若您未更改，出厂默认即为从 microSD 卡引导。
+Ensure that the DIP switch is set to boot from the microSD card. If you haven't changed it, the default setting is to boot from the microSD card.
 
-拨码开关应如下设置：`MSEL[3:0]=1011`
+DIP switch should be set as follows: `MSEL[3:0]=1011`
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Use the `ruyi` CLI to Flash the Image to the microSD Card
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-### 登录系统
+### Log in to the System
 
-通过板载串口（使用 microUSB 线缆连接至其他计算机）登录系统。
+Log in to the system via the onboard serial port (connect to another computer using the microUSB cable).
 
-默认用户名：`openeuler` 或 `root`
-默认密码：`openEuler12#$`
+Default username: `openeuler` or `root`
+Default password: `openEuler12#$`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up normally and can be logged into via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up normally and successfully logged into via the onboard serial port.
 
-### 启动信息
+### Boot Information
 
 ```log
 Welcome to 6.1.0-11.oe2309.riscv64                                                                                    
@@ -59,16 +60,18 @@ To run a command as administrator(user "root"),use "sudo <command>".
 [openeuler@openeuler-riscv64 ~]$
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/GzU3kCzrnvFfJMU1cJH30knrx.svg)](https://asciinema.org/a/GzU3kCzrnvFfJMU1cJH30knrx)
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Pass: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Fail: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

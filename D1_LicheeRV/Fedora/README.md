@@ -1,27 +1,27 @@
-# Fedora 36 D1 测试报告
+# Fedora 36 D1 Test Report
 
-## 测试环境
+## Test Environment
 
-### 系统信息
+### System Information
 
-- 系统版本：Fedora 36
-- 下载链接：[https://openkoji.iscas.ac.cn/pub/dl/riscv/Allwinner/Nezha_D1/images-release/Fedora/](https://openkoji.iscas.ac.cn/pub/dl/riscv/Allwinner/Nezha_D1/images-release/Fedora/)
-- 参考安装文档：[https://fedoraproject.org/wiki/Architectures/RISC-V/Allwinner/zh-cn](https://fedoraproject.org/wiki/Architectures/RISC-V/Allwinner/zh-cn)
+- System Version: Fedora 36
+- Download Link: [https://openkoji.iscas.ac.cn/pub/dl/riscv/Allwinner/Nezha_D1/images-release/Fedora/](https://openkoji.iscas.ac.cn/pub/dl/riscv/Allwinner/Nezha_D1/images-release/Fedora/)
+- Reference Installation Document: [https://fedoraproject.org/wiki/Architectures/RISC-V/Allwinner/zh-cn](https://fedoraproject.org/wiki/Architectures/RISC-V/Allwinner/zh-cn)
 
-### 硬件信息
+### Hardware Information
 
 - AWOL Nezha D1 / Sipeed Lichee RV Dock
-- 电源适配器
-- microSD 卡一张
-- USB to UART 调试器一个
+- Power Adapter
+- One microSD card
+- One USB to UART debugger
 
-## 安装步骤
+## Installation Steps
 
-### 刷写镜像
+### Flash Image
 
-使用 `unzstd` 解压镜像。
-清空你的 sd 卡。
-使用 `dd` 将镜像写入 microSD 卡。
+Use `unzstd` to decompress the image.
+Format your SD card.
+Use `dd` to write the image to the microSD card.
 
 ```bash
 unzstd /path/to/fedora.raw.zst
@@ -29,30 +29,30 @@ sudo wipefs -a /dev/your_device
 sudo dd if=/path/to/fedora.raw of=/dev/your_device bs=1M status=progress
 ```
 
-### 登录系统
+### System Login
 
-*系统启动较为缓慢。*
+*The system boots up slowly.*
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-默认用户名： `root`
-默认密码： `riscv`
+Default username: `root`
+Default password: `riscv`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system should boot up successfully and allow login via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。能进入桌面。
+The system booted up successfully, logged in via the onboard serial port, and accessed the desktop.
 
-### 启动信息
+### Boot Information
 
-屏幕录像（刷写镜像）：
+Screen recording (Flashing Image):
 
 [![asciicast](https://asciinema.org/a/yAMbaiYvBPLsyUPujOFey6zU3.svg)](https://asciinema.org/a/yAMbaiYvBPLsyUPujOFey6zU3)
 
-屏幕录像（启动系统）：
+Screen recording (System Boot):
 
 [![asciicast](https://asciinema.org/a/Evalgi6VgUvxs4gUmCtzC8n7j.svg)](https://asciinema.org/a/Evalgi6VgUvxs4gUmCtzC8n7j)
 
@@ -101,12 +101,14 @@ cccccccc;.:odl:.;cccccccccccccc:,.
 
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Success: The actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failure: The actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

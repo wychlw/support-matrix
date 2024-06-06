@@ -1,44 +1,44 @@
-# openEuler RISC-V 23.03 D1 版本测试报告
+# openEuler RISC-V 23.03 D1 Version Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：openEuler 23.03 RISC-V preview
-- 下载链接：https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.03-V1-riscv64/D1/
-- 参考安装文档：https://gitee.com/openeuler/RISC-V/tree/master/release/openEuler-23.03/Installation_Book/D1_and_Licheerv
+- System Version: openEuler 23.03 RISC-V preview
+- Download Link: [openEuler 23.03 V1 RISC-V64 D1](https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/preview/openEuler-23.03-V1-riscv64/D1/)
+- Reference Installation Document: [Installation Book D1 and Licheerv](https://gitee.com/openeuler/RISC-V/tree/master/release/openEuler-23.03/Installation_Book/D1_and_Licheerv)
 
-### 硬件信息
+### Hardware Information
 
 - AWOL Nezha D1 / Sipeed Lichee RV Dock
-- USB-A 电源一个
-- USB-A to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
+- One USB-A power supply
+- One USB-A to C cable
+- One microSD card
+- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
+- Three DuPont wires
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Write Image to microSD Card Using `ruyi` CLI
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install the [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-### 登录系统
+### System Login
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-默认用户名：`openeuler` 或 `root`
-默认密码：`openEuler12#$`
+Default username: `openeuler` or `root`
+Default password: `openEuler12#$`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system boots up successfully and can be logged into via the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system boots up successfully and login is achieved through the onboard serial port.
 
-### 启动信息
+### Boot Information
 
 ```log
 openEuler 23.03                                                                                                                                   
@@ -76,16 +76,18 @@ mimpid          : 0x0
 [root@openeuler-riscv64 ~]#
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/dJV431qjqOPT6iR7hzieM3G41.svg)](https://asciinema.org/a/dJV431qjqOPT6iR7hzieM3G41)
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

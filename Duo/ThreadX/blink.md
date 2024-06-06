@@ -7,17 +7,17 @@
 - Build System Version: Ubuntu 22.04 LTS x86_64
 - System Version: [ThreadX-to-RISC-V64](https://github.com/saicogn/ThreadX-to-RISC-V64), commit [53010e6](https://github.com/saicogn/ThreadX-to-RISC-V64/commit/53010e6b5e5916c5e84c4faf4d1a93ad960dd566)
 - Source Code Link: [ThreadX-to-RISC-V64](https://github.com/saicogn/ThreadX-to-RISC-V64)
-- Reference Installation Document: [Introduction](https://github.com/saicogn/ThreadX-to-RISC-V64/blob/main/README.md)
+- Installation Reference Document: [Introduction](https://github.com/saicogn/ThreadX-to-RISC-V64/blob/main/README.md)
 
 ### Hardware Information
 
 - Milk-V Duo 64M
-- One USB power adapter
+- One USB Power Adapter
 - One USB-A to C or USB C to C cable
-- One TF card
-- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
-- Three DuPont wires
-- Pre-soldered debugging pins on the Milk-V Duo body
+- One TF Card
+- One USB to UART Debugger (e.g. CH340, CH341, FT2232, etc.)
+- Three DuPont Wires
+- Debugging pin headers pre-soldered on the Milk-V Duo body
 
 ## Build Steps
 
@@ -38,9 +38,9 @@ cd mailbox-test
 make
 ```
 
-This will generate an executable file `mailbox_test`.
+This will generate the `mailbox_test` executable file.
 
-If this process does not proceed as expected, please refer to the [project introduction](https://milkv.io/zh/docs/duo/getting-started/rtoscore) to troubleshoot.
+If the process is not normal, refer to the [Project Introduction](https://milkv.io/zh/docs/duo/getting-started/rtoscore) to troubleshoot.
 
 ### Deploy Executable File
 
@@ -51,7 +51,7 @@ chmod +x mailbox_test
 ./mailbox_test
 ```
 
-The output when running in the serial port will be as follows.
+Run in the serial port to get the following output.
 
 ```log
 [root@milkv-duo]~# ./mailbox_test 
@@ -67,24 +67,24 @@ C906B: cmd.param_ptr = 0x3
 
 ## Expected Result
 
-The light will turn on for three seconds and then turn off.
+The light turns on for three seconds and then turns off.
 
 ## Actual Result
 
-The light will turn on for three seconds and then turn off.
+The light turns on for three seconds and then turns off.
 
 Recording:
 
 https://github.com/ruyisdk/support-matrix/assets/17025286/c0350c17-5e94-4c07-96f7-a6b3f66c531c
 
-## Test Criteria
+## Test Judgment Criteria
 
-Successful Test: Actual result matches expected result.
+Test Passed: Actual result matches the expected result.
 
-Failed Test: Actual result does not match expected result.
+Test Failed: Actual result does not match the expected result.
 
 ## Test Conclusion
 
-Test successful.
+Test Passed.
 
 > This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

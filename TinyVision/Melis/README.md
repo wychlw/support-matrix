@@ -1,49 +1,47 @@
-# Melis TinyVision 测试报告
+# Melis TinyVision Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- SDK 链接：
-    - BaiduYun: 链接：https://pan.baidu.com/s/1oIqGjCCtvUe0_k_kgXkusw?pwd=0kdr 提取码：0kdr
-- 参考文档：
+- SDK Link:
+    - Baidu Cloud: Link: https://pan.baidu.com/s/1oIqGjCCtvUe0_k_kgXkusw?pwd=0kdr Extraction Code: 0kdr
+- Reference Documents:
     - https://dongshanpi.com/YuzukiHD-Lizard/01-BoardIntroduction/
     - https://tina.100ask.net/SdkModule/Linux_E907_DevelopmentGuide-01/
 
-### 硬件信息
+### Hardware Information
 
-- TinyVision 开发板
+- TinyVision Development Board
 
+## Installation Steps
 
-## 安装步骤
+### Unpacking SDK
 
-### 解压 SDK
-
-下载 SDK 后，合并压缩包，并解压：
+After downloading the SDK, merge the compressed package and unzip it:
 ```bash
 tar -xzvf tina-v851se.tar.gz
 ```
 
-由于默认的 sdk 并未支持此开发板，所以我们需要支持此开发板的配置 单独拷贝增加到 tina-v853-open sdk 内，首先 clone 此开发板补丁仓库，然后单独覆盖：
+Since the default SDK does not support this development board, we need to separately copy and add the configuration for this development board into the tina-v853-open SDK. First, clone the repository for this development board patch, then overwrite it separately:
 ```bash
 git clone  https://github.com/DongshanPI/TinyVision-v851se_TinaSDK
 cp -rfvd  TinyVision-v851se_TinaSDK/* tina-v851/
 ```
 
+### Configuring the System and Compiling
 
-### 配置系统并编译
-
-下载 SDK 后，进行配置环境工作：
+After downloading the SDK, perform configuration environment tasks:
 ```bash
 cd tina-v853-open
 source build/envsetup.sh
 lunch
 ```
-选择对应方案。
+Choose the corresponding solution.
 
-**若出现问题，请尝试换用 bash 而非 zsh 等其他 shell 环境**
+**If any issues arise, try switching to bash instead of other shell environments like zsh**
 
-配置 E906 启动 RTOS：
+Configure the E906 to start RTOS:
 ```bash
 cconfigs
 cd ../default/
@@ -77,13 +75,13 @@ vim boot_package.cfg
  ;item=androidcharge,          battery_charge.bmp.lzma
 ```
 
-配置 kernel：
+Configure the kernel:
 ```bash
 ckernel
 m kernel_menuconfig
 ```
-Include `Device Drivers` 下的 `Mailbox Hardware Support`；
-Include `Device Drivers → Mailbox Hardware Support` 下的 `sunxi Mailbox` 和 `sunxi rv32 standby driver`：
+Include `Device Drivers` under `Mailbox Hardware Support`;
+Include `Device Drivers → Mailbox Hardware Support` with `sunxi Mailbox` and `sunxi rv32 standby driver`:
 ```diff
 --- .config.old 2024-05-09 16:42:29.690187100 +0800
 +++ .config     2024-05-09 16:45:57.840189075 +0800
@@ -122,46 +120,48 @@ Include `Device Drivers → Mailbox Hardware Support` 下的 `sunxi Mailbox` 和
 mkernel -j
 ```
 
-> 若出现链接器报告 `yyloc` 重定义：
-> 这是由于 GCC 版本高于 10，更改 `scripts/dtc/dtc-parser.tab.c` 下的 `YYLTYPE yyloc` 为 `extern YYLTYPE yyloc`
+> If encountering a linker report of `yyloc` redefinition:
+> This is due to GCC version higher than 10, modify `YYLTYPE yyloc` in `scripts/dtc/dtc-parser.tab.c` to `extern YYLTYPE yyloc`
 
-配置 RTOS：
+Configure RTOS:
 ```bash
 mmelis menuconfig
 ```
 
-### 构建并打包
+### Building and Packaging
 
 ```bash
 make -j$(nproc)
 p
 ```
 
-### 登录系统
+### Logging into the System
 
-连接 UART3 查看串口输出。
+Connect UART3 to view serial output.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过串口查看输出。
+The system should start normally, and output should be viewable through the serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过串口查看输出。
+The system started normally, and the output was successfully viewed through the serial port.
 
-### 启动信息
+### Boot Information
 
-屏幕录像：
+Screen recording:
 
 ```log
 ```
 
-## 测试判定标准
+## Test Criteria
 
-测试成功：实际结果与预期结果相符。
+Successful Test: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Failed Test: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

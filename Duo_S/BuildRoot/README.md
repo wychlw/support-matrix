@@ -1,46 +1,46 @@
-# BuildRoot Milk-V Duo S 测试报告
+# BuildRoot Milk-V Duo S Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：Duo-V1.1.0
-- 下载链接：https://github.com/milkv-duo/duo-buildroot-sdk/releases
-- 参考安装文档：https://github.com/milkv-duo/duo-buildroot-sdk
+- System Version: Duo-V1.1.0
+- Download Link: [click here](https://github.com/milkv-duo/duo-buildroot-sdk/releases)
+- Reference Installation Document: [click here](https://github.com/milkv-duo/duo-buildroot-sdk)
 
-### 硬件信息
+### Hardware Information
 
 - Milk-V Duo S (512M, SG2000)
-- USB 电源适配器一个
-- USB-A to C 或 USB C to C 线缆一条，用于给开发板供电
-- microSD 卡一张
-- USB 读卡器一个
-- USB to UART 调试器一个（如：CP2102, FT2232 等，注意不可使用 CH340/341 系列，会出现乱码）
-- 杜邦线三根
+- One USB Power Adapter
+- One USB-A to C or USB C to C cable, used to power the development board
+- One microSD card
+- One USB card reader
+- One USB to UART debugger (such as: CP2102, FT2232, etc., please note not to use CH340/341 series, as it may cause garbled text)
+- Three DuPont cables
 
-## 安装步骤
+## Installation Steps
 
-### 使用 `ruyi` CLI 刷写镜像到 microSD 卡
+### Use the `ruyi` CLI to flash the image to the microSD card
 
-安装 [`ruyi`](https://github.com/ruyisdk/ruyi) 包管理器，运行 `ruyi device provision` 并按提示操作。
+Install the [`ruyi`](https://github.com/ruyisdk/ruyi) package manager, run `ruyi device provision`, and follow the prompts.
 
-### 登录系统
+### Log in to the system
 
-通过串口登录系统。
+Log in to the system via serial port.
 
-## 预期结果
+## Expected Results
 
-系统正常启动，能够通过板载串口登录。
+The system starts up properly and can be accessed through the onboard serial port.
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录。
+The system starts up properly and I can successfully log in through the onboard serial port.
 
-### 启动信息
+### Boot Information
 
-> 出现 aic8800 insmod 失败是因为测试时使用的是不带 Wi-Fi 芯片的 Duo S。
-> 
-> 这是正常情况。
+> The failure of the aic8800 insmod module is because the Duo S used for testing does not have a Wi-Fi chip.
+>
+> This is normal.
 
 ```log
 Starting app...                                                                                                                     
@@ -65,16 +65,18 @@ PRETTY_NAME="Buildroot 2021.05"
 [root@milkv-duo]~# 
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from flashing the image to logging into the system):
 
 [![asciicast](https://asciinema.org/a/Zbt8azPsJFYLWOYCKgPNrt9S7.svg)](https://asciinema.org/a/Zbt8azPsJFYLWOYCKgPNrt9S7)
 
-## 测试判定标准
+## Test Judgement Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test Passed.
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

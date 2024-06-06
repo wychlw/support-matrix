@@ -1,61 +1,65 @@
-# Yocto Star64 测试报告
+# Yocto Star64 Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://github.com/Fishwaldo/meta-pine64/releases/tag/v2.1
-- 参考安装文档：https://github.com/Fishwaldo/meta-pine64
+- Download link: [https://github.com/Fishwaldo/meta-pine64/releases/tag/v2.1](https://github.com/Fishwaldo/meta-pine64/releases/tag/v2.1)
+- Reference installation document: [https://github.com/Fishwaldo/meta-pine64](https://github.com/Fishwaldo/meta-pine64)
 
-### 硬件信息
+### Hardware Information
 
-- 开发板：Star64
-- USB A to C / USB C to C 线缆
-- SD 卡
+- Development board: Star64
+- USB A to C / USB C to C cables
+- SD card
 
-## 安装步骤
+## Installation Steps
 
-### 烧写镜像
+### Image Burning
 
-下载后，解压并烧写镜像（以下以 plasma 版为例）：
+After downloading, unzip and burn the image (using the plasma version as an example):
+```bash
 ```bash
 wget https://github.com/Fishwaldo/meta-pine64/releases/download/v2.1/star64-image-plasma-star64.wic.bz2
 bzip2 -kd star64-image-plasma-star64.wic.bz2
 sudo dd if=star64-image-plasma-star64.wic of=/dev/your/sdcard bs=1M status=progress
 ```
-
-### 登录系统
-
-通过串口连接开发板。
-
-启动后，系统会要求用户手动配置用户名、密码、时区、语言等。
-
-Xfce 版本需要配置完成后方可进入桌面。
-
-可通过串口配置。若接入了键盘和显示器，亦可通过键盘配置。
-
-## 预期结果
-
-构建成功，开发板正常输出启动信息。
-
-## 实际结果
-
-构建成功，开发板正常输出启动信息。
-
-### 启动信息
-
-屏幕录像（从刷写系统到启动）：
-
-
-```log
 ```
 
-## 测试判定标准
+### Logging into the System
 
-测试成功：实际结果与预期结果相符。
+Connect to the development board via serial port.
 
-测试失败：实际结果与预期结果不符。
+Upon startup, the system will prompt the user to manually configure username, password, timezone, language, etc.
 
-## 测试结论
+The Xfce version requires configuration before accessing the desktop.
+
+Configuration can be done via serial port. If a keyboard and monitor are connected, configuration can also be done using the keyboard.
+
+## Expected Results
+
+Successful build with the development board displaying normal boot information.
+
+## Actual Results
+
+Successful build with the development board displaying normal boot information.
+
+### Boot Information
+
+Screen recording (from system flashing to boot):
+```bash
+```log
+```
+```
+
+## Test Criteria
+
+Test Passed: Actual results match expected results.
+
+Test Failed: Actual results differ from expected results.
+
+## Test Conclusion
 
 CFT
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

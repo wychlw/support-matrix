@@ -1,65 +1,64 @@
-# openSUSE Tumbleweed VisionFive 2 版本测试报告
+# openSUSE Tumbleweed VisionFive 2 Version Testing Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 系统版本：openSUSE-Tumbleweed-RISC-V-JeOS-starfivevisionfive2.riscv64-2024.03.15-Build23.14.raw.xz
-- 下载链接：https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/StarFive:/VisionFive2/images/
-- 参考安装文档：https://en.opensuse.org/HCL:VisionFive2
+- System Version: openSUSE-Tumbleweed-RISC-V-JeOS-starfivevisionfive2.riscv64-2024.03.15-Build23.14.raw.xz
+- Download Link: [Download Link](https://download.opensuse.org/repositories/devel:/RISCV:/Factory:/Contrib:/StarFive:/VisionFive2/images/)
+- Installation Reference Document: [VisionFive2 Installation Guide](https://en.opensuse.org/HCL:VisionFive2)
 
-### 硬件信息
+### Hardware Information
 
 - StarFive VisionFive 2
-- USB 电源适配器一个
-- USB-A to C 或 C to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 杜邦线三根
+- 1 USB Power Adapter
+- 1 USB-A to C or C to C cable
+- 1 microSD card
+- 1 USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
+- 3 Dupont wires
 
-## 安装步骤
+## Installation Steps
 
-### 解压并刷写镜像到 microSD 卡
+### Unzip and Flash Image to microSD Card
 
-假定 `/dev/sdc` 为存储卡。
+Assuming `/dev/sdc` is the storage card.
 
 ```bash
 xzcat openSUSE-Tumbleweed-RISC-V-JeOS-starfivevisionfive2.riscv64-2024.03.15-Build23.14.raw.xz | sudo dd of=/dev/sdc iflag=fullblock status=progress bs=4M
 ```
 
-### 引导模式选择
+### Boot Mode Selection
 
-StarFive VisionFive 2 提供了多种引导模式，可在上电前通过板载拨码开关进行配置；开发板本体上亦有丝印标注。
+StarFive VisionFive 2 provides various boot modes that can be configured before powering on using onboard DIP switches; the development board itself is also labeled.
 
-为了启动 openSUSE 镜像，需要选择 microSD 卡引导模式（即：`RGPIO_0 = 1`, `RGPIO_1 = 0`）。
+To boot the openSUSE image, the microSD card boot mode needs to be selected (i.e., `RGPIO_0 = 1`, `RGPIO_1 = 0`).
 
-> 注意，此模式下有小概率出现启动失败的情况，如遇到启动失败，串口输出类似如下信息：
->
->```log
->dwmci_s: Response Timeout.                                                                                            
->dwmci_s: Response Timeout.                                                                                            
->BOOT fail,Error is 0xffffffff
->```
->
-> 您可以尝试重新给开发板上电，或点按一下 USB Type-C 供电接口附近的按钮。通常这可以解决无法启动的问题。
+> Note that there is a small chance of boot failure in this mode. In case of boot failure, the serial output may resemble the following:
 
+```log
+dwmci_s: Response Timeout.                                                                                            
+dwmci_s: Response Timeout.                                                                                            
+BOOT fail,Error is 0xffffffff
+```
 
-### 登录系统
+> You can try powering the development board again or pressing the button near the USB Type-C power interface once. This usually resolves the booting issue.
 
-通过串口登录系统。
+### System Login
 
-用户名：`root`
-默认密码：`linux`
+Login to the system via serial console.
 
-## 预期结果
+Username: `root`
+Default Password: `linux`
 
-系统正常启动，能够通过串口登录。
+## Expected Results
 
-## 实际结果
+The system boots up correctly and can be accessed via serial console.
 
-系统正常启动，成功通过串口登录。
+## Actual Results
 
-### 启动信息
+The system boots up correctly, and access via serial console is successful.
+
+### Boot Information
 
 ```log
 Welcome to openSUSE Tumbleweed 20240322 - Kernel 6.8.1-85-default (ttyS0).                                                          
@@ -94,17 +93,18 @@ LOGO="distributor-logo-Tumbleweed"
 localhost:~ # 
 ```
 
-屏幕录像（从刷写镜像到登录系统）：
+Screen recording (from image flashing to system login):
 
 [![asciicast](https://asciinema.org/a/z3xt9HGtT5iVtI7tbtQNi9rHf.svg)](https://asciinema.org/a/z3xt9HGtT5iVtI7tbtQNi9rHf)
 
-## 测试判定标准
+## Testing Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Successful: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-测试成功。
+Test successful.
 
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -1,28 +1,28 @@
-# BuildRoot Milk-V Duo 256M 测试报告
+# BuildRoot Milk-V Duo 256M Test Report
 
-## 测试环境
+## Test Environment
 
-### 操作系统信息
+### Operating System Information
 
-- 下载链接：https://github.com/milkv-duo/duo-buildroot-sdk/releases
-- 参考安装文档：https://github.com/milkv-duo/duo-buildroot-sdk
+- Download Link: https://github.com/milkv-duo/duo-buildroot-sdk/releases
+- Installation Reference: https://github.com/milkv-duo/duo-buildroot-sdk
     - FreeRTOS: https://milkv.io/zh/docs/duo/getting-started/rtoscore
 
-### 硬件信息
+### Hardware Information
 
 - Milk-V Duo 256M
-- USB-A to C 或 USB C to C 线缆一条
-- microSD 卡一张
-- USB to UART 调试器一个（如：CH340, CH341, FT2232 等）
-- 可选：Milk-V Duo IOB（底板）
+- One USB-A to C or USB C to C cable
+- One microSD card
+- One USB to UART debugger (e.g., CH340, CH341, FT2232, etc.)
+- Optional: Milk-V Duo IOB (baseboard)
 
-## 安装步骤
+## Installation Steps
 
-rtos 已经存在与 BuildRoot SDK 中。
+The RTOS is already included in the BuildRoot SDK.
 
-### 构建 mailbox-test 二进制
+### Building the mailbox-test binary
 
-拉取 duo-examples 仓到本地并构建。
+Clone the duo-examples repository locally and build it.
 
 ```shell
 sudo apt install -y wget git make
@@ -32,22 +32,22 @@ source envsetup.sh
 cd mailbox-test
 make
 ```
-#### 将构建出的二进制打包进镜像
+#### Packaging the built binary into the image
 
-首先，查询当前可用的 loop 设备：
+First, check for the available loop devices:
 
 ```shell
 sudo losetup -f
 ```
 
-此处输出：
+The output should be:
 
 ```shell
 $ sudo losetup -f
 /dev/loop16
 ```
 
-接下来将下载好的镜像挂载，并将刚刚编译好的二进制复制进镜像：
+Next, mount the downloaded image and copy the compiled binary into the image:
 
 ```shell
 sudo losetup /dev/loop16 milkv-duo256m-v1.1.0-2024-0410.img
@@ -59,32 +59,32 @@ sudo kpartx -d /dev/loop1
 sudo losetup -d /dev/loop16 
 ```
 
-接下来刷入修改后的镜像：
+Flash the modified image next:
 
 ```shell
 sudo dd if=milkv-duo256m-v1.1.0-2024-0410.img of=/dev/sdc bs=4M status=progress oflag=direct
 ```
 
-至此，存储卡准备完成。插入开发板，准备启动。
+At this point, the SD card is ready. Insert it into the development board and prepare to boot.
 
-### 登录系统
+### Logging into the System
 
-通过串口登录系统。
+Login to the system via serial console.
 
-默认用户名：`root`
-默认密码： `milkv`
+Default username: `root`
+Default password: `milkv`
 
-## 预期结果
+## Expected Results
 
-系统正常启动，通过板载串口登录后运行 `mailbox_test` 二进制，板载蓝色 LED 灯先亮后灭。
+The system should boot up successfully. After logging in via the onboard serial console, run the `mailbox_test` binary, and the onboard blue LED should turn on and then off.
 
-（待机状态为蓝色 LED 闪烁）
+(In standby mode, the blue LED should blink.)
 
-## 实际结果
+## Actual Results
 
-系统正常启动，成功通过板载串口登录，`mailbox_test` 运行正常，板载 LED 先亮后灭。
+The system boots up properly. Successfully logged in via the onboard serial console, `mailbox_test` runs without issues, and the onboard LED turns on and then off.
 
-### 启动信息
+### Boot Information
 
 ```log
 The authenticity of host '192.168.42.1 (192.168.42.1)' can't be established.
@@ -100,15 +100,17 @@ C906B: cmd.param_ptr = 0x3
 
 ```
 
-屏幕录像：
+Screen recording:
 [![asciicast](https://asciinema.org/a/MhkD6TsSDQ9N0w4u2k6VUHn3s.svg)](https://asciinema.org/a/MhkD6TsSDQ9N0w4u2k6VUHn3s)
 
-## 测试判定标准
+## Test Judgment Criteria
 
-测试成功：实际结果与预期结果相符。
+Test Passed: Actual results match the expected results.
 
-测试失败：实际结果与预期结果不符。
+Test Failed: Actual results do not match the expected results.
 
-## 测试结论
+## Test Conclusion
 
-成功
+Successful
+
+> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
