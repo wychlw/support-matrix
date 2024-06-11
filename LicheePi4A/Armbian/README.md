@@ -7,7 +7,7 @@
 - System Version: Ubuntu 20.04 LTS 
 - Download Link: [Armbian-RISCV-Build Repository](https://github.com/chainsx/armbian-riscv-build/tree/main)
     - u-boot: [thead-u-boot Actions](https://github.com/chainsx/thead-u-boot/actions)
-- Reference Installation Guide: [LicheePi 4A Install Guide](https://github.com/chainsx/armbian-riscv-build/blob/main/doc/licheepi-4a-install-guide.md)
+- Installation reference: [LicheePi 4A Install Guide](https://github.com/chainsx/armbian-riscv-build/blob/main/doc/licheepi-4a-install-guide.md)
 - Fastboot Links:
     - [Baidu Pan Link](https://pan.baidu.com/e/1xH56ZlewB6UOMlke5BrKWQ)
     - [MegaNZ Link](https://mega.nz/folder/phoQlBTZ#cZeQ3qZ__pDvP94PT3_bGA)
@@ -36,8 +36,7 @@ sudo dd if=/path/to/Armbian.img of=/dev/your_device bs=1M status=progress
 Enter fastboot mode.
 - Ensure the boot dip switch is set to eMMC.
 - Press BOOT while powering on.
-- (Refer to the official tutorial)
-Use fastboot commands to flash u-boot.
+- (Refer to the official tutorial) Use the fastboot command to flash u-boot.
 
 ```bash
 sudo ./fastboot flash ram ./path/to/your/lpi4a-$(ram_size)-u-boot-with-spl.bin
@@ -63,14 +62,12 @@ The system booted successfully and login via the onboard serial port was also su
 ### Boot Information
 
 Screen recording (From image flashing to system login):
-
-[Watch Video](https://asciinema.org/a/CPXNwT3yJUG4wHDKdWGucbHm9)
+[![asciicast](https://asciinema.org/a/CPXNwT3yJUG4wHDKdWGucbHm9.svg)](https://asciinema.org/a/CPXNwT3yJUG4wHDKdWGucbHm9))
 
 ```log
 Welcome to ARMBIAN! 
 
 Documentation: https://docs.armbian.com | Community: https://forum.armbian.com
-```
 
 Create root password: *****
 Repeat root password: *****
@@ -108,6 +105,22 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Memory: 165MiB / 7705MiB
 .ssssssssdMMMNhsssssssssshNMMMdssssssss.                           
  /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/                            
   +sssssssssdmydMMMMMMMMddddyssssssss+
-   /ssssssss
+   /ssssssssssshdmNNNNmyNMMMMhssssss/
+    .ossssssssssssssssssdMMMNysssso.
+      -+sssssssssssssssssyyyssss+-
+        `:+ssssssssssssssssss+:`
+            .-/+oossssoo+/-.
 
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+
+```
+
+## Test Criteria
+
+Successful Test: Actual results match the expected results.
+
+Failed Test: Actual results do not match the expected results.
+
+## Test Conclusion
+
+Test successful.
+

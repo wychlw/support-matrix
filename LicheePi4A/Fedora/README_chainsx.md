@@ -25,8 +25,7 @@
 Enter fastboot mode.
 - Make sure the boot DIP switch is set to eMMC for the production version.
 - Press the BOOT button while powering on.
-- (Refer to the official tutorial)
-Use fastboot command to burn the u-boot.
+- (Refer to the official tutorial) Use fastboot command to burn the u-boot.
 
 ```bash
 sudo ./fastboot flash ram ./path/to/your/lpi4a-($ram_size)gb-u-boot-with-spl.bin
@@ -103,13 +102,10 @@ SUPPORT_END=2024-05-14
 
 ## Test Criteria
 
-Successful test: Actual result matches expected result.
+Successful Test: Actual results match the expected results.
 
-Failed test: Actual result does not match expected result.
+Failed Test: Actual results do not match the expected results.
 
 ## Test Conclusion
 
-Successful test.
-```
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test successful.

@@ -51,7 +51,7 @@ Password:
                |___/                    
                    -- Presented by ISCAS
 
-Debian GNU/Linux 12 (bookworm) (kernel 5.10.113-lpi4a)
+  Debian GNU/Linux 12 (bookworm) (kernel 5.10.113-lpi4a)
 
 Linux lpi4a 5.10.113-lpi4a #2023.12.08.03.26+b8c5d3546 SMP PREEMPT Fri Dec 8 03:26:13 UTC 2 riscv64
 
@@ -62,6 +62,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 debian@lpi4a:~$ [   55.898441] es8156_set_bias_level codec_uninit_sequence
+
 debian@lpi4a:~$ uname -a
 Linux lpi4a 5.10.113-lpi4a #2023.12.08.03.26+b8c5d3546 SMP PREEMPT Fri Dec 8 03:26:13 UTC 2 riscv64 GNU/Linux
 debian@lpi4a:~$ cat /proc/cpu-i[   64.361096] es8156_set_bias_level codec_uninit_sequence
@@ -102,22 +103,20 @@ cpu-l2cache     : 1MB
 cpu-tlb         : 1024 4-ways
 cpu-cacheline   : 64Bytes
 cpu-vector      : 0.7.1
-```  
 
-```markdown
-- Processor: 3
-- Architecture: 3
-- Instruction Set Architecture: rv64imafdcvsu
-- Memory Management Unit: sv39
-- CPU Frequency: 1.848GHz
-- L1 Instruction Cache: 64KB
-- L1 Data Cache: 64KB
-- L2 Cache: 1MB
-- TLB: 1024 entries, 4-ways set-associative
-- Cache Line Size: 64 Bytes
-- SIMD Support: 0.7.1
-
-debian@lpi4a:~$ cat /etc/os-release
+processor       : 3
+hart            : 3
+isa             : rv64imafdcvsu
+mmu             : sv39
+cpu-freq        : 1.848Ghz
+cpu-icache      : 64KB
+cpu-dcache      : 64KB
+cpu-l2cache     : 1MB
+cpu-tlb         : 1024 4-ways
+cpu-cacheline   : 64Bytes                                               
+cpu-vector      : 0.7.1                                                   |
+                                                                        |
+debian@lpi4a:~$ cat /etc/os-release                                     
 PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
 NAME="Debian GNU/Linux"
 VERSION_ID="12"
@@ -127,7 +126,7 @@ ID=debian
 HOME_URL="https://www.debian.org/"
 SUPPORT_URL="https://www.debian.org/support"
 BUG_REPORT_URL="https://bugs.debian.org/"
-debian@lpi4a:~$ cat /etc/revyos-release
+debian@lpi4a:~$ cat /etc/revyos-release 
 BUILD_ID=20231210_134926
 BUILD_DATE=20231210
 RELEASE_ID=20231210
@@ -136,4 +135,12 @@ RUNNER_ID=7158219074
 debian@lpi4a:~$
 ```
 
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+## Test Criteria
+
+Test successful: The actual result matches the expected result.
+
+Test failed: The actual result does not match the expected result.
+
+## Test Conclusion
+
+Test successful.

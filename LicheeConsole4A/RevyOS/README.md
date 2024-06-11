@@ -53,7 +53,7 @@ Account: `sipeed`, Password: `licheepi`
 
 Account: `debian`, Password: `debian`
 
-The root account does not have a default password set.
+The root account does not have a password ny default.
 
 ## Expected Result
 
@@ -102,5 +102,3 @@ Test Failure: Actual results do not match the expected results.
 ## Test Conclusion
 
 Test Successful.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

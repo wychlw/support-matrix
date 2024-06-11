@@ -125,14 +125,12 @@ cccccccc;.:odl:.;cccccccccccccc:,.
 
 ```
 
-## Test Criteria
+## Testing Criteria
 
-Successful Test: Actual results match expected results.
+Test Success: Actual results match the expected results.
 
-Failed Test: Actual results do not match expected results.
+Test Failure: Actual results do not match the expected results.
 
 ## Test Conclusion
 
-The test was successful.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test Successful.

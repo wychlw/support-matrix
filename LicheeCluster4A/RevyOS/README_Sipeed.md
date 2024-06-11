@@ -100,24 +100,12 @@ debian@lc4aa0c8:~$
 
 ```
 
-## Test Judgment Criteria
+## Testing Criteria
 
-Test Pass: Actual results match the expected results.
+Test Success: Actual results match the expected results.
 
-Test Fail: Actual results do not match the expected results.
-
-## Test Conclusion
-
-Test Passed.
-
-## Test Judgment Criteria
-
-Test Pass: Actual results match the expected results.
-
-Test Fail: Actual results do not match the expected results.
+Test Failure: Actual results do not match the expected results.
 
 ## Test Conclusion
 
-Test Passed.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test Successful.

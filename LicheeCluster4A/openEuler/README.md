@@ -98,14 +98,12 @@ ANSI_COLOR="0;31"
 
 ```
 
-## Test Criteria
+## Testing Criteria
 
-Test Passed: Actual results match the expected results.
+Test Success: Actual results match the expected results.
 
-Test Failed: Actual results do not match the expected results.
+Test Failure: Actual results do not match the expected results.
 
 ## Test Conclusion
 
-Test Passed.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test Successful.

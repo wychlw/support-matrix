@@ -64,7 +64,7 @@ Screen recording (from flashing the image to system login):
 openKylin 2.0 openkylin ttyS0
 
 openkylin login: openkylin
-Enter password
+输入密码
 Welcome to openKylin 2.0 (GNU/Linux 5.10.113-yocto-standard riscv64)
 
  * Support:        https://openkylin.top
@@ -72,11 +72,10 @@ Welcome to openKylin 2.0 (GNU/Linux 5.10.113-yocto-standard riscv64)
 The programs included with the openKylin system are free software;
 the exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
-**openKylin Disclaimer**
 
-openKylin comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.
+openKylin comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
 
-```bash
 openkylin@openkylin:~$ uname -a
 Linux openkylin 5.10.113-yocto-standard #1 SMP PREEMPT Tue Dec 26 12:49:40 UTC 2023 riscv64 riscv64 riscv64 GNU/Linux
 openkylin@openkylin:~$ cat /etc/os-release 
@@ -91,6 +90,7 @@ HOME_URL="https://www.openkylin.top/"
 VERSION_CODENAME=nile
 PRODUCT_FEATURES=3
 openkylin@openkylin:~$ 
+
 ```
 
 ![neofetch](./neofetch.png)
@@ -107,7 +107,4 @@ Failed Test: Actual results do not match expected results.
 
 ## Test Conclusion
 
-Successful Test.
-``` 
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test Successful.

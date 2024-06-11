@@ -147,5 +147,3 @@ Test Failure: Actual results do not match the expected results.
 ## Test Conclusion
 
 Test successful.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -20,5 +20,3 @@
 | RevyOS Image Boot | N/A          | [Good][RevyOS]            |
 
 [RevyOS]: ./RevyOS/README.md
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

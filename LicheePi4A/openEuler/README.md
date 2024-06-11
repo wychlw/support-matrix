@@ -115,14 +115,12 @@ Screen recording (from flashing image to logging into system):
 
 [![asciicast](https://asciinema.org/a/oXGHqeiBmb0n5zIKHnbGnnRb2.svg)](https://asciinema.org/a/oXGHqeiBmb0n5zIKHnbGnnRb2)
 
-## Test Assessment Criteria
+## Test Criteria
 
-Test Passed: The actual results match the expected results.
+Successful Test: Actual results match the expected results.
 
-Test Failed: The actual results do not match the expected results.
+Failed Test: Actual results do not match the expected results.
 
 ## Test Conclusion
 
-Test Passed.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test successful.

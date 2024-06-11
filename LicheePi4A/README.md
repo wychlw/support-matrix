@@ -23,6 +23,7 @@
 ### Hardware Development Board Information
 
 - Lichee Pi 4A 16GB RAM + 128GB eMMC
+- Lichee Pi 4A 8GB RAM + 64GB eMMC
 
 ## Test Results
 
@@ -42,5 +43,3 @@
 [Armbian]: ./Armbian/README.md
 [openKylin]: ./openKylin/README.md
 [OpenWRT]: ./OpenWRT/README.md
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -60,7 +60,7 @@ Upon initial boot, automatically logged in as root.
 
 ### Common Issues
 
-If USB is not working, it may be due to Linux device tree requiring patching. [Download patch here](https://dl.sipeed.com/fileList/LICHEE/LicheeCluster4A/04_Firmware/lpi4a/src/linux/0001-arch-riscv-boot-dts-lpi4a-disable-i2c-io-expander-fo.patch)
+If USB is not working, it may be due to Linux device tree require patching. [Download patch here](https://dl.sipeed.com/fileList/LICHEE/LicheeCluster4A/04_Firmware/lpi4a/src/linux/0001-arch-riscv-boot-dts-lpi4a-disable-i2c-io-expander-fo.patch)
 
 ## Expected Results
 
@@ -137,7 +137,7 @@ root@OpenWrt:/# [   33.853164] soc_dovdd18_scan: disabling
 
 ```
 
-## Test Criteria
+## Testing Criteria
 
 Test Success: Actual results match the expected results.
 
@@ -145,6 +145,4 @@ Test Failure: Actual results do not match the expected results.
 
 ## Test Conclusion
 
-The test was successful.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+Test Successful.

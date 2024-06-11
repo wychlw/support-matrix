@@ -68,7 +68,7 @@ Screen recording (from flashing the image to logging into the system):
 ```log
 BusyBox v1.36.1 (2023-11-11 16:56:38 UTC) built-in shell (ash)
 
-```markdown
+
                               |/
                              _/_
     +-----------------+ ____  O
@@ -86,6 +86,7 @@ Use the "passwd" command to set up a new password
 in order to prevent unauthorized SSH logins.
 --------------------------------------------------
 root@OpenWrt:/# 
+
 ```
 
 ## Test Criteria
@@ -97,6 +98,3 @@ Test failed: The actual result does not match the expected result.
 ## Test Conclusion
 
 Test successful.
-
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

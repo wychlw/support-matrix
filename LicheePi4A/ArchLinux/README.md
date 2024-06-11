@@ -7,7 +7,7 @@
 - Download link: [https://mirror.iscas.ac.cn/archriscv/images/](https://mirror.iscas.ac.cn/archriscv/images/)
 - u-boot and boot downloads (using revyos): [https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/20231210/](https://mirror.iscas.ac.cn/revyos/extra/images/lpi4a/)
 - fastboot download: [https://gitee.com/thead-yocto/light_deploy_images](https://gitee.com/thead-yocto/light_deploy_images)
-- Refer to installation document:
+- Installation reference:
     - [ArchWiki](https://wiki.archlinux.org/title/General_recommendations)
 
 ### Hardware Information
@@ -62,7 +62,7 @@ sudo umount ./mnt
 Extract the installation suite.
 Flash u-boot and boot.
 
-*Select whether you need 16GB according to your hardware version*
+*Select whether you need 16GB version according to your hardware version*
 
 ```bash
 zstd -d boot-lpi4a-20231210_134926.ext4.zst
@@ -97,9 +97,8 @@ The system boots up successfully, and login via onboard serial port is successfu
 
 ### Boot Information
 
-### Screen Recording (from creating rootfs to logging into the system):
-
-Watch the video here: [![asciicast](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN.svg)](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN)
+Screen Recording (from creating rootfs to logging into the system):
+[![asciicast](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN.svg)](https://asciinema.org/a/7Ywwvlg1kdyAyTa9hiUOnv4yN)
 
 ```log
 Arch Linux 5.10.113-yocto-standard (ttyS0)
@@ -138,5 +137,3 @@ Failed Test: Actual results do not match the expected results.
 ## Test Conclusion
 
 Test successful.
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

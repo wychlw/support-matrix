@@ -56,5 +56,3 @@
 [Fedora]: ./Fedora/README.md
 [Armbian]: ./Armbian/README.md
 [OpenWRT]: ./OpenWRT/README.md
-
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.

@@ -80,19 +80,17 @@ Kernel 5.10.113 on an riscv64 (ttyS0)
 The root password is 'riscv'.
 root password logins are disabled in SSH starting Fedora.
 
-If you're having issues with DNS, you can try modifying '/etc/yum.repos.d/fedora-riscv.repo'.
+If DNS isn’t working, try editing ‘/etc/yum.repos.d/fedora-riscv.repo’.
 
-To stay updated and find the latest information, visit:
+For updates and latest information read:
 https://fedoraproject.org/wiki/Architectures/RISC-V
 
-**Fedora RISC-V**  
------------------  
-**fedora-riscv login:** root  
-**Password:**  
-**Last login:** Wed May 10 20:03:42 on ttyS0  
-**[root@fedora-riscv ~]# neofetch**  
-
-```
+Fedora RISC-V
+-------------
+fedora-riscv login: root
+Password: 
+Last login: Wed May 10 20:03:42 on ttyS0
+[root@fedora-riscv ~]# neofetch
              .',;::::;,'.                                                                                                       
          .';:cccccccccccc:;,.            ----------------- 
       .;cccccccccccccccccccccc;.         OS: Fedora Linux 38 (Xfce) riscv64 
@@ -112,6 +110,16 @@ cccccccc;.:odl:.;cccccccccccccc:,.
 :cccccccccccccccccccccccccccc:'.
 .:cccccccccccccccccccccc:;,..
   '::cccccccccccccc::;,.
+
 ```
 
-> This doc was automatically translated by GPT and has not been proofread yet. Please give us feedback in issue if any omissions.
+## Test Criteria
+
+Successful Test: Actual results match the expected results.
+
+Failed Test: Actual results do not match the expected results.
+
+## Test Conclusion
+
+Test successful.
+
