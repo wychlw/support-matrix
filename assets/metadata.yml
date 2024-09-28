@@ -1,0 +1,33 @@
+# Definations for README metadata
+
+definitions:
+  status_enum:
+    type: string
+    enum: &STATUS_ENUM
+      - none
+      - wip
+      - cft
+      - cfh
+      - cfi
+      - partial
+      - basic
+      - good
+
+# General info
+sys: string        # System name
+sys_ver: string    # System version
+sys_var: string?   # System variant
+
+# Doc info
+status: *STATUS_ENUM
+last_updated: timestamp   # Last update
+
+# # Image info
+# img_link: [string?] # Image link, multiple links if the image is multi-part
+# username: string?   # Img username
+# passwd: string?     # Img password
+
+# Definition for board metadata
+product: string     # Product name
+cpu: string         # CPU model
+cpu_core: string   # CPU core
