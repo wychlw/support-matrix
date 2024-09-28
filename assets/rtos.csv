@@ -1,0 +1,42 @@
+ CPU               , IP Core                                    , Product/Model                           , FreeRTOS , RT-Thread , Zephyr , ThreadX , NuttX , Melis 
+ JH7110            , SiFive U74 + SiFive S7 + SiFive E24        , VisionFive 2                     , -        , Basic     , CFH    , -       , Basic , -     
+ JH7110            , SiFive U74 + SiFive S7 + SiFive E24        , Star64                                , -        , -         , -      , -       , CFT   , -     
+ JH7110            , SiFive U74 + SiFive S7 + SiFive E24        , Milk-V Mars                     , -        , -         , -      , -       , CFT   , -     
+ MPFS250T          , SiFive U54 + SiFive E51                    , PolarFire FPGA SoC Icicle Kit , CFT      , -         , CFT    , -       , CFT   , -     
+ U740              , SiFive U74 + SiFive S7                     , HiFive Unmatched           , -        , -         , Basic  , -       , -     , -     
+ K230              , XuanTie C908                               , CanMV K230                      , -        , Basic     , -      , -       , Basic , -     
+ D1 (D1-H)         , XuanTie C906                               , LicheeRV/AWOL Nezha             , -        , CFT       , -      , -       , -     ,       
+ D1 (D1-H)         , XuanTie C906                               , DongshanPI-Nezha STU  , -        , CFT       , -      , -       , -     ,       
+ D1 (D1-H)         , XuanTie C906                               , MangoPi MQ Pro        , -        , CFT       , -      , -       , -     ,       
+ D1s               , XuanTie C906                               , DongShanPI D1s        , -        , CFT       , -      , -       , -     ,       
+ D1s               , XuanTie C906                               , Mangopi MQ                , -        , CFT       , -      , -       , -     , -     
+ D1s               , XuanTie C906                               , D1s NeZha                  , -        , CFT       , -      , -       , -     , -     
+ CV1800B           , XuanTie C906                               , Milk-V Duo (64M)                 , Basic    , Basic     , Basic  , Basic   , -     , -     
+ SG2000            , XuanTie C906 + ARM Cortex-A53              , Milk-V Duo S                    , Basic    , -         , Basic  , -       , Basic , -     
+ SG2002            , XuanTie C906 + ARM Cortex-A53              , Milk-V Duo (256M)            , Basic    , Basic     , Basic  , -       , -     , -     
+ SG2002            , XuanTie C906 + ARM Cortex-A53              , LicheeRV Nano           , Basic    , -         , -      , -       , -     , -     
+ AE350             , AndesCore AX45MP                           , Tang Mega 138K          , Basic    , Basic     , CFH    , -       , -     , -     
+ K210              , K210 (?)                                   , Sipeed Maix-Bit              , Basic    , Basic     , -      , -       , Basic , -     
+ BL702             , SiFive E24                                 , Sipeed M0 sense              , Basic    , -         , -      , -       , -     , -     
+ BL618             , XuanTie E907                               , Sipeed M0P Dock                  , Basic    , -         , -      , -       , -     , -     
+ BL616             , XuanTie E907                               , Sipeed M0s Dock                  , Basic    , -         , -      , -       , -     , -     
+ BL808             , XuanTie C906 + XuanTie E907 + XuanTie E902 , Sipeed M1s Dock            , Basic    , -         , -      , -       , -     , -     
+ CH32V103          , QingKe V3A                                 , CH32V103-EVT                , Basic    , Basic     , -      , -       , -     , -     
+ CH32V203          , QingKe V4B                                 , CH32V203-EVT                , Basic    , Basic     , -      , -       , -     , -     
+ CH32V208          , QingKe V4C                                 , CH32V208-EVT                , Basic    , Basic     , -      , -       , -     , -     
+ CH32V303          , QingKe V4F                                 , CH32V303-EVT                , Basic    , Basic     , -      , -       , -     , -     
+ CH32V305          , QingKe V4F                                 , CH32V305-EVT                , Basic    , Basic     , -      , -       , -     , -     
+ CH32V307          , QingKe V4F                                 , CH32V307-EVT                , Basic    , Basic     , -      , -       , -     , -     
+ CH573F            , QingKe V3A                                 , CH573F-EVT                    , CFT      , CFT       , -      , -       , -     , -     
+ CH582F            , QingKe V4A                                 , CH582F-EVT                    , Basic    , Basic     , -      , -       , -     , -     
+ CH592X            , QingKe V4C                                 , CH592X-EVT                    , Basic    , Basic     , -      , -       , -     , -     
+ GD32VF103         , Nuclei Bumblebee                           , Longan Nano              , CFT      , CFT       , Basic  , -       , -     , -     
+ GD32VF103         , Nuclei Bumblebee                           , RV-STAR                      , CFT      , CFT       , -      , -       , -     , -     
+ GD32VF103         , Nuclei Bumblebee                           , Nuclei DDR200T               , CFT      , CFT       , -      , -       , -     , -     
+ V853              , XuanTie E907 + ARM Cortex-A7               , AllWinner V853                  , -        , -         , -      , -       , -     , CFT   
+ V851se            , XuanTie E907 + ARM Cortex-A7               , TinyVision                , -        , -         , -      , -       , -     , CFT   
+ V853              , XuanTie E907 + ARM Cortex-A7               , 100ASK-V853-PRO               , -        , -         , -      , -       , -     , CFT   
+ V851s             , XuanTie E907 + ARM Cortex-A7               , YuzukiHD-Lizard              , -        , -         , -      , -       , -     , CFT   
+ PIC64GX1000-V/FCS , SiFive U54 + SiFive E51                    , PIC64GX Curiosity Kit        , -        , -         , CFT    , -       , -     , -     
+ CM32M433R         , Nuclei N308                                , CM32M433R-START            , CFT      , CFT       , -      , -       , -     , -     
+ R128-S2           , XuanTie C906                               , R128-EVT                    , CFT      , -         , -      , -       , -     , -     
