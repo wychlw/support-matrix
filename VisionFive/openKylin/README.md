@@ -3,7 +3,7 @@ sys: openkylin
 sys_ver: 0.9.5
 sys_var: null
 
-status: basic
+status: good
 last_update: 2024-06-21
 ---
 

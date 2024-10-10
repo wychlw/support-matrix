@@ -3,7 +3,7 @@ sys: freertos
 sys_ver: null
 sys_var: null
 
-status: basic
+status: cft
 last_update: 2024-06-21
 ---
 
