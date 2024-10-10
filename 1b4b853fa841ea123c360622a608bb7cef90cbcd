@@ -1,0 +1,37 @@
+use follow python script to diff between metadata and csv:
+```python
+import csv
+def gen_diff(system_arr: dict[str], system: Systems, csvf: str):
+    head = ['CPU', 'IP Core', 'link', 'Product/Model']
+    for _, v in system_arr.items():
+        head.append(v)
+    data = []
+    for board in system.boards:
+        row = board.gen_row(system_arr)
+        if row is not None:
+            data.append(row)
+    data = sorted(data, key=lambda x: str(x[2]).strip())
+
+    csv_file = csv.reader(open(csvf, 'r', encoding="utf-8"))
+    csv_head = next(csv_file)
+    csv_data = [row for row in csv_file]
+    csv_data = sorted(csv_data, key=lambda x: str(x[2]).strip())
+
+    for i in range(len(csv_head)):
+        if str(head[i]).strip() != str(csv_head[i]).strip():
+            print(f"Error Head: {head[i]} != {csv_head[i]}")
+
+    for i in range(len(csv_data)):
+        if str(data[i][2]).strip() != str(csv_data[i][2]).strip():
+            print(f"Error Link: {data[i][2]} != {csv_data[i][2]}")
+            return
+        for j in range(len(csv_data[i])):
+            if str(data[i][j]).strip() == 'N/A' and str(csv_data[i][j]).strip() == '-':
+                continue
+            if str(data[i][j]).strip() != str(csv_data[i][j]).strip():
+                print(f"Error Data in {data[i][3]} {head[j]}:{csv_data[i][3].strip()} {csv_head[j].strip()}: {data[i][j]} != {csv_data[i][j]} ; ../../{data[i][2]}/README.md")
+    gen_diff(systems.linux, systems, "../linux.csv")
+    gen_diff(systems.bsd, systems, "../bsd.csv")
+    gen_diff(systems.rtos, systems, "../rtos.csv")
+    gen_diff(systems.others, systems, "../others.csv")
+```
