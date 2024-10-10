@@ -2,8 +2,8 @@
 
 linux:
   - archlinux: Arch Linux
-  - debian: Debian
-  - revyos: RevyOS
+  - debian: Debian/RevyOS
+  # - revyos: RevyOS # This is special case with Debian
   - fedora: Fedora
   - gentoo: Gentoo
   - openanlios: openAnolis
@@ -38,7 +38,7 @@ others:
   - android: Android
   - openharmony: OpenHarmony
 
----
+### END ###
 
 # Definations for README metadata
 definitions:

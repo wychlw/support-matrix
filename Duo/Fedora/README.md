@@ -3,7 +3,7 @@ sys: fedora
 sys_ver: 38
 sys_var: null
 
-status: basic
+status: cfh
 last_update: 2024-06-21
 ---
 

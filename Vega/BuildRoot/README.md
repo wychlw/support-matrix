@@ -3,7 +3,7 @@ sys: buildroot
 sys_ver: null
 sys_var: null
 
-status: basic
+status: cfh
 last_update: 2024-06-21
 ---
 
