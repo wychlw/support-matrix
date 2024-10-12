@@ -194,6 +194,7 @@ class Systems:
         '.git',
         '.vscode',
         '__pycache__',
+        '.github'
     ]
     boards: list[Board]
 
