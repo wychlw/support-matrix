@@ -4,6 +4,7 @@ Parse metadata of systems and boards
 """
 import os
 import argparse
+from urllib.parse import urljoin
 import yaml
 import frontmatter
 
@@ -298,19 +299,19 @@ def main():
         f.write(str(svg))
     if html_path:
         with open(os.path.join(args.output, 'linux.html'), 'w', encoding="utf-8") as f:
-            f.write(gen_html(svg, os.path.join(html_path, 'linux.svg')))
+            f.write(gen_html(svg, urljoin(html_path, 'linux.svg')))
     svg = proc_onesys(systems.bsd, systems)
     with open(os.path.join(args.output, 'bsd.svg'), 'w', encoding="utf-8") as f:
         f.write(str(svg))
     if html_path:
         with open(os.path.join(args.output, 'bsd.html'), 'w', encoding="utf-8") as f:
-            f.write(gen_html(svg, os.path.join(html_path, 'bsd.svg')))
+            f.write(gen_html(svg, urljoin(html_path, 'bsd.svg')))
     svg = proc_onesys(systems.rtos, systems)
     with open(os.path.join(args.output, 'rtos.svg'), 'w', encoding="utf-8") as f:
         f.write(str(svg))
     if html_path:
         with open(os.path.join(args.output, 'rtos.html'), 'w', encoding="utf-8") as f:
-            f.write(gen_html(svg, os.path.join(html_path, 'rtos.svg')))
+            f.write(gen_html(svg, urljoin(html_path, 'rtos.svg')))
     svg = proc_onesys(systems.others, systems)
     with open(os.path.join(args.output, 'others.svg'), 'w', encoding="utf-8") as f:
         f.write(str(svg))
