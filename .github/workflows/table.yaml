@@ -52,10 +52,7 @@ jobs:
       - name: Generate Hash
         id: hash
         working-directory: ${{ github.workspace }}/assets/output/
-        run: |
-          echo "$(sha256sum *)" >> ${{ github.workspace }}/result.sha256
-          echo "$(ls -1)" >> ${{ github.workspace }}/file.list
-          awk '{print "https://${{ github.repository_owner }}.github.io/support-matrix/" $0}' ${{ github.workspace }}/file.list >> ${{ github.workspace }}/link.list
+        run: echo "$(sha256sum *)" >> ${{ github.workspace }}/assets/output/result.sha256
       - name: Output Success Summary
         run: |
           echo "# Support Matrix Table Generate Report" >> $GITHUB_STEP_SUMMARY
@@ -73,15 +70,7 @@ jobs:
           echo "## Artifacts Hash" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          cat ${{ github.workspace }}/result.sha256 >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Links" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Use following links to get the tables." >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          cat ${{ github.workspace }}/link.list >> $GITHUB_STEP_SUMMARY
+          cat ${{ github.workspace }}/assets/output/result.sha256 >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## Build Log" >> $GITHUB_STEP_SUMMARY
