@@ -164,6 +164,7 @@ class Board:
     cpu_core: SiFive U74 + SiFive S7 + SiFive E24
     ---
     """
+    vendor: str | None
     product: str
     cpu: str
     link: str
@@ -225,6 +226,7 @@ class Board:
             raise FileNotFoundError(f"{readme_path} not found")
         with open(readme_path, 'r', encoding="utf-8") as file:
             post = frontmatter.load(file)
+            self.vendor = post.get('vendor', None)
             self.product = post['product']
             self.cpu = post['cpu']
             self.cpu_core = post['cpu_core']
