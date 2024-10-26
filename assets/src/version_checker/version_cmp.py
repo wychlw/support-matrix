@@ -1,3 +1,6 @@
+"""
+Compare two versions
+"""
 from awesomeversion import AwesomeVersion
 
 

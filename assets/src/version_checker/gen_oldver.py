@@ -2,7 +2,6 @@
 Generate oldver based on the support-matrix metadata
 """
 
-from typing import Any
 import toml
 from ..matrix_parser import Systems, SystemVar
 

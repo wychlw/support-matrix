@@ -6,6 +6,7 @@ See ruyi packages-index definition
 
 import os
 import toml
+import copy
 
 
 class BoardIndexProvisionable:
@@ -32,6 +33,9 @@ class BoardIndexProvisionable:
             "partition_map": self.partition_map,
         }
 
+    def __copy__(self):
+        return BoardIndexProvisionable(self.serialize())
+
 
 class BoardIndexBlob:
     """
@@ -49,6 +53,9 @@ class BoardIndexBlob:
         return {
             "distfiles": self.distfiles,
         }
+
+    def __copy__(self):
+        return BoardIndexBlob(self.serialize())
 
 
 class BoardIndexDistfiles:
@@ -80,6 +87,9 @@ class BoardIndexDistfiles:
             "checksums": self.checksums,
         }
 
+    def __copy__(self):
+        return BoardIndexDistfiles(self.serialize())
+
 
 class BoardIndexMetadata:
     """
@@ -104,6 +114,9 @@ class BoardIndexMetadata:
             "vendor": self.vendor,
         }
 
+    def __copy__(self):
+        return BoardIndexMetadata(self.serialize())
+
 
 class BoardIndex:
     """
@@ -116,7 +129,7 @@ class BoardIndex:
     provisionable: BoardIndexProvisionable
 
     def __init__(self, d: dict):
-        self.ruyi_repo = d["format"]
+        self.format = d["format"]
         self.metadata = BoardIndexMetadata(d["metadata"])
         self.distfiles = [BoardIndexDistfiles(x) for x in d["distfiles"]]
         self.blob = BoardIndexBlob(d["blob"])
@@ -140,8 +153,11 @@ class BoardIndex:
         Load from file
         """
         t = toml.load(path)
-        print(t)
         return BoardIndex(t)
+
+    def __copy__(self):
+        return BoardIndex(self.serialize())
+
 
 class BoardImages:
     """
@@ -150,7 +166,14 @@ class BoardImages:
     version: str
     info: BoardIndex
 
-    def __init__(self, file: str):
+    def __init__(self, file: str | None = None, **kwargs):
+        if file is None:
+            self.version = kwargs["version"]
+            self.info = kwargs["info"]
+            return
         basename = os.path.basename(file)
-        self.version = basename[:-5] # remove .toml
+        self.version = basename[:-5]  # remove .toml
         self.info = BoardIndex.load(file)
+
+    def __copy__(self):
+        return BoardImages(version=copy.copy(self.version), info=copy.copy(self.info))
