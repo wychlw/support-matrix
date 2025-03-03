@@ -60,19 +60,23 @@ _cli_configs = CFG([
     {'name': 'log', 'explain': 'output the log to the file', 'default': None},
     {'name': 'warn', 'explain': 'output the warn to the file', 'default': None},
     {'name': 'update_info', 'explain': 'output the update info to the file', 'default': None},
-    {'name': 'threadhold', 'explain': 'the status threadhold can be synced',
-        'default': 'basic'},
     {'name': 'force', 'explain': 'force to update the index', 'action': 'store_true'},
     {'name': 'plugin_names', 'explain': 'the plugins to run, default to all', 'nargs': '*'}
 ])
 
+import toml
 _internal_configs = {
-    "RUYI_PACKAGE_INDEX": "git@github.com:ruyisdk/packages-index.git",
+    "RUYI_PACKAGE_INDEX": "git@github.com:wychlw/packages-index.git",
     "CACHE_DIR": os.getenv("CACHE_DIR", None),
-    "PACKAGE_INDEX_OWNER": os.getenv("PACKAGE_INDEX_OWNER", "ruyisdk"),
+    "PACKAGE_INDEX_OWNER": os.getenv("PACKAGE_INDEX_OWNER", "wychlw"),
     "PACKAGE_INDEX_REPO": "packages-index",
+    "CI_RUN_ID": os.getenv("CI_RUN_ID", None),
+    "CI_RUN_URL": os.getenv("CI_RUN_URL", None),
+    # Load configs for plugin
+    # TODO: No hard-encoding name
+    # TODO: move to init
+    "plugin_cfg": toml.load("renew_cfg.toml")
 }
-
 
 class CFGdict():
     """

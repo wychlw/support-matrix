@@ -35,7 +35,11 @@ class ImageStatus:
         return self.MAPPER[self.status][0]
     
     def __eq__(self, other):
-        return self.MAPPER[self.status][1] == self.MAPPER[other.status][1]
+        if isinstance(other, ImageStatus):
+            return self.MAPPER[self.status][1] == self.MAPPER[other.status][1]
+        if isinstance(other, str):
+            return self.status == other.lower()
+        raise ValueError("Unknown PartialEq for ImageStatus")
     
     def __lt__(self, other):
         return self.MAPPER[self.status][1] < self.MAPPER[other.status][1]
@@ -171,6 +175,7 @@ class Board:
     ---
     """
     vendor: str | None
+    board_variants: list[str] | None
     product: str
     cpu: str
     link: str
@@ -236,6 +241,7 @@ class Board:
             post = frontmatter.load(file)
             self.raw_data = post
             self.vendor = post.get('vendor', None)
+            self.board_variants = post.get('board_variants', None)
             self.product = post['product']
             self.cpu = post['cpu']
             self.cpu_core = post['cpu_core']

@@ -1,0 +1,22 @@
+[[handler]]
+plugin = "github_release_simple"
+id = "buildroot-sdk-sipeed-licheervnano"
+vendor = "sipeed-licheervnano"
+system = "buildroot"
+variant = "null"
+repo = "sipeed/LicheeRV-Nano-Build"
+strategy = "dd_v1"
+partition_map = "disk"
+[handler.release_filter]
+type = "lambda"
+filter = "lambda name, info: info.version in name"
+[handler.version_mapper]
+type = "regex"
+regex = '.*'
+mapper = "{0}"
+[handler.asset_filter]
+type = "regex"
+filter = '.*\.img'
+[handler.desc_mapper]
+type = "regex"
+mapper = "Debian image for Sipeed LicheeRV Nano with Sophgo SG200x from https://github.com/Fishwaldo"
