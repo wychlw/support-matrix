@@ -1,0 +1,25 @@
+name: Metadata Check
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+
+jobs:
+  do_check:
+    name: Check Metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Prepare Environment
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qqy python3-pip
+          pip install -q --upgrade meson
+          pip install -qr assets/requirements_svg.txt
+          pip install -q --upgrade pydantic
+
+      - name: Check Metadata
+        run: |
+          python3 assets/metadata_check.py -p .
